@@ -4,7 +4,7 @@ function Navbar() {
   return (
     <header id="topnav" className="defaultscroll sticky">
       <div className="container">
-        <Link className="logo" to="index.html">
+        <Link className="logo" to="/">
           <img
             src="../../assets/images/logo-dark.png"
             height="24"
@@ -167,7 +167,7 @@ function Navbar() {
                   </a>
                 </li>
                 <li>
-                  <Link to="/PatientProfile" className="sub-menu-item">
+                  <Link to="/patientProfile" className="sub-menu-item">
                     پروفایل
                   </Link>
                 </li>
@@ -229,9 +229,9 @@ function Navbar() {
               <span className="menu-arrow"></span>
               <ul className="submenu">
                 <li>
-                  <a href="aboutus.html" className="sub-menu-item">
+                  <Link to="/aboutUs" className="sub-menu-item">
                     درباره ما
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a href="departments.html" className="sub-menu-item">
@@ -239,9 +239,9 @@ function Navbar() {
                   </a>
                 </li>
                 <li>
-                  <a href="faqs.html" className="sub-menu-item">
+                  <Link to="/faqs" className="sub-menu-item">
                     سوالات متدوال
-                  </a>
+                  </Link>
                 </li>
                 <li className="has-submenu parent-menu-item">
                   <a href="javascript:void(0)" className="menu-item">
