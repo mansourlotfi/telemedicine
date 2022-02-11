@@ -172,9 +172,9 @@ function Navbar() {
                   </Link>
                 </li>
                 <li>
-                  <a href="booking-appointment.html" className="sub-menu-item">
+                  <Link to="/bookingAppointment" className="sub-menu-item">
                     رزرو نوبت
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a href="patient-invoice.html" className="sub-menu-item">
@@ -267,9 +267,9 @@ function Navbar() {
                   </a>
                 </li>
                 <li>
-                  <a href="privacy.html" className="sub-menu-item">
+                  <Link to="/privacy" className="sub-menu-item">
                     حفظ حریم شخصی
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a href="error.html" className="sub-menu-item">
