@@ -334,8 +334,7 @@ function Navbar() {
                 </li>
                 <li className="has-submenu parent-menu-item">
                   <a href="javascript:void(0)" className="menu-item">
-                    {" "}
-                    بلاگ{" "}
+                    بلاگ
                   </a>
                   <span className="submenu-arrow"></span>
                   <ul className="submenu">
