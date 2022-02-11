@@ -3,20 +3,19 @@ const Home = loadable(() => import("_pages/home"));
 
 interface IRoute {
   title: string;
-  path?: string;
-  isExact?: boolean;
+  path: string;
   isPrivate?: boolean;
   hasMenuField: boolean;
   hasParent?: any[];
   icon?: any;
-  component?: LoadableComponent<unknown>;
+  element?: LoadableComponent<unknown>;
   children?: IRoute[];
 }
 
 interface IRoutesName {
   [name: string]: {
     title: string;
-    path?: string;
+    path: string;
   };
 }
 
@@ -27,6 +26,7 @@ export const routesName: IRoutesName = {
   },
   asd: {
     title: "asd",
+    path: "/asd",
   },
 
   error403: {
@@ -35,17 +35,16 @@ export const routesName: IRoutesName = {
   },
   error404: {
     title: "Error 404",
-    path: "",
+    path: "/404",
   },
 };
 
 const routes: IRoute[] = [
   {
     ...routesName.default,
-    isExact: true,
     isPrivate: true,
     hasMenuField: false,
-    component: Home,
+    element: Home,
   },
   //   {
   //     ...routesName.asd,
@@ -56,14 +55,14 @@ const routes: IRoute[] = [
   //         ...routesName.asd,
   //         isExact: false,
   //         isPrivate: true,
-  //         component: asd,
+  //         element: asd,
   //         hasMenuField: true,
   //       },
   //       {
   //         ...routesName.asd,
   //         isExact: false,
   //         isPrivate: true,
-  //         component: asd,
+  //         element: asd,
   //         hasMenuField: false,
   //       },
   //     ],
@@ -74,7 +73,7 @@ const routes: IRoute[] = [
   //   children: [],
   //   isPrivate: true,
   //   hasMenuField: false,
-  //   component: Error403,
+  //   element: Error403,
   // },
   //   {
   //     ...routesName.error404,
@@ -82,6 +81,9 @@ const routes: IRoute[] = [
   //     children: [],
   //     isPrivate: true,
   //     hasMenuField: false,
-  //     component: Error404,
+  //     element: Error404,
   //   },
 ];
+
+export { routes };
+export type { IRoute };
