@@ -167,9 +167,9 @@ function Navbar() {
                   </a>
                 </li>
                 <li>
-                  <a href="patient-profile.html" className="sub-menu-item">
+                  <Link to="/PatientProfile" className="sub-menu-item">
                     پروفایل
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a href="booking-appointment.html" className="sub-menu-item">

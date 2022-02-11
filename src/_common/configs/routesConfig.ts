@@ -1,5 +1,6 @@
 import loadable, { LoadableComponent } from "@loadable/component";
 const Home = loadable(() => import("_pages/home"));
+const PatientProfile = loadable(() => import("_pages/patientProfile"));
 
 interface IRoute {
   title: string;
@@ -24,9 +25,9 @@ export const routesName: IRoutesName = {
     title: "default",
     path: "/",
   },
-  asd: {
-    title: "asd",
-    path: "/asd",
+  PatientProfile: {
+    title: "PatientProfile",
+    path: "/PatientProfile",
   },
 
   error403: {
@@ -45,6 +46,12 @@ const routes: IRoute[] = [
     isPrivate: true,
     hasMenuField: false,
     element: Home,
+  },
+  {
+    ...routesName.PatientProfile,
+    isPrivate: true,
+    hasMenuField: false,
+    element: PatientProfile,
   },
   //   {
   //     ...routesName.asd,
