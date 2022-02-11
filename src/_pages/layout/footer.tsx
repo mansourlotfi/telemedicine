@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -181,40 +181,22 @@ function Footer() {
       <div className="container mt-5">
         <div className="pt-4 footer-bar">
           <div className="row align-items-center">
-            <div className="col-sm-6">
-              <div className="text-sm-start text-center">
-                <p className="mb-0">
-                  1400© داکتریس. ارائه با{" "}
-                  <i className="mdi mdi-heart text-danger"></i>{" "}
-                  <a href=" " target="_blank" className="text-reset">
-                    AFARIDTEAM
-                  </a>
-                  .
-                </p>{" "}
-              </div>
-            </div>
-
-            <div className="col-sm-6 mt-4 mt-sm-0">
+            <div className="col-sm-12 mt-4 mt-sm-0">
               <ul className="list-unstyled footer-list text-sm-end text-center mb-0">
                 <li className="list-inline-item">
-                  <a href="terms.html" className="text-foot me-2">
-                    مقررات
-                  </a>
-                </li>
-                <li className="list-inline-item">
-                  <a href="privacy.html" className="text-foot me-2">
+                  <Link to="/privacy" className="text-foot me-2">
                     حریم شخصی
-                  </a>
+                  </Link>
                 </li>
                 <li className="list-inline-item">
-                  <a href="aboutus.html" className="text-foot me-2">
+                  <Link to="/aboutUs" className="text-foot me-2">
                     درباره ما
-                  </a>
+                  </Link>
                 </li>
                 <li className="list-inline-item">
-                  <a href="contact.html" className="text-foot me-2">
+                  <Link to="/contactUs" className="text-foot me-2">
                     ارتباط با ما
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
