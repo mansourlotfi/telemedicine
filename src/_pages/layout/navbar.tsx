@@ -250,9 +250,9 @@ function Navbar() {
                   <span className="submenu-arrow"></span>
                   <ul className="submenu">
                     <li>
-                      <a href="blogs.html" className="sub-menu-item">
+                      <Link to="/blogs" className="sub-menu-item">
                         بلاگ
-                      </a>
+                      </Link>
                     </li>
                     <li>
                       <a href="blog-detail.html" className="sub-menu-item">
@@ -277,9 +277,9 @@ function Navbar() {
                   </a>
                 </li>
                 <li>
-                  <a href="contact.html" className="sub-menu-item">
+                  <Link to="/contactUs" className="sub-menu-item">
                     ارتباط با ما
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </li>

@@ -5,6 +5,8 @@ const BookingAppointment = loadable(() => import("_pages/bookingAppointment"));
 const Privacy = loadable(() => import("_pages/privacy"));
 const AboutUs = loadable(() => import("_pages/aboutUs"));
 const Faqs = loadable(() => import("_pages/faqs"));
+const Blogs = loadable(() => import("_pages/blogs"));
+const ContactUs = loadable(() => import("_pages/contactUs"));
 
 interface IRoute {
   title: string;
@@ -48,6 +50,14 @@ export const routesName: IRoutesName = {
   Faqs: {
     title: "Faqs",
     path: "/faqs",
+  },
+  Blogs: {
+    title: "Blogs",
+    path: "/blogs",
+  },
+  ContactUs: {
+    title: "ContactUs",
+    path: "/contactUs",
   },
   error403: {
     title: "Error 403",
@@ -95,6 +105,18 @@ const routes: IRoute[] = [
     isPrivate: true,
     hasMenuField: false,
     element: Faqs,
+  },
+  {
+    ...routesName.Blogs,
+    isPrivate: true,
+    hasMenuField: false,
+    element: Blogs,
+  },
+  {
+    ...routesName.ContactUs,
+    isPrivate: true,
+    hasMenuField: false,
+    element: ContactUs,
   },
   //   {
   //     ...routesName.asd,
