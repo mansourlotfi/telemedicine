@@ -1,4 +1,12 @@
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { getAllBlogPosts } from "_api";
+
 function Index() {
+  useEffect(() => {
+    getAllBlogPosts().then((data) => console.log("data", data));
+  }, []);
+
   return (
     <>
       <section
@@ -55,9 +63,9 @@ function Index() {
                       20 ام اسفند 1400
                     </li>
                   </ul>
-                  <a href="blog-detail.html" className="text-dark title h5">
+                  <Link to="/blogPost" className="text-dark title h5">
                     به راحتی دکتر بیاید و درمان انجام دهید
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -76,9 +84,9 @@ function Index() {
                       20 ام اسفند 1400
                     </li>
                   </ul>
-                  <a href="blog-detail.html" className="text-dark title h5">
+                  <Link to="/blogPost" className="text-dark title h5">
                     قرنطینه شدن و مراقبت های پزشکی کمتر
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -97,9 +105,10 @@ function Index() {
                       20 ام اسفند 1400
                     </li>
                   </ul>
-                  <a href="blog-detail.html" className="text-dark title h5">
+
+                  <Link to="/blogPost" className="text-dark title h5">
                     دوره تحقیقات پزشکی برای پزشکان
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -118,9 +127,9 @@ function Index() {
                       20 ام اسفند 1400
                     </li>
                   </ul>
-                  <a href="blog-detail.html" className="text-dark title h5">
+                  <Link to="/blogPost" className="text-dark title h5">
                     مقایسه فریزرهای نیتروژن و مکانیکی
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -139,93 +148,9 @@ function Index() {
                       20 ام اسفند 1400
                     </li>
                   </ul>
-                  <a href="blog-detail.html" className="text-dark title h5">
+                  <Link to="/blogPost" className="text-dark title h5">
                     پوشیدن لباس مناسب بسیار مهم است
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-4 col-md-6 col-12 mb-4 pb-2">
-              <div className="card blog blog-primary border-0 shadow rounded overflow-hidden">
-                <img
-                  src="../assets/images/blog/06.jpg"
-                  className="img-fluid"
-                  alt=""
-                />
-                <div className="card-body p-4">
-                  <ul className="list-unstyled mb-2">
-                    <li className="list-inline-item text-muted small me-3">
-                      <i className="uil uil-calendar-alt text-dark h6 me-1"></i>
-                      20 ام اسفند 1400
-                    </li>
-                  </ul>
-                  <a href="blog-detail.html" className="text-dark title h5">
-                    چه ژنی بیشتر ویروس می خورند
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-4 col-md-6 col-12 mb-4 pb-2">
-              <div className="card blog blog-primary border-0 shadow rounded overflow-hidden">
-                <img
-                  src="../assets/images/blog/07.jpg"
-                  className="img-fluid"
-                  alt=""
-                />
-                <div className="card-body p-4">
-                  <ul className="list-unstyled mb-2">
-                    <li className="list-inline-item text-muted small me-3">
-                      <i className="uil uil-calendar-alt text-dark h6 me-1"></i>
-                      20 ام اسفند 1400
-                    </li>
-                  </ul>
-                  <a href="blog-detail.html" className="text-dark title h5">
-                    تحقیق در مورد ویروس کرونا
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-4 col-md-6 col-12 mb-4 pb-2">
-              <div className="card blog blog-primary border-0 shadow rounded overflow-hidden">
-                <img
-                  src="../assets/images/blog/08.jpg"
-                  className="img-fluid"
-                  alt=""
-                />
-                <div className="card-body p-4">
-                  <ul className="list-unstyled mb-2">
-                    <li className="list-inline-item text-muted small me-3">
-                      <i className="uil uil-calendar-alt text-dark h6 me-1"></i>
-                      20 ام اسفند 1400
-                    </li>
-                  </ul>
-                  <a href="blog-detail.html" className="text-dark title h5">
-                    استفاده از طیف سنجی برای ارزیابی کیفیت غذا
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-4 col-md-6 col-12 mb-4 pb-2">
-              <div className="card blog blog-primary border-0 shadow rounded overflow-hidden">
-                <img
-                  src="../assets/images/blog/09.jpg"
-                  className="img-fluid"
-                  alt=""
-                />
-                <div className="card-body p-4">
-                  <ul className="list-unstyled mb-2">
-                    <li className="list-inline-item text-muted small me-3">
-                      <i className="uil uil-calendar-alt text-dark h6 me-1"></i>
-                      20 ام اسفند 1400
-                    </li>
-                  </ul>
-                  <a href="blog-detail.html" className="text-dark title h5">
-                    باید 20 ثانیه دستان خود را بشویید
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

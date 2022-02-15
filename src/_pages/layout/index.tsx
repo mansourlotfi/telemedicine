@@ -9,7 +9,11 @@ const Index: FC<ILayoutProps> = ({ children }) => {
   return (
     <>
       <Navbar />
-      <div style={{ margin: "10px 0" }}>{children}</div>
+      <div
+        style={{ margin: "80px 0 10px 0", minHeight: "calc(100vh - 380px)" }}
+      >
+        {children}
+      </div>
       <Footer />
     </>
   );

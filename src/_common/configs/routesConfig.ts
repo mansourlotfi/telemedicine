@@ -7,6 +7,7 @@ const AboutUs = loadable(() => import("_pages/aboutUs"));
 const Faqs = loadable(() => import("_pages/faqs"));
 const Blogs = loadable(() => import("_pages/blogs"));
 const ContactUs = loadable(() => import("_pages/contactUs"));
+const BlogPost = loadable(() => import("_pages/blogPost"));
 
 interface IRoute {
   title: string;
@@ -58,6 +59,10 @@ export const routesName: IRoutesName = {
   ContactUs: {
     title: "ContactUs",
     path: "/contactUs",
+  },
+  BlogPost: {
+    title: "ContactUs",
+    path: "/blogPost",
   },
   error403: {
     title: "Error 403",
@@ -117,6 +122,12 @@ const routes: IRoute[] = [
     isPrivate: true,
     hasMenuField: false,
     element: ContactUs,
+  },
+  {
+    ...routesName.BlogPost,
+    isPrivate: true,
+    hasMenuField: false,
+    element: BlogPost,
   },
   //   {
   //     ...routesName.asd,

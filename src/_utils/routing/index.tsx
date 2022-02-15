@@ -15,33 +15,25 @@ export default memo(() => {
       //     />
       //   );
       // } else
-      return (
-        <Route
-          key={key}
-          path={route.path}
-          element={
-            <Layout>
-              <route.element />
-            </Layout>
-          }
-        />
-      );
+      return <Route key={key} path={route.path} element={<route.element />} />;
     return <Fragment key={key} />;
   }, []);
   return (
     <Suspense fallback="loading">
       <BrowserRouter>
-        <Routes>
-          {routes.map((route: IRoute, index: number) => {
-            if (route?.children?.length) {
-              return route.children.map((child: IRoute) => {
-                return generateRoute(child, index);
-              });
-            } else return generateRoute(route, index);
-          })}
-          {/* <Route path="/redirect" component={Redirect} />
+        <Layout>
+          <Routes>
+            {routes.map((route: IRoute, index: number) => {
+              if (route?.children?.length) {
+                return route.children.map((child: IRoute) => {
+                  return generateRoute(child, index);
+                });
+              } else return generateRoute(route, index);
+            })}
+            {/* <Route path="/redirect" component={Redirect} />
       <Route path="/error-pages/error-403" component={Error403} />  */}
-        </Routes>
+          </Routes>
+        </Layout>
       </BrowserRouter>
     </Suspense>
   );
