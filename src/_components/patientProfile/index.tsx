@@ -1,4 +1,14 @@
+import { useEffect } from "react";
+
+import { getUserProfile } from "_api";
+
 function Index() {
+  useEffect(() => {
+    getUserProfile({
+      phone: "09354273664",
+    }).then((data) => console.log("data", data));
+  }, []);
+
   return (
     <section className="bg-hero">
       <div className="container">

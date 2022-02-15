@@ -32,17 +32,6 @@ export default memo(() => {
     <Suspense fallback="loading">
       <BrowserRouter>
         <Routes>
-          {/* <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-
-            <Route index element={<Home />} /> 
-             <Route path="teams" element={<Teams />}>
-              <Route path=":teamId" element={<Team />} />
-              <Route path="new" element={<NewTeamForm />} />
-              <Route index element={<LeagueStandings />} />
-            </Route> 
-          </Route> */}
-
           {routes.map((route: IRoute, index: number) => {
             if (route?.children?.length) {
               return route.children.map((child: IRoute) => {

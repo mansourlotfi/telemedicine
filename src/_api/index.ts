@@ -2,7 +2,12 @@ import { axios } from "_utils/axios";
 import { routeToService } from "_utils/routeToService";
 
 const SERVICE = {
-  GET_ALL_Users: () =>
-    routeToService("/User?offset=0&limit=100", process.env.REACT_APP_BASE_URL),
+  GET_USER_PROFILE: (params: any) =>
+    routeToService(
+      "/API/UserDetail.aspx",
+      process.env.REACT_APP_BASE_URL,
+      params
+    ),
 };
-export const getAllUsers = () => axios.get(SERVICE.GET_ALL_Users());
+export const getUserProfile = (params: any) =>
+  axios.get(SERVICE.GET_USER_PROFILE(params));
