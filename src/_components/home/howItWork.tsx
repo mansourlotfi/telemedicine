@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function HowItWork() {
   return (
@@ -136,9 +137,9 @@ function HowItWork() {
               موارد بیماری و اضطراری یا حتی مشاوره ای ساده نیاز دارید؛ همینجا
               باشید
             </p>
-            <a href="contact.html" className="btn btn-primary mt-4">
+            <Link to="/contactUs" className="btn btn-primary mt-4">
               <i className="mdi mdi-phone"></i> ارتباط بگیرید
-            </a>
+            </Link>
           </div>
         </div>
       </div>
