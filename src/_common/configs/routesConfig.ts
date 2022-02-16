@@ -8,6 +8,7 @@ const Faqs = loadable(() => import("_pages/faqs"));
 const Blogs = loadable(() => import("_pages/blogs"));
 const ContactUs = loadable(() => import("_pages/contactUs"));
 const BlogPost = loadable(() => import("_pages/blogPost"));
+const Error404 = loadable(() => import("_pages/404"));
 
 interface IRoute {
   title: string;
@@ -70,7 +71,7 @@ export const routesName: IRoutesName = {
   },
   error404: {
     title: "Error 404",
-    path: "/404",
+    path: "/login",
   },
 };
 
@@ -158,14 +159,12 @@ const routes: IRoute[] = [
   //   hasMenuField: false,
   //   element: Error403,
   // },
-  //   {
-  //     ...routesName.error404,
-  //     isExact: true,
-  //     children: [],
-  //     isPrivate: true,
-  //     hasMenuField: false,
-  //     element: Error404,
-  //   },
+  {
+    ...routesName.error404,
+    isPrivate: false,
+    hasMenuField: false,
+    element: Error404,
+  },
 ];
 
 export { routes };

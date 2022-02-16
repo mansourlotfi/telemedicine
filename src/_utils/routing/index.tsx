@@ -8,24 +8,17 @@ export default memo(() => {
     if (route?.element)
       if (route.isPrivate) {
         return (
-          // <Route key={key} element={<RequireAuth />}>
-          //   <Route key={key} element={<Layout />}>
-          //     <Route key={key} path={route.path} element={<route.element />} />
-          //   </Route>
-          // </Route>
-          <Route
-            path={route.path}
-            key={key}
-            element={
-              <RequireAuth>
-                <Route
-                  key={key}
-                  path={route.path}
-                  element={<route.element />}
-                />
-              </RequireAuth>
-            }
-          />
+          <Route key={key} element={<Layout />}>
+            <Route
+              path={route.path}
+              key={key}
+              element={
+                <RequireAuth>
+                  <route.element />
+                </RequireAuth>
+              }
+            />
+          </Route>
         );
       } else
         return (
