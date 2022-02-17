@@ -1,10 +1,19 @@
+import { AxiosResponse } from "axios";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getAllBlogPosts } from "_api";
+import { generateBlogPosts } from "_common/mappers/fromBlogPostsApi";
+import { useAppDispatch, useAppSelector } from "_redux/hooks";
+import { setBlosPosts } from "_redux/slices/BlogSlice ";
 
 function Index() {
+  const dispatch = useAppDispatch();
+  const posts = useAppSelector((state) => state.BlogPosts);
+
   useEffect(() => {
-    getAllBlogPosts().then((data) => console.log("data", data));
+    getAllBlogPosts().then((data: AxiosResponse) =>
+      dispatch(setBlosPosts(generateBlogPosts(data).posts))
+    );
   }, []);
 
   return (
@@ -49,111 +58,25 @@ function Index() {
       <section className="section">
         <div className="container">
           <div className="row">
-            <div className="col-lg-4 col-md-6 col-12 mb-4 pb-2">
-              <div className="card blog blog-primary border-0 shadow rounded overflow-hidden">
-                <img
-                  src="../assets/images/blog/01.jpg"
-                  className="img-fluid"
-                  alt=""
-                />
-                <div className="card-body p-4">
-                  <ul className="list-unstyled mb-2">
-                    <li className="list-inline-item text-muted small me-3">
-                      <i className="uil uil-calendar-alt text-dark h6 me-1"></i>
-                      20 ام اسفند 1400
-                    </li>
-                  </ul>
-                  <Link to="/blogPost" className="text-dark title h5">
-                    به راحتی دکتر بیاید و درمان انجام دهید
-                  </Link>
+            {posts.posts.map((item) => (
+              <div key={item.id} className="col-lg-4 col-md-6 col-12 mb-4 pb-2">
+                <div className="card blog blog-primary border-0 shadow rounded overflow-hidden">
+                  <img src={item.image} className="img-fluid" alt="" />
+                  <div className="card-body p-4">
+                    <ul className="list-unstyled mb-2">
+                      <li className="list-inline-item text-muted small me-3">
+                        <i className="uil uil-calendar-alt text-dark h6 me-1"></i>
+                        {item.date}
+                      </li>
+                    </ul>
+                    <Link to="/blogPost" className="text-dark title h5">
+                      {item.title}
+                    </Link>
+                    <div>{item.description}</div>
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div className="col-lg-4 col-md-6 col-12 mb-4 pb-2">
-              <div className="card blog blog-primary border-0 shadow rounded overflow-hidden">
-                <img
-                  src="../assets/images/blog/02.jpg"
-                  className="img-fluid"
-                  alt=""
-                />
-                <div className="card-body p-4">
-                  <ul className="list-unstyled mb-2">
-                    <li className="list-inline-item text-muted small me-3">
-                      <i className="uil uil-calendar-alt text-dark h6 me-1"></i>
-                      20 ام اسفند 1400
-                    </li>
-                  </ul>
-                  <Link to="/blogPost" className="text-dark title h5">
-                    قرنطینه شدن و مراقبت های پزشکی کمتر
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-4 col-md-6 col-12 mb-4 pb-2">
-              <div className="card blog blog-primary border-0 shadow rounded overflow-hidden">
-                <img
-                  src="../assets/images/blog/03.jpg"
-                  className="img-fluid"
-                  alt=""
-                />
-                <div className="card-body p-4">
-                  <ul className="list-unstyled mb-2">
-                    <li className="list-inline-item text-muted small me-3">
-                      <i className="uil uil-calendar-alt text-dark h6 me-1"></i>
-                      20 ام اسفند 1400
-                    </li>
-                  </ul>
-
-                  <Link to="/blogPost" className="text-dark title h5">
-                    دوره تحقیقات پزشکی برای پزشکان
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-4 col-md-6 col-12 mb-4 pb-2">
-              <div className="card blog blog-primary border-0 shadow rounded overflow-hidden">
-                <img
-                  src="../assets/images/blog/04.jpg"
-                  className="img-fluid"
-                  alt=""
-                />
-                <div className="card-body p-4">
-                  <ul className="list-unstyled mb-2">
-                    <li className="list-inline-item text-muted small me-3">
-                      <i className="uil uil-calendar-alt text-dark h6 me-1"></i>
-                      20 ام اسفند 1400
-                    </li>
-                  </ul>
-                  <Link to="/blogPost" className="text-dark title h5">
-                    مقایسه فریزرهای نیتروژن و مکانیکی
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-4 col-md-6 col-12 mb-4 pb-2">
-              <div className="card blog blog-primary border-0 shadow rounded overflow-hidden">
-                <img
-                  src="../assets/images/blog/05.jpg"
-                  className="img-fluid"
-                  alt=""
-                />
-                <div className="card-body p-4">
-                  <ul className="list-unstyled mb-2">
-                    <li className="list-inline-item text-muted small me-3">
-                      <i className="uil uil-calendar-alt text-dark h6 me-1"></i>
-                      20 ام اسفند 1400
-                    </li>
-                  </ul>
-                  <Link to="/blogPost" className="text-dark title h5">
-                    پوشیدن لباس مناسب بسیار مهم است
-                  </Link>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
 
           <div className="row text-center">

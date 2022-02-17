@@ -28,4 +28,14 @@ interface ISetProfile {
   biography: string | null;
   image: string | null;
 }
-export type { IProfile, ISetProfile };
+
+interface IBlogPost {
+  id: number;
+  title: string;
+  date: string;
+  image: string;
+  link: string;
+  type: string;
+  description: string;
+}
+export type { IProfile, ISetProfile, IBlogPost };
