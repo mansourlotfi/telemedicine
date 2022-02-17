@@ -1,4 +1,19 @@
+import { AxiosResponse } from "axios";
+import { useEffect } from "react";
+import { getDrDates } from "_api";
+import { useAppDispatch, useAppSelector } from "_redux/hooks";
+import { setDrAvailableDates } from "_redux/slices/DrbookingDateTimeSlice";
+import FormHandler from "./formHandler";
+
 function Index() {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    getDrDates().then((data: AxiosResponse) =>
+      dispatch(setDrAvailableDates(data.data))
+    );
+  }, []);
+
   return (
     <>
       <section className="bg-half-170 d-table w-100 bg-light">
@@ -86,109 +101,7 @@ function Index() {
                     role="tabpanel"
                     aria-labelledby="clinic-booking"
                   >
-                    <form>
-                      <div className="row">
-                        <div className="col-lg-12">
-                          <div className="mb-3">
-                            <label className="form-label">
-                              نام بیمار<span className="text-danger">*</span>
-                            </label>
-                            <input
-                              name="name"
-                              id="name"
-                              type="text"
-                              className="form-control"
-                              placeholder="نام بیمار:"
-                            />
-                          </div>
-                        </div>
-
-                        <div className="col-md-6">
-                          <div className="mb-3">
-                            <label className="form-label">دپارتمان ها</label>
-                            <select className="form-control department-name select2input">
-                              <option value="EY"> مراقبت از چشم </option>
-                              <option value="GY"> متخصص زنان </option>
-                              <option value="PS"> روان درمانگر </option>
-                              <option value="OR"> ارتوپدی </option>
-                              <option value="DE"> دندانپزشک </option>
-                              <option value="GA"> متخصص گوارش </option>
-                              <option value="UR"> اورولوژیست </option>
-                              <option value="NE"> متخصص مغز و اعصاب </option>
-                            </select>
-                          </div>
-                        </div>
-
-                        <div className="col-md-6">
-                          <div className="mb-3">
-                            <label className="form-label">پزشک</label>
-                            <select className="form-control doctor-name select2input">
-                              <option value="CA">پزشک. کلوین کارلو</option>
-                              <option value="CR">پزشک. کریستین مورفی</option>
-                              <option value="AL">پزشک. آیا ردی</option>
-                              <option value="TO">پزشک. تونی کوار</option>
-                              <option value="JE">پزشک. جسیکار میکفرنس</option>
-                              <option value="EL">پزشک. الیس شرمن</option>
-                              <option value="BE">پزشک. برتا مارگز</option>
-                              <option value="LO">پزشک. لوییس باتای</option>
-                            </select>
-                          </div>
-                        </div>
-
-                        <div className="col-md-6">
-                          <div className="mb-3">
-                            <label className="form-label">
-                              ایمیل شما <span className="text-danger">*</span>
-                            </label>
-                            <input
-                              name="email"
-                              id="email"
-                              type="email"
-                              className="form-control"
-                              placeholder="ایمیل شما"
-                            />
-                          </div>
-                        </div>
-
-                        <div className="col-md-6">
-                          <div className="mb-3">
-                            <label className="form-label">
-                              شماره شما <span className="text-danger">*</span>
-                            </label>
-                            <input
-                              name="phone"
-                              id="phone"
-                              type="tel"
-                              className="form-control"
-                              placeholder="شماره شما :"
-                            />
-                          </div>
-                        </div>
-
-                        <div className="col-lg-12">
-                          <div className="mb-3">
-                            <label className="form-label">
-                              نظرات<span className="text-danger">*</span>
-                            </label>
-                            <textarea
-                              name="comments"
-                              id="comments"
-                              rows={4}
-                              className="form-control"
-                              placeholder="پیام شما:"
-                            ></textarea>
-                          </div>
-                        </div>
-
-                        <div className="col-lg-12">
-                          <div className="d-grid">
-                            <button type="submit" className="btn btn-primary">
-                              رزرو نوبت
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </form>
+                    <FormHandler />
                   </div>
 
                   <div
@@ -197,135 +110,7 @@ function Index() {
                     role="tabpanel"
                     aria-labelledby="online-booking"
                   >
-                    <form>
-                      <div className="row">
-                        <div className="col-lg-12">
-                          <div className="mb-3">
-                            <label className="form-label">
-                              نام بیمار<span className="text-danger">*</span>
-                            </label>
-                            <input
-                              name="name"
-                              id="name2"
-                              type="text"
-                              className="form-control"
-                              placeholder="نام بیمار:"
-                            />
-                          </div>
-                        </div>
-
-                        <div className="col-md-6">
-                          <div className="mb-3">
-                            <label className="form-label">دپارتمان ها</label>
-                            <select className="form-control department-name select2input">
-                              <option value="EY"> مراقبت از چشم </option>
-                              <option value="GY"> متخصص زنان </option>
-                              <option value="PS"> روان درمانگر </option>
-                              <option value="OR"> ارتوپدی </option>
-                              <option value="DE"> دندانپزشک </option>
-                              <option value="GA"> متخصص گوارش </option>
-                              <option value="UR"> اورولوژیست </option>
-                              <option value="NE"> متخصص مغز و اعصاب </option>
-                            </select>
-                          </div>
-                        </div>
-
-                        <div className="col-md-6">
-                          <div className="mb-3">
-                            <label className="form-label">پزشک</label>
-                            <select className="form-control doctor-name select2input">
-                              <option value="CA">پزشک. کلوین کارلو</option>
-                              <option value="CR">پزشک. کریستین مورفی</option>
-                              <option value="AL">پزشک. آیا ردی</option>
-                              <option value="TO">پزشک. تونی کوار</option>
-                              <option value="JE">پزشک. جسیکار میکفرنس</option>
-                              <option value="EL">پزشک. الیس شرمن</option>
-                              <option value="BE">پزشک. برتا مارگز</option>
-                              <option value="LO">پزشک. لوییس باتای</option>
-                            </select>
-                          </div>
-                        </div>
-
-                        <div className="col-md-6">
-                          <div className="mb-3">
-                            <label className="form-label">
-                              ایمیل شما <span className="text-danger">*</span>
-                            </label>
-                            <input
-                              name="email"
-                              id="email2"
-                              type="email"
-                              className="form-control"
-                              placeholder="ایمیل شما"
-                            />
-                          </div>
-                        </div>
-
-                        <div className="col-md-6">
-                          <div className="mb-3">
-                            <label className="form-label">
-                              شماره شما <span className="text-danger">*</span>
-                            </label>
-                            <input
-                              name="phone"
-                              id="phone2"
-                              type="tel"
-                              className="form-control"
-                              placeholder="شماره شما :"
-                            />
-                          </div>
-                        </div>
-
-                        <div className="col-md-6">
-                          <div className="mb-3">
-                            <label className="form-label"> تاریخ: </label>
-                            <input
-                              name="date"
-                              type="text"
-                              className="flatpickr flatpickr-input form-control"
-                              id="checkin-date"
-                              placeholder="1400-12-06"
-                            />
-                          </div>
-                        </div>
-
-                        <div className="col-md-6">
-                          <div className="mb-3">
-                            <label className="form-label">زمان : </label>
-                            <input
-                              name="time"
-                              type="text"
-                              className="form-control timepicker"
-                              id="input-time"
-                              placeholder="03:30 PM"
-                            />
-                          </div>
-                        </div>
-
-                        <div className="col-lg-12">
-                          <div className="mb-3">
-                            <label className="form-label">
-                              نظرات<span className="text-danger">*</span>
-                            </label>
-                            <textarea
-                              name="comments"
-                              id="comments2"
-                              rows={4}
-                              className="form-control"
-                              placeholder="پیام شما:"
-                            ></textarea>
-                          </div>
-                        </div>
-
-                        <div className="col-lg-12">
-                          <div className="d-grid">
-                            <button type="submit" className="btn btn-primary">
-                              رزرو نوبت
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </form>
+                    <FormHandler />
                   </div>
                 </div>
               </div>

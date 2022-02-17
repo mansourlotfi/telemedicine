@@ -2,12 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import AuthenticationReducer from "./slices/AuthenticationSlice";
 import ProfileReducer from "./slices/ProfileSlice";
 import BlogPostsReducer from "./slices/BlogSlice ";
+import DrDateReducer from "./slices/DrbookingDateTimeSlice";
 
 export const store = configureStore({
   reducer: {
     Authentication: AuthenticationReducer,
     profile: ProfileReducer,
     BlogPosts: BlogPostsReducer,
+    DrDates: DrDateReducer,
   },
 });
 

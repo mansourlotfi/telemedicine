@@ -20,6 +20,9 @@ const SERVICE = {
   GET_ALL_BLOG_POSTS: () =>
     routeToService("/API/Blog.aspx", process.env.REACT_APP_BASE_URL),
 
+  GET_ALL_Dr_Dates: () =>
+    routeToService("/API/DR_Date.aspx", process.env.REACT_APP_BASE_URL),
+
   GET_BLOG_POST_BYID: (id: any) =>
     routeToService("/API/Blog.aspx", process.env.REACT_APP_BASE_URL, id),
 
@@ -35,6 +38,8 @@ export const getUserProfile = (params: IUserDetailDto) =>
 
 export const setUserProfile = (params: IUserDetailDto) =>
   axios.get(SERVICE.SET_USER_PROFILE(params));
+
+export const getDrDates = () => axios.get(SERVICE.GET_ALL_Dr_Dates());
 
 export const getAllBlogPosts = () => axios.get(SERVICE.GET_ALL_BLOG_POSTS());
 
