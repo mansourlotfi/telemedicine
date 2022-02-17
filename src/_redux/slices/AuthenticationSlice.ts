@@ -16,7 +16,7 @@ export interface IAuthentication {
 
 // Define the initial state using that type
 const initialState: IAuthentication = {
-  isSignedIn: false,
+  isSignedIn: true,
   authData: {
     username: "",
     accessToken: "",
@@ -44,7 +44,6 @@ export const AuthenticationSlice = createSlice({
 export const { signIn, signOut } = AuthenticationSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectCount = (state: RootState) =>
-  state.Authentication.isSignedIn;
+export const authData = (state: RootState) => state.Authentication;
 
 export default AuthenticationSlice.reducer;

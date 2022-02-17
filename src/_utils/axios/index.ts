@@ -6,6 +6,7 @@ export const axiosInstance = axios.create({
   timeout: apiConfigs.timeout,
   headers: {
     "Content-Type": apiConfigs.contentType,
+    // "Access-Control-Allow-Origin": "*",
   },
 });
 

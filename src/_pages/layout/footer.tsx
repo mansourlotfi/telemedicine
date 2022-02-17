@@ -7,7 +7,7 @@ function Footer() {
         <div className="row">
           <div className="col-xl-5 col-lg-4 mb-0 mb-md-4 pb-0 pb-md-2">
             <a href="#" className="logo-footer">
-              <img src="../assets/images/logo-light.png" height="22" alt="" />
+              <img src="../assets/images/drLogo.png" height="22" alt="" />
             </a>
             <p className="mt-4 me-xl-5">
               پزشکانی عالی، اگر برای خود یا خانواده تان به دنبال یک کمک موثر در
@@ -124,7 +124,7 @@ function Footer() {
                     </a>
                   </li>
 
-                  <li className="d-flex align-items-center">
+                  {/* <li className="d-flex align-items-center">
                     <i
                       data-feather="map-pin"
                       className="fea icon-sm text-foot align-middle"
@@ -135,7 +135,7 @@ function Footer() {
                     >
                       مشاهده لوکیشن ما
                     </a>
-                  </li>
+                  </li> */}
                 </ul>
 
                 <ul className="list-unstyled social-icon footer-social mb-0 mt-4">

@@ -6,13 +6,13 @@ function Navbar() {
       <div className="container">
         <Link className="logo" to="/">
           <img
-            src="../../assets/images/logo-dark.png"
+            src="../../assets/images/drLogo.png"
             height="24"
             className="logo-light-mode"
             alt=""
           />
           <img
-            src="../.../assets/images/logo-light.png"
+            src="../.../assets/images/drLogo.png"
             height="24"
             className="logo-dark-mode"
             alt=""

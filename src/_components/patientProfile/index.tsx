@@ -1,12 +1,43 @@
+import React, { useState } from "react";
+import { AxiosResponse } from "axios";
 import { useEffect } from "react";
-
+import { useAppSelector, useAppDispatch } from "_redux/hooks";
 import { getUserProfile } from "_api";
+import { generateUserDetailDto } from "_common/mappers/toUserDetailApi";
+import { generateProfile } from "_common/mappers/fromUserDetailApi";
+import { setProfile, setProfileImage } from "_redux/slices/ProfileSlice";
+import { uploadFile } from "_api";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function Index() {
+  let hiddenFileInput = React.useRef<HTMLInputElement>(null);
+  const profile = useAppSelector((state) => state.profile);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [ProfileUrl, setProfileUrl] = useState(profile.user.image);
+  const dispatch = useAppDispatch();
+
+  const handleClick = () => {
+    if (hiddenFileInput.current) {
+      hiddenFileInput.current.click();
+    }
+  };
+  const handleChange = (event: any) => {
+    setIsLoading(true);
+    const fileUploaded = event.target.files[0];
+    uploadFile(generateUserDetailDto(profile), fileUploaded)
+      .then((data: AxiosResponse) => {
+        dispatch(setProfileImage(data.data));
+        setProfileUrl(data.data);
+      })
+      .finally(() => setIsLoading(false));
+  };
   useEffect(() => {
-    getUserProfile({
-      phone: "09354273664",
-    }).then((data) => console.log("data", data));
+    getUserProfile(generateUserDetailDto(profile)).then(
+      (data: AxiosResponse) => {
+        let profileData = generateProfile(data);
+        dispatch(setProfile(profileData.user));
+      }
+    );
   }, []);
 
   return (
@@ -25,12 +56,12 @@ function Index() {
 
               <div className="text-center avatar-profile margin-nagative mt-n5 position-relative pb-4 border-bottom">
                 <img
-                  src="../assets/images/client/09.jpg"
+                  src={profile.user.image ?? "../assets/images/client/09.jpg"}
                   className="rounded-circle shadow-md avatar avatar-md-md"
                   alt=""
                 />
-                <h5 className="mt-3 mb-1">کریستوفر بورلر</h5>
-                <p className="text-muted mb-0">25 سال</p>
+                <h5 className="mt-3 mb-1">{profile.user.name}</h5>
+                <p className="text-muted mb-0">{profile.user.age} سال</p>
               </div>
 
               <div className="list-unstyled p-4">
@@ -49,12 +80,6 @@ function Index() {
                 </div>
 
                 <div className="d-flex align-items-center mt-2">
-                  <i className="uil uil-user align-text-bottom text-primary h5 mb-0 ms-2"></i>
-                  <h6 className="mb-0">جنسیت</h6>
-                  <p className="text-muted mb-0 me-2">زن</p>
-                </div>
-
-                <div className="d-flex align-items-center mt-2">
                   <i className="uil uil-envelope align-text-bottom text-primary h5 mb-0 ms-2"></i>
                   <h6 className="mb-0">تاریخ تولد</h6>
                   <p className="text-muted mb-0 me-2">19 مهر 1371</p>
@@ -63,19 +88,56 @@ function Index() {
                 <div className="d-flex align-items-center mt-2">
                   <i className="uil uil-book-open align-text-bottom text-primary h5 mb-0 ms-2"></i>
                   <h6 className="mb-0">شماره تماس</h6>
-                  <p className="text-muted mb-0 me-2">+(125) 458-8547</p>
+                  <p className="text-muted mb-0 me-2">{profile.user.phone}</p>
                 </div>
 
                 <div className="d-flex align-items-center mt-2">
                   <i className="uil uil-italic align-text-bottom text-primary h5 mb-0 ms-2"></i>
                   <h6 className="mb-0">آدرس</h6>
-                  <p className="text-muted mb-0 me-2">سیدنی، استرالیا</p>
+                  <p className="text-muted mb-0 me-2">{profile.user.address}</p>
                 </div>
 
                 <div className="d-flex align-items-center mt-2">
                   <i className="uil uil-medical-drip align-text-bottom text-primary h5 mb-0 ms-2"></i>
                   <h6 className="mb-0">گروه خونی</h6>
-                  <p className="text-muted mb-0 me-2">B +</p>
+                  <p className="text-muted mb-0 me-2">{profile.user.blood}</p>
+                </div>
+
+                <div className="d-flex align-items-center mt-2">
+                  <i className="uil uil-medical-drip align-text-bottom text-primary h5 mb-0 ms-2"></i>
+                  <h6 className="mb-0">تلفن</h6>
+                  <p className="text-muted mb-0 me-2">{profile.user.phone}</p>
+                </div>
+
+                <div className="d-flex align-items-center mt-2">
+                  <i className="uil uil-medical-drip align-text-bottom text-primary h5 mb-0 ms-2"></i>
+                  <h6 className="mb-0">استان</h6>
+                  <p className="text-muted mb-0 me-2">{profile.user.state}</p>
+                </div>
+
+                <div className="d-flex align-items-center mt-2">
+                  <i className="uil uil-medical-drip align-text-bottom text-primary h5 mb-0 ms-2"></i>
+                  <h6 className="mb-0">شهر</h6>
+                  <p className="text-muted mb-0 me-2">{profile.user.city}</p>
+                </div>
+
+                <div className="d-flex align-items-center mt-2">
+                  <i className="uil uil-medical-drip align-text-bottom text-primary h5 mb-0 ms-2"></i>
+                  <h6 className="mb-0">قد</h6>
+                  <p className="text-muted mb-0 me-2">{profile.user.height}</p>
+                </div>
+
+                <div className="d-flex align-items-center mt-2">
+                  <i className="uil uil-medical-drip align-text-bottom text-primary h5 mb-0 ms-2"></i>
+                  <h6 className="mb-0">وزن</h6>
+                  <p className="text-muted mb-0 me-2">{profile.user.weight}</p>
+                </div>
+                <div className="d-flex align-items-center mt-2">
+                  <i className="uil uil-medical-drip align-text-bottom text-primary h5 mb-0 ms-2"></i>
+                  <h6 className="mb-0">توضیحات</h6>
+                  <p className="text-muted mb-0 me-2">
+                    {profile.user.description}
+                  </p>
                 </div>
               </div>
             </div>
@@ -328,7 +390,9 @@ function Index() {
                   <div className="row align-items-center mt-4">
                     <div className="col-lg-2 col-md-4">
                       <img
-                        src="../assets/images/client/09.jpg"
+                        src={
+                          profile.user.image ?? "../assets/images/client/09.jpg"
+                        }
                         className="avatar avatar-md-md rounded-pill shadow mx-auto d-block"
                         alt=""
                       />
@@ -338,16 +402,33 @@ function Index() {
                       <h6 className=""> عکس خود را بارگذاری کنید </h6>
                       <p className="text-muted mb-0">
                         برای بهترین نتیجه ، از تصویری حداقل 256 پیکسل در 256
-                        پیکسل در قالب .jpg یا .png استفاده کنید{" "}
+                        پیکسل در قالب .jpg یا .png استفاده کنید
                       </p>
                     </div>
 
                     <div className="col-lg-5 col-md-12 text-lg-right text-center mt-4 mt-lg-0">
-                      <a href="#" className="btn btn-primary">
-                        بارگذاری{" "}
-                      </a>
+                      <button
+                        className="btn btn-primary"
+                        onClick={handleClick}
+                        disabled={isLoading}
+                      >
+                        {isLoading ? (
+                          <CircularProgress color="secondary" size={20} />
+                        ) : (
+                          "آپلود"
+                        )}
+                      </button>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        ref={hiddenFileInput}
+                        disabled={isLoading}
+                        onChange={handleChange}
+                        style={{ display: "none" }}
+                      />
+
                       <a href="#" className="btn btn-soft-primary me-2">
-                        حذف{" "}
+                        حذف
                       </a>
                     </div>
                   </div>
