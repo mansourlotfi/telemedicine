@@ -20,6 +20,9 @@ const SERVICE = {
   GET_ALL_BLOG_POSTS: () =>
     routeToService("/API/Blog.aspx", process.env.REACT_APP_BASE_URL),
 
+  GET_BLOG_POST_BYID: (id: any) =>
+    routeToService("/API/Blog.aspx", process.env.REACT_APP_BASE_URL, id),
+
   UPLOAD_FILE: (params: any) =>
     routeToService(
       "/API/UploadCenter.aspx",
@@ -34,6 +37,9 @@ export const setUserProfile = (params: IUserDetailDto) =>
   axios.get(SERVICE.SET_USER_PROFILE(params));
 
 export const getAllBlogPosts = () => axios.get(SERVICE.GET_ALL_BLOG_POSTS());
+
+export const getBlogPostById = (id: any) =>
+  axios.get(SERVICE.GET_BLOG_POST_BYID(id));
 
 export const uploadFile = (user: IUserDetailDto, fileObject: any) => {
   const formData = new FormData();

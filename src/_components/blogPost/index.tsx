@@ -1,6 +1,18 @@
-import React from "react";
+import { CircularProgress } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { getBlogPostById } from "_api";
+import { IBlogPost } from "_common/models/entities";
 
 function Index() {
+  const location = useLocation();
+  const { from }: any = location.state;
+  const [post, setpost] = useState<IBlogPost | null>(null);
+
+  useEffect(() => {
+    getBlogPostById({ id: from }).then((data) => setpost(data.data[0]));
+  }, []);
+
   return (
     <>
       <section className="bg-half-150 d-table w-100 bg-light">
@@ -38,41 +50,28 @@ function Index() {
       <section className="section">
         <div className="container">
           <div className="row">
-            <div className="col-lg-12 col-lg-11">
-              <img
-                src="../assets/images/blog/single.jpg"
-                className="img-fluid rounded shadow"
-                alt=""
-              />
+            {post ? (
+              <div className="col-lg-12 col-lg-11">
+                <img
+                  src={post.image}
+                  className="img-fluid rounded shadow"
+                  alt=""
+                />
 
-              <ul className="list-unstyled mt-4">
-                <li className="list-inline-item user text-muted me-2">
-                  <i className="mdi mdi-account"></i> کلوین کارلو
-                </li>
-                <li className="list-inline-item date text-muted">
-                  <i className="mdi mdi-calendar-check"></i> 1 بهمن 1400
-                </li>
-              </ul>
+                <ul className="list-unstyled mt-4">
+                  <li className="list-inline-item user text-muted me-2">
+                    <i className="mdi mdi-account"></i> {post.title}
+                  </li>
+                  <li className="list-inline-item date text-muted">
+                    <i className="mdi mdi-calendar-check"></i> {post.date}
+                  </li>
+                </ul>
 
-              <p className="text-muted mt-4">
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
-                استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله
-                در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد
-                نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
-                کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان
-                جامعه و متخصصان را می طلبد{" "}
-              </p>
-              <p className="text-muted">
-                با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص
-                طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت
-                می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و
-                شرایط سخت تایپ به پایان رسد{" "}
-              </p>
-              <p className="text-muted mb-0">
-                زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات
-                پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.{" "}
-              </p>
-            </div>
+                <p className="text-muted mt-4">{post.description}</p>
+              </div>
+            ) : (
+              <CircularProgress color="secondary" size={20} />
+            )}
           </div>
         </div>
       </section>

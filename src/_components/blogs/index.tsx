@@ -69,7 +69,11 @@ function Index() {
                         {item.date}
                       </li>
                     </ul>
-                    <Link to="/blogPost" className="text-dark title h5">
+                    <Link
+                      to="/blogPost"
+                      state={{ from: item.id }}
+                      className="text-dark title h5"
+                    >
                       {item.title}
                     </Link>
                     <div>{item.description}</div>
