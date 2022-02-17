@@ -12,17 +12,6 @@ function Index() {
                   در موارد بیماری و اضطراری یا حتی مشاوره ای ساده نیاز دارید؛
                   همینجا باشید
                 </p>
-
-                <nav aria-label="breadcrumb" className="d-inline-block mt-3">
-                  <ul className="breadcrumb bg-transparent mb-0 py-1">
-                    <li className="breadcrumb-item">
-                      <a href="index.html">داکتریس</a>
-                    </li>
-                    <li className="breadcrumb-item active" aria-current="page">
-                      نوبت دهی
-                    </li>
-                  </ul>
-                </nav>
               </div>
             </div>
           </div>
