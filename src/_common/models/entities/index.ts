@@ -19,4 +19,13 @@ interface IUser {
 interface IProfile {
   user: IUser;
 }
-export type { IProfile };
+
+interface ISetProfile {
+  name: string;
+  family: string;
+  email: string;
+  phone: string;
+  biography: string | null;
+  image: string | null;
+}
+export type { IProfile, ISetProfile };

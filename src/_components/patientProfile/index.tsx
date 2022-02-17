@@ -2,19 +2,68 @@ import React, { useState } from "react";
 import { AxiosResponse } from "axios";
 import { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "_redux/hooks";
-import { getUserProfile } from "_api";
+import { getUserProfile, setUserProfile } from "_api";
 import { generateUserDetailDto } from "_common/mappers/toUserDetailApi";
 import { generateProfile } from "_common/mappers/fromUserDetailApi";
 import { setProfile, setProfileImage } from "_redux/slices/ProfileSlice";
 import { uploadFile } from "_api";
 import CircularProgress from "@mui/material/CircularProgress";
+import { Form, Formik } from "formik";
+import SetProfileFormHandler from "./setProfileFormHandler";
+import * as yup from "yup";
+import { generateSetProfileDto } from "_common/mappers/toSetSetProfileApi";
+
+export interface IValues {
+  name: string | null;
+  email: string | null;
+  phone: string;
+  image: string | null;
+  address: string | null;
+  age: string | null;
+  blood: string | null;
+  height: string | null;
+  weight: string | null;
+  city: string | null;
+  state: string | null;
+  description: string | null;
+}
+
+const schema = yup.object({
+  name: yup.string().required(),
+  phone: yup.string().required(),
+  email: yup.string().email().nullable(),
+  image: yup.string().nullable(),
+  address: yup.string().required(),
+  age: yup.number().required(),
+  blood: yup.string().required(),
+  city: yup.string().required(),
+  state: yup.string().required(),
+  description: yup.string().nullable(),
+  height: yup.string().required(),
+  weight: yup.string().required(),
+});
 
 function Index() {
   let hiddenFileInput = React.useRef<HTMLInputElement>(null);
   const profile = useAppSelector((state) => state.profile);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [ProfileUrl, setProfileUrl] = useState(profile.user.image);
+  const [formsIsSubmitting, setformsIsSubmitting] = useState<boolean>(false);
+  const [ProfileUrl, setProfileUrl] = useState("");
   const dispatch = useAppDispatch();
+  const initialValue: IValues = {
+    name: profile.user.name,
+    phone: profile.user.phone,
+    email: profile.user.email,
+    image: profile.user.image,
+    address: profile.user.address,
+    age: profile.user.age,
+    blood: profile.user.blood,
+    height: profile.user.height,
+    weight: profile.user.weight,
+    city: profile.user.city,
+    state: profile.user.state,
+    description: profile.user.description,
+  };
 
   const handleClick = () => {
     if (hiddenFileInput.current) {
@@ -31,6 +80,19 @@ function Index() {
       })
       .finally(() => setIsLoading(false));
   };
+
+  const handleSubmit = async (values: IValues, { resetForm }: any) => {
+    setformsIsSubmitting(true);
+    setUserProfile(generateSetProfileDto(values)).finally(() =>
+      setformsIsSubmitting(false)
+    );
+  };
+
+  const deleteImageHandler = () => {
+    setProfileUrl("");
+    dispatch(setProfileImage(""));
+  };
+
   useEffect(() => {
     getUserProfile(generateUserDetailDto(profile)).then(
       (data: AxiosResponse) => {
@@ -426,93 +488,33 @@ function Index() {
                         onChange={handleChange}
                         style={{ display: "none" }}
                       />
-
-                      <a href="#" className="btn btn-soft-primary me-2">
-                        حذف
-                      </a>
+                      {ProfileUrl && (
+                        <button
+                          className="btn btn-soft-primary me-2"
+                          onClick={deleteImageHandler}
+                        >
+                          حذف
+                        </button>
+                      )}
                     </div>
                   </div>
-
-                  <form className="mt-4">
-                    <div className="row">
-                      <div className="col-lg-6">
-                        <div className="mb-3">
-                          <label className="form-label"> نام</label>
-                          <input
-                            name="name"
-                            id="name"
-                            type="text"
-                            className="form-control"
-                            placeholder="نام"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="col-lg-6">
-                        <div className="mb-3">
-                          <label className="form-label">نام خانوادگی</label>
-                          <input
-                            name="name"
-                            id="name2"
-                            type="text"
-                            className="form-control"
-                            placeholder="نام خانوادگی :"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="col-lg-6">
-                        <div className="mb-3">
-                          <label className="form-label">ایمیل شما </label>
-                          <input
-                            name="email"
-                            id="email"
-                            type="email"
-                            className="form-control"
-                            placeholder="ایمیل شما"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="col-lg-6">
-                        <div className="mb-3">
-                          <label className="form-label">شماره تماس</label>
-                          <input
-                            name="number"
-                            id="number"
-                            type="text"
-                            className="form-control"
-                            placeholder="شماره تماس :"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="col-md-12">
-                        <div className="mb-3">
-                          <label className="form-label">بیوگرافی شما</label>
-                          <textarea
-                            name="comments"
-                            id="comments"
-                            rows={4}
-                            className="form-control"
-                            placeholder="بیوگرافی "
-                          ></textarea>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="row">
-                      <div className="col-sm-12">
-                        <input
-                          type="submit"
-                          id="submit"
-                          name="send"
-                          className="btn btn-primary"
-                          value="ذخیره تغییرات"
+                  <Formik
+                    initialValues={initialValue}
+                    validationSchema={schema}
+                    enableReinitialize
+                    onSubmit={(values, { resetForm }) =>
+                      handleSubmit(values, { resetForm })
+                    }
+                  >
+                    {(formikProps) => (
+                      <Form>
+                        <SetProfileFormHandler
+                          isLoading={formsIsSubmitting}
+                          {...formikProps}
                         />
-                      </div>
-                    </div>
-                  </form>
+                      </Form>
+                    )}
+                  </Formik>
                 </div>
               </div>
             </div>

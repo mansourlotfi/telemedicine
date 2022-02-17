@@ -5,7 +5,7 @@ import type { RootState } from "../store";
 export interface IUser {
   id: number | null;
   name: string | null;
-  phone: string | null;
+  phone: string;
   smscode: string | null;
   state: string | null;
   weight: string | null;

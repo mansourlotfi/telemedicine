@@ -9,6 +9,14 @@ const SERVICE = {
       process.env.REACT_APP_BASE_URL,
       params
     ),
+
+  SET_USER_PROFILE: (params: IUserDetailDto) =>
+    routeToService(
+      "/API/SetProfile.aspx",
+      process.env.REACT_APP_BASE_URL,
+      params
+    ),
+
   GET_ALL_BLOG_POSTS: () =>
     routeToService("/API/Blog.aspx", process.env.REACT_APP_BASE_URL),
 
@@ -21,6 +29,9 @@ const SERVICE = {
 };
 export const getUserProfile = (params: IUserDetailDto) =>
   axios.get(SERVICE.GET_USER_PROFILE(params));
+
+export const setUserProfile = (params: IUserDetailDto) =>
+  axios.get(SERVICE.SET_USER_PROFILE(params));
 
 export const getAllBlogPosts = () => axios.get(SERVICE.GET_ALL_BLOG_POSTS());
 
