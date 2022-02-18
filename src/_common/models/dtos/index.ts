@@ -17,4 +17,16 @@ interface ISetProfile {
   weight: string;
 }
 
-export type { IUserDetail as IUserDetailDto, ISetProfile as ISetProfileDto };
+interface ISetReserve {
+  phone: number;
+  description: string;
+  date: string;
+  time: string;
+  type: "hozori";
+}
+
+export type {
+  IUserDetail as IUserDetailDto,
+  ISetProfile as ISetProfileDto,
+  ISetReserve as ISetReserveDto,
+};

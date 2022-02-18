@@ -1,18 +1,51 @@
 import { AxiosResponse } from "axios";
-import { useEffect } from "react";
-import { getDrDates } from "_api";
+import { Form, Formik } from "formik";
+import { useEffect, useState } from "react";
+import { getDrDates, setReserve } from "_api";
 import { useAppDispatch, useAppSelector } from "_redux/hooks";
 import { setDrAvailableDates } from "_redux/slices/DrbookingDateTimeSlice";
 import FormHandler from "./formHandler";
+import * as yup from "yup";
+import { generateSetReserveDto } from "_common/mappers/toSetReserveApi";
 
+const schema = yup.object({
+  phone: yup.number().required(),
+  description: yup.string().required(),
+  date: yup.string().required(),
+  time: yup.string().required(),
+});
+
+export interface IValues {
+  phone: string | null;
+  description: string | null;
+  date: string | null;
+  time: string | null;
+  type: "hozori";
+}
 function Index() {
   const dispatch = useAppDispatch();
+  const profile = useAppSelector((state) => state.profile);
 
+  const [formsIsSubmitting, setFormsIsSubmitting] = useState<boolean>(false);
+  const initialValue: IValues = {
+    phone: null,
+    description: null,
+    date: null,
+    time: null,
+    type: "hozori",
+  };
   useEffect(() => {
     getDrDates().then((data: AxiosResponse) =>
       dispatch(setDrAvailableDates(data.data))
     );
   }, []);
+
+  const handleSubmit = (values: IValues, { resetForm }: any) => {
+    setFormsIsSubmitting(true);
+    setReserve(generateSetReserveDto(values))
+      .then(() => resetForm())
+      .finally(() => setFormsIsSubmitting(false));
+  };
 
   return (
     <>
@@ -101,7 +134,23 @@ function Index() {
                     role="tabpanel"
                     aria-labelledby="clinic-booking"
                   >
-                    <FormHandler />
+                    <Formik
+                      initialValues={initialValue}
+                      validationSchema={schema}
+                      enableReinitialize
+                      onSubmit={(values, { resetForm }) =>
+                        handleSubmit(values, { resetForm })
+                      }
+                    >
+                      {(formikProps) => (
+                        <Form>
+                          <FormHandler
+                            isLoading={formsIsSubmitting}
+                            {...formikProps}
+                          />
+                        </Form>
+                      )}
+                    </Formik>
                   </div>
 
                   <div
@@ -110,7 +159,23 @@ function Index() {
                     role="tabpanel"
                     aria-labelledby="online-booking"
                   >
-                    <FormHandler />
+                    <Formik
+                      initialValues={initialValue}
+                      validationSchema={schema}
+                      enableReinitialize
+                      onSubmit={(values, { resetForm }) =>
+                        handleSubmit(values, { resetForm })
+                      }
+                    >
+                      {(formikProps) => (
+                        <Form>
+                          <FormHandler
+                            isLoading={formsIsSubmitting}
+                            {...formikProps}
+                          />
+                        </Form>
+                      )}
+                    </Formik>
                   </div>
                 </div>
               </div>

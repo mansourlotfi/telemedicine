@@ -81,7 +81,7 @@ function Index() {
       .finally(() => setIsLoading(false));
   };
 
-  const handleSubmit = async (values: IValues, { resetForm }: any) => {
+  const handleSubmit = (values: IValues, { resetForm }: any) => {
     setformsIsSubmitting(true);
     setUserProfile(generateSetProfileDto(values)).finally(() =>
       setformsIsSubmitting(false)
