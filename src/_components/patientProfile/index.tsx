@@ -12,6 +12,7 @@ import { Form, Formik } from "formik";
 import SetProfileFormHandler from "./setProfileFormHandler";
 import * as yup from "yup";
 import { generateSetProfileDto } from "_common/mappers/toSetSetProfileApi";
+import { toast } from "_redux/slices/ToastSlice";
 
 export interface IValues {
   name: string | null;
@@ -77,6 +78,7 @@ function Index() {
       .then((data: AxiosResponse) => {
         dispatch(setProfileImage(data.data));
         setProfileUrl(data.data);
+        dispatch(toast({ severity: "success", message: "asd" }));
       })
       .finally(() => setIsLoading(false));
   };

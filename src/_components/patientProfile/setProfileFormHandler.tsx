@@ -67,21 +67,6 @@ const SetProfileFormHandler: React.FC<IProps> = ({
             />
           </div>
         </div>
-        <div className="col-lg-6">
-          <div className="mb-3">
-            <label className="form-label">آدرس</label>
-            <input
-              name="address"
-              id="address"
-              type="text"
-              value={values.address || ""}
-              className="form-control"
-              onChange={handleChange}
-              placeholder="آدرس"
-              style={errors.address ? { borderColor: "red" } : {}}
-            />
-          </div>
-        </div>
 
         <div className="col-lg-6">
           <div className="mb-3">
@@ -172,6 +157,21 @@ const SetProfileFormHandler: React.FC<IProps> = ({
               placeholder="شهر"
               onChange={handleChange}
               style={errors.city ? { borderColor: "red" } : {}}
+            />
+          </div>
+        </div>
+        <div className="col-lg-6">
+          <div className="mb-3">
+            <label className="form-label">آدرس</label>
+            <input
+              name="address"
+              id="address"
+              type="text"
+              value={values.address || ""}
+              className="form-control"
+              onChange={handleChange}
+              placeholder="آدرس"
+              style={errors.address ? { borderColor: "red" } : {}}
             />
           </div>
         </div>

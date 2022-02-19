@@ -1,6 +1,7 @@
 import { memo, Suspense, useCallback, Fragment } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { routes, IRoute } from "_common/configs/routesConfig";
+import CustomizedSnackbars from "_components/toast";
 import Layout from "_pages/layout";
 import RequireAuth from "./RequireAuth";
 export default memo(() => {
@@ -40,6 +41,7 @@ export default memo(() => {
             } else return generateRoute(route, index);
           })}
         </Routes>
+        <CustomizedSnackbars />
       </BrowserRouter>
     </Suspense>
   );

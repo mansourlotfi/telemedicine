@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { getAllBlogPosts } from "_api";
 import { generateBlogPosts } from "_common/mappers/fromBlogPostsApi";
 import { useAppDispatch, useAppSelector } from "_redux/hooks";
-import { setBlosPosts } from "_redux/slices/BlogSlice ";
+import { setBlosPosts } from "_redux/slices/BlogSlice";
 
 function Index() {
   const dispatch = useAppDispatch();
