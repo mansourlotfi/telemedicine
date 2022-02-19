@@ -1,8 +1,9 @@
+import { Link } from "react-router-dom";
 import About from "./about";
 function Categories() {
   return (
     <section className="section">
-      <div className="container">
+      <div className="container" style={{ marginBottom: 40 }}>
         <div className="row justify-content-center">
           <div className="col-12">
             <div className="section-title text-center mb-4 pb-2">
@@ -23,15 +24,15 @@ function Categories() {
                 <i className="uil uil-user-md h3 mb-0"></i>
               </div>
               <div className="card-body p-0 mt-3">
-                <a href="departments.html" className="title text-dark h5">
+                <Link to="#" className="title text-dark h5">
                   پزشکان
-                </a>
+                </Link>
                 <p className="text-muted mt-3">
                   لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم
                 </p>
-                <a href="departments.html" className="link">
+                <Link to="#" className="link">
                   پیدا کنید <i className="ri-arrow-left-line align-middle"></i>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -42,15 +43,15 @@ function Categories() {
                 <i className="uil uil-capsule h3 mb-0"></i>
               </div>
               <div className="card-body p-0 mt-3">
-                <a href="departments.html" className="title text-dark h5">
+                <Link to="#" className="title text-dark h5">
                   کلینیک ها
-                </a>
+                </Link>
                 <p className="text-muted mt-3">
                   لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم
                 </p>
-                <a href="departments.html" className="link">
+                <Link to="#" className="link">
                   پیدا کنید <i className="ri-arrow-left-line align-middle"></i>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -61,15 +62,15 @@ function Categories() {
                 <i className="uil uil-microscope h3 mb-0"></i>
               </div>
               <div className="card-body p-0 mt-3">
-                <a href="departments.html" className="title text-dark h5">
+                <Link to="#" className="title text-dark h5">
                   آزمایشگاه ها
-                </a>
+                </Link>
                 <p className="text-muted mt-3">
                   لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم
                 </p>
-                <a href="departments.html" className="link">
+                <Link to="#" className="link">
                   پیدا کنید <i className="ri-arrow-left-line align-middle"></i>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -80,15 +81,15 @@ function Categories() {
                 <i className="uil uil-ambulance h3 mb-0"></i>
               </div>
               <div className="card-body p-0 mt-3">
-                <a href="departments.html" className="title text-dark h5">
+                <Link to="#" className="title text-dark h5">
                   اورژانس{" "}
-                </a>
+                </Link>
                 <p className="text-muted mt-3">
                   لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم{" "}
                 </p>
-                <a href="departments.html" className="link">
+                <Link to="#" className="link">
                   پیدا کنید <i className="ri-arrow-left-line align-middle"></i>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -99,15 +100,15 @@ function Categories() {
                 <i className="uil uil-shield-plus h3 mb-0"></i>
               </div>
               <div className="card-body p-0 mt-3">
-                <a href="departments.html" className="title text-dark h5">
+                <Link to="#" className="title text-dark h5">
                   بیمه
-                </a>
+                </Link>
                 <p className="text-muted mt-3">
-                  لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم{" "}
+                  لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم
                 </p>
-                <a href="departments.html" className="link">
+                <Link to="#" className="link">
                   پیدا کنید <i className="ri-arrow-left-line align-middle"></i>
-                </a>
+                </Link>
               </div>
             </div>
           </div>

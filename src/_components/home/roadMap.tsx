@@ -2,7 +2,9 @@ function RoadMap() {
   return (
     <section
       className="section"
-      style={{ backgroundImage: "url(../assets/images/cta.jpg)" }}
+      style={{
+        backgroundImage: "url(../assets/images/cta.jpg)",
+      }}
     >
       <div className="bg-overlay" style={{ opacity: 0.3 }}></div>
       <div className="container">

@@ -1,3 +1,4 @@
+import { CircularProgress } from "@mui/material";
 import { AxiosResponse } from "axios";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -56,73 +57,48 @@ function Index() {
       </div>
 
       <section className="section">
-        <div className="container">
-          <div className="row">
-            {posts.posts.map((item) => (
-              <div key={item.id} className="col-lg-4 col-md-6 col-12 mb-4 pb-2">
-                <div className="card blog blog-primary border-0 shadow rounded overflow-hidden">
-                  <img src={item.image} className="img-fluid" alt="" />
-                  <div className="card-body p-4">
-                    <ul className="list-unstyled mb-2">
-                      <li className="list-inline-item text-muted small me-3">
-                        <i className="uil uil-calendar-alt text-dark h6 me-1"></i>
-                        {item.date}
-                      </li>
-                    </ul>
-                    <Link
-                      to="/blogPost"
-                      state={{ from: item.id }}
-                      className="text-dark title h5"
-                    >
-                      {item.title}
-                    </Link>
-                    <div>{item.description}</div>
+        {posts ? (
+          <div className="container">
+            <div className="row">
+              {posts.posts.map((item) => (
+                <Link
+                  to="/blogPost"
+                  state={{ from: item.id }}
+                  className="text-dark title h5"
+                >
+                  <div
+                    key={item.id}
+                    className="col-lg-4 col-md-6 col-12 mb-4 pb-2"
+                  >
+                    <div className="card blog blog-primary border-0 shadow rounded overflow-hidden">
+                      <img src={item.image} className="img-fluid" alt="" />
+                      <div className="card-body p-4">
+                        <ul className="list-unstyled mb-2">
+                          <li className="list-inline-item text-muted small me-3">
+                            <i className="uil uil-calendar-alt text-dark h6 me-1"></i>
+                            {item.date}
+                          </li>
+                        </ul>
+                        {item.title}
+                        <div>{item.description}</div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="row text-center">
-            <div className="col-12">
-              <ul className="pagination justify-content-center mb-0 list-unstyled">
-                <li className="page-item">
-                  <a
-                    className="page-link"
-                    href="javascript:void(0)"
-                    aria-label="Previous"
-                  >
-                    قبلی
-                  </a>
-                </li>
-                <li className="page-item active">
-                  <a className="page-link" href="javascript:void(0)">
-                    1
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a className="page-link" href="javascript:void(0)">
-                    2
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a className="page-link" href="javascript:void(0)">
-                    3
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a
-                    className="page-link"
-                    href="javascript:void(0)"
-                    aria-label="Next"
-                  >
-                    بعدی
-                  </a>
-                </li>
-              </ul>
+                </Link>
+              ))}
             </div>
           </div>
-        </div>
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <CircularProgress color="secondary" size={20} />
+          </div>
+        )}
       </section>
     </>
   );

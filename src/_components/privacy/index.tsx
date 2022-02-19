@@ -35,7 +35,7 @@ function Index() {
       <section className="section">
         <div className="container">
           <div className="row justify-content-center">
-            <div className="col-lg-9">
+            <div className="col-lg-9" style={{ textAlign: "right" }}>
               <div className="card shadow rounded border-0">
                 <div className="card-body">
                   <h5 className="card-title">نظرات:</h5>
@@ -121,13 +121,14 @@ function Index() {
                     علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد
                     کرد.
                   </p>
-
-                  <a
-                    href="javascript:window.print()"
-                    className="btn btn-soft-primary d-print-none"
-                  >
-                    <i className="uil uil-print"></i> پرینت
-                  </a>
+                  <div style={{ textAlign: "center" }}>
+                    <a
+                      href="javascript:window.print()"
+                      className="btn btn-soft-primary d-print-none"
+                    >
+                      <i className="uil uil-print"></i> پرینت
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

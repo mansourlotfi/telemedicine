@@ -40,7 +40,7 @@ function Navbar() {
             </li>
 
             <li className="has-submenu parent-menu-item">
-              <a href="javascript:void(0)">بیماران</a>
+              <a href="javascript:void(0)">کاربران</a>
               <span className="menu-arrow"></span>
               <ul className="submenu">
                 <li>
@@ -56,47 +56,34 @@ function Navbar() {
               </ul>
             </li>
 
-            <li className="has-submenu parent-parent-menu-item">
-              <a href="javascript:void(0)">صفحات</a>
-              <span className="menu-arrow"></span>
-              <ul className="submenu">
-                <li>
-                  <Link to="/aboutUs" className="sub-menu-item">
-                    درباره ما
-                  </Link>
-                </li>
+            <li>
+              <Link to="/aboutUs" className="sub-menu-item">
+                درباره ما
+              </Link>
+            </li>
 
-                <li>
-                  <Link to="/faqs" className="sub-menu-item">
-                    سوالات متدوال
-                  </Link>
-                </li>
-                <li className="has-submenu parent-menu-item">
-                  <a href="javascript:void(0)" className="menu-item">
-                    بلاگ
-                  </a>
-                  <span className="submenu-arrow"></span>
-                  <ul className="submenu">
-                    <li>
-                      <Link to="/blogs" className="sub-menu-item">
-                        بلاگ
-                      </Link>
-                    </li>
-                  </ul>
-                </li>
+            <li>
+              <Link to="/faqs" className="sub-menu-item">
+                سوالات متدوال
+              </Link>
+            </li>
 
-                <li>
-                  <Link to="/privacy" className="sub-menu-item">
-                    حفظ حریم شخصی
-                  </Link>
-                </li>
+            <li>
+              <Link to="/blogs" className="sub-menu-item">
+                مقالات آموزشی
+              </Link>
+            </li>
 
-                <li>
-                  <Link to="/contactUs" className="sub-menu-item">
-                    ارتباط با ما
-                  </Link>
-                </li>
-              </ul>
+            <li>
+              <Link to="/privacy" className="sub-menu-item">
+                حفظ حریم شخصی
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/contactUs" className="sub-menu-item">
+                ارتباط با ما
+              </Link>
             </li>
           </ul>
         </div>

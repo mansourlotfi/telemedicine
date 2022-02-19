@@ -1,6 +1,14 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function Footer() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <footer className="bg-footer">
       <div className="container">
@@ -18,81 +26,88 @@ function Footer() {
 
           <div className="col-xl-7 col-lg-8 col-md-12">
             <div className="row">
-              <div className="col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
-                <h5 className="text-light footer-head">شرکت</h5>
+              <div
+                className="col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0"
+                style={{ textAlign: "right" }}
+              >
+                <h5 className="text-light footer-head">وبسایت</h5>
                 <ul className="list-unstyled footer-list mt-4">
                   <li>
-                    <a href="aboutus.html" className="text-foot">
+                    <Link to="/" className="text-foot">
+                      <i className="mdi mdi-chevron-left ms-1"></i> خانه
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/patientProfile" className="text-foot">
+                      <i className="mdi mdi-chevron-left ms-1"></i>پروفایل
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/bookingAppointment" className="text-foot">
+                      <i className="mdi mdi-chevron-left ms-1"></i>رزرو نوبت
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/aboutUs" className="text-foot">
                       <i className="mdi mdi-chevron-left ms-1"></i>درباره ما
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="departments.html" className="text-foot">
-                      <i className="mdi mdi-chevron-left ms-1"></i>خدمات
-                    </a>
+                    <Link to="/faqs" className="text-foot">
+                      <i className="mdi mdi-chevron-left ms-1"></i> سوالات
+                      متداول
+                    </Link>
                   </li>
                   <li>
-                    <a href="doctor-team-two.html" className="text-foot">
-                      <i className="mdi mdi-chevron-left ms-1"></i>تیم
-                    </a>
+                    <Link to="/blogs" className="text-foot">
+                      <i className="mdi mdi-chevron-left ms-1"></i>مقالات آموزشی
+                    </Link>
                   </li>
                   <li>
-                    <a href="blog-detail.html" className="text-foot">
-                      <i className="mdi mdi-chevron-left ms-1"></i>پروژه ها
-                    </a>
+                    <Link to="/privacy" className="text-foot">
+                      <i className="mdi mdi-chevron-left ms-1"></i>حفظ حریم شخصی
+                    </Link>
                   </li>
                   <li>
-                    <a href="blogs.html" className="text-foot">
-                      <i className="mdi mdi-chevron-left ms-1"></i>بلاگ
-                    </a>
-                  </li>
-                  <li>
-                    <a href="login.html" className="text-foot">
-                      <i className="mdi mdi-chevron-left ms-1"></i>ورود
-                    </a>
+                    <Link to="/contactUs" className="text-foot">
+                      <i className="mdi mdi-chevron-left ms-1"></i>ارتباط با ما
+                    </Link>
                   </li>
                 </ul>
               </div>
 
-              <div className="col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+              <div
+                className="col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0"
+                style={{ textAlign: "right" }}
+              >
                 <h5 className="text-light title-dark footer-head">
                   دپارتمان ها
                 </h5>
                 <ul className="list-unstyled footer-list mt-4">
                   <li>
-                    <a href="departments.html" className="text-foot">
-                      <i className="mdi mdi-chevron-left ms-1"></i>مراقبت از چشم
+                    <a href="#" className="text-foot">
+                      <i className="mdi mdi-chevron-left ms-1"></i>پزشکان
                     </a>
                   </li>
                   <li>
-                    <a href="departments.html" className="text-foot">
-                      <i className="mdi mdi-chevron-left ms-1"></i>روان درمانی
+                    <a href="#" className="text-foot">
+                      <i className="mdi mdi-chevron-left ms-1"></i>کلینیک ها
                     </a>
                   </li>
                   <li>
-                    <a href="departments.html" className="text-foot">
-                      <i className="mdi mdi-chevron-left ms-1"></i>مراقبت از
-                      دندان
+                    <a href="#" className="text-foot">
+                      <i className="mdi mdi-chevron-left ms-1"></i>
+                      آزمایشگاه ها
                     </a>
                   </li>
                   <li>
-                    <a href="departments.html" className="text-foot">
-                      <i className="mdi mdi-chevron-left ms-1"></i> ارتوپدی{" "}
+                    <a href="#" className="text-foot">
+                      <i className="mdi mdi-chevron-left ms-1"></i> اورژانس
                     </a>
                   </li>
                   <li>
-                    <a href="departments.html" className="text-foot">
-                      <i className="mdi mdi-chevron-left ms-1"></i> قلب و عروق{" "}
-                    </a>
-                  </li>
-                  <li>
-                    <a href="departments.html" className="text-foot">
-                      <i className="mdi mdi-chevron-left ms-1"></i> زنان{" "}
-                    </a>
-                  </li>
-                  <li>
-                    <a href="departments.html" className="text-foot">
-                      <i className="mdi mdi-chevron-left ms-1"></i> مغز و اعصاب{" "}
+                    <a href="#" className="text-foot">
+                      <i className="mdi mdi-chevron-left ms-1"></i>بیمه
                     </a>
                   </li>
                 </ul>
