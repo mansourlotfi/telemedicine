@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
+import { AlertColor } from "@mui/material/Alert";
 
 interface IUI {
   ui: IToast;
 }
 interface IToast {
-  severity: "success" | "error";
+  severity: AlertColor;
   message: string;
   showToast?: boolean;
 }
@@ -25,11 +26,11 @@ export const ToastSlice = createSlice({
     toast: (state, action: PayloadAction<IToast>) => {
       state.ui.severity = action.payload.severity;
       state.ui.message = action.payload.message;
-      state.ui.showToast = true;
+      state.ui.showToast = action.payload.showToast;
       console.log(action.payload);
     },
     clearToast: (state) => {
-      state.ui.showToast = false;
+      // state.ui.showToast = false;
     },
   },
 });

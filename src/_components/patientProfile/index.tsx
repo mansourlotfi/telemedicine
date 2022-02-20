@@ -12,7 +12,9 @@ import { Form, Formik } from "formik";
 import SetProfileFormHandler from "./setProfileFormHandler";
 import * as yup from "yup";
 import { generateSetProfileDto } from "_common/mappers/toSetSetProfileApi";
-import { toast } from "_redux/slices/ToastSlice";
+// import { toast } from "_redux/slices/ToastSlice";
+// import { AlertColor } from "@mui/material/Alert";
+import { SuccessData, WarningData } from "_utils/toast";
 
 export interface IValues {
   name: string | null;
@@ -28,6 +30,12 @@ export interface IValues {
   state: string | null;
   description: string | null;
 }
+
+// interface IToast {
+//   severity: AlertColor;
+//   message: string;
+//   showToast?: boolean;
+// }
 
 const schema = yup.object({
   name: yup.string().required(),
@@ -72,22 +80,28 @@ function Index() {
     }
   };
   const handleChange = (event: any) => {
+    // let alertData: IToast = {
+    //   severity: "success",
+    //   message: "asd",
+    //   showToast: true,
+    // };
     setIsLoading(true);
     const fileUploaded = event.target.files[0];
     uploadFile(generateUserDetailDto(profile), fileUploaded)
       .then((data: AxiosResponse) => {
         dispatch(setProfileImage(data.data));
         setProfileUrl(data.data);
-        dispatch(toast({ severity: "success", message: "asd" }));
+        // dispatch(toast(alertData));
+        WarningData("برای ثبت تغییرات دکمه ذخیره تغییرات را بزنید");
       })
       .finally(() => setIsLoading(false));
   };
 
   const handleSubmit = (values: IValues, { resetForm }: any) => {
     setformsIsSubmitting(true);
-    setUserProfile(generateSetProfileDto(values)).finally(() =>
-      setformsIsSubmitting(false)
-    );
+    setUserProfile(generateSetProfileDto(values))
+      .then(() => SuccessData("اطلاعات ذخیره شد"))
+      .finally(() => setformsIsSubmitting(false));
   };
 
   const deleteImageHandler = () => {
@@ -96,11 +110,8 @@ function Index() {
   };
 
   useEffect(() => {
-    getUserProfile(generateUserDetailDto(profile)).then(
-      (data: AxiosResponse) => {
-        let profileData = generateProfile(data);
-        dispatch(setProfile(profileData.user));
-      }
+    getUserProfile(generateUserDetailDto(profile)).then((data: AxiosResponse) =>
+      dispatch(setProfile(generateProfile(data).user))
     );
   }, []);
 
