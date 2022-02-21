@@ -16,10 +16,6 @@ export default function CustomizedSnackbars() {
   const dispatch = useAppDispatch();
   const { ui } = useAppSelector((state) => state.Toast);
 
-  React.useEffect(() => {
-    console.log("ui", ui);
-  }, [ui]);
-
   const handleClose = (
     event?: React.SyntheticEvent | Event,
     reason?: string

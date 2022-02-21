@@ -38,4 +38,4 @@ interface IBlogPost {
   type: string;
   description: string;
 }
-export type { IProfile, ISetProfile, IBlogPost };
+export type { IProfile, ISetProfile, IBlogPost, IUser };

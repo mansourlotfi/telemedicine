@@ -12,6 +12,7 @@ import { Form, Formik } from "formik";
 import SetProfileFormHandler from "./setProfileFormHandler";
 import * as yup from "yup";
 import { generateSetProfileDto } from "_common/mappers/toSetSetProfileApi";
+import { generateProfileValueToState } from "_common/mappers/fromProfileValueToProfileState";
 // import { toast } from "_redux/slices/ToastSlice";
 // import { AlertColor } from "@mui/material/Alert";
 import { SuccessData, WarningData } from "_utils/toast";
@@ -100,7 +101,11 @@ function Index() {
   const handleSubmit = (values: IValues, { resetForm }: any) => {
     setformsIsSubmitting(true);
     setUserProfile(generateSetProfileDto(values))
-      .then(() => SuccessData("اطلاعات ذخیره شد"))
+      .then(() => {
+        dispatch(setProfile(generateProfileValueToState(values, profile)));
+        SuccessData("اطلاعات ذخیره شد");
+        setformsIsSubmitting(false);
+      })
       .finally(() => setformsIsSubmitting(false));
   };
 

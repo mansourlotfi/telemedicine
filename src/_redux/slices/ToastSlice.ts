@@ -27,7 +27,6 @@ export const ToastSlice = createSlice({
       state.ui.severity = action.payload.severity;
       state.ui.message = action.payload.message;
       state.ui.showToast = action.payload.showToast;
-      console.log(action.payload);
     },
     clearToast: (state) => {
       // state.ui.showToast = false;
