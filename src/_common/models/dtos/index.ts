@@ -22,7 +22,7 @@ interface ISetReserve {
   description: string;
   date: string;
   time: string;
-  type: "hozori";
+  type: "hozori" | "online";
 }
 
 export type {

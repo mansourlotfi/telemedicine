@@ -1,9 +1,12 @@
 import { ISetReserveDto } from "_common/models/dtos";
 
-export const generateSetReserveDto = (values: any): ISetReserveDto => ({
+export const generateSetReserveDto = (
+  values: any,
+  visitType: boolean
+): ISetReserveDto => ({
   phone: values.phone,
   description: values.description,
   date: values.date,
   time: values.time,
-  type: values.type,
+  type: visitType ? "online" : "hozori",
 });

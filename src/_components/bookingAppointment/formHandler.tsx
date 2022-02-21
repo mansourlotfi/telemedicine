@@ -59,6 +59,7 @@ const FormHandler: React.FC<IProps> = ({
             value={values.phone ?? ""}
             onChange={handleChange}
             className="form-control"
+            disabled
             placeholder="شماره همراه"
             style={touched.phone && errors.phone ? { borderColor: "red" } : {}}
           />

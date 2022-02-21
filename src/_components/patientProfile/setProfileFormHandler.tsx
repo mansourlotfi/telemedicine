@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { FormikProps } from "formik";
 import { IValues } from "./index";
 import { CircularProgress } from "@mui/material";
+import states from "assets/states";
+import cities from "assets/cities";
 
 interface IProps extends FormikProps<IValues> {
   values: IValues;
@@ -16,6 +18,12 @@ const SetProfileFormHandler: React.FC<IProps> = ({
   isLoading,
   handleSubmit,
 }) => {
+  // const [selectedStateId, setselectedStateId] = useState<number>();
+  const handleSelectProvience = (e: any) => {
+    setFieldValue("state", e.target.value);
+    // setselectedStateId(e.target.value);
+  };
+
   return (
     <div className="mt-4">
       <div className="row">
@@ -131,33 +139,58 @@ const SetProfileFormHandler: React.FC<IProps> = ({
         </div>
         <div className="col-lg-6">
           <div className="mb-3">
-            <label className="form-label"> استان </label>
-            <input
-              name="state"
-              id="state"
-              type="text"
-              value={values.state || ""}
-              className="form-control"
-              placeholder=" استان"
-              onChange={handleChange}
-              style={errors.state ? { borderColor: "red" } : {}}
-            />
+            <label className="form-label">
+              استان<span className="text-danger">*</span>
+            </label>
+            <select
+              className="form-control doctor-name select2input"
+              onChange={handleSelectProvience}
+              style={
+                touched.state && errors.state ? { borderColor: "red" } : {}
+              }
+              value={
+                states.find((item) => item.slug === values.state)?.name ?? ""
+              }
+            >
+              {states.map((item: any) => (
+                <option key={item.id} value={item.slug}>
+                  {item.slug}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
 
         <div className="col-lg-6">
           <div className="mb-3">
-            <label className="form-label">شهر </label>
-            <input
-              name="city"
-              id="city"
-              type="text"
-              value={values.city || ""}
-              className="form-control"
-              placeholder="شهر"
-              onChange={handleChange}
-              style={errors.city ? { borderColor: "red" } : {}}
-            />
+            <label className="form-label">
+              شهر<span className="text-danger">*</span>
+            </label>
+            <select
+              className="form-control doctor-name select2input"
+              onChange={(e) => setFieldValue("city", e.target.value)}
+              disabled={values.state === null ? true : false}
+              style={touched.city && errors.city ? { borderColor: "red" } : {}}
+              value={
+                cities.find((item) => item.slug === values.state)?.name ?? ""
+              }
+            >
+              {/* {cities
+                .map((item: any) => {
+                  return item.province_id;
+                })
+                .filter((item) => item.province_id === selectedStateId)
+                .map((item) => (
+                  <option key={item.id} value={item.slug}>
+                    {item.name}
+                  </option>
+                ))} */}
+              {cities.map((item) => (
+                <option key={item.id} value={item.slug}>
+                  {item.name}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
         <div className="col-lg-6">

@@ -28,7 +28,7 @@ function Index() {
 
   const [formsIsSubmitting, setFormsIsSubmitting] = useState<boolean>(false);
   const initialValue: IValues = {
-    phone: null,
+    phone: profile.user.phone,
     description: null,
     date: null,
     time: null,
@@ -40,9 +40,13 @@ function Index() {
     );
   }, []);
 
-  const handleSubmit = (values: IValues, { resetForm }: any) => {
+  const handleSubmit = (
+    values: IValues,
+    { resetForm }: any,
+    visitType: boolean
+  ) => {
     setFormsIsSubmitting(true);
-    setReserve(generateSetReserveDto(values))
+    setReserve(generateSetReserveDto(values, visitType))
       .then(() => resetForm())
       .finally(() => setFormsIsSubmitting(false));
   };
@@ -139,7 +143,7 @@ function Index() {
                       validationSchema={schema}
                       enableReinitialize
                       onSubmit={(values, { resetForm }) =>
-                        handleSubmit(values, { resetForm })
+                        handleSubmit(values, { resetForm }, false)
                       }
                     >
                       {(formikProps) => (
@@ -164,7 +168,7 @@ function Index() {
                       validationSchema={schema}
                       enableReinitialize
                       onSubmit={(values, { resetForm }) =>
-                        handleSubmit(values, { resetForm })
+                        handleSubmit(values, { resetForm }, true)
                       }
                     >
                       {(formikProps) => (
