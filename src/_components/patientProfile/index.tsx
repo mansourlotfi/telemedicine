@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AxiosResponse } from "axios";
-import { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "_redux/hooks";
-import { getUserProfile, setUserProfile } from "_api";
+import { getUserProfile, setUserProfile, getDrDates } from "_api";
 import { generateUserDetailDto } from "_common/mappers/toUserDetailApi";
 import { generateProfile } from "_common/mappers/fromUserDetailApi";
 import { setProfile, setProfileImage } from "_redux/slices/ProfileSlice";
@@ -16,6 +15,8 @@ import { generateProfileValueToState } from "_common/mappers/fromProfileValueToP
 // import { toast } from "_redux/slices/ToastSlice";
 // import { AlertColor } from "@mui/material/Alert";
 import { SuccessData, WarningData } from "_utils/toast";
+import { setDrAvailableDates } from "_redux/slices/DrbookingDateTimeSlice";
+import moment from "moment-jalaali";
 
 export interface IValues {
   name: string | null;
@@ -57,6 +58,8 @@ const schema = yup.object({
 function Index() {
   let hiddenFileInput = React.useRef<HTMLInputElement>(null);
   const profile = useAppSelector((state) => state.profile);
+  const drAvailableDates = useAppSelector((state) => state.DrDates);
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [formsIsSubmitting, setformsIsSubmitting] = useState<boolean>(false);
   const [ProfileUrl, setProfileUrl] = useState("");
@@ -119,6 +122,9 @@ function Index() {
   useEffect(() => {
     getUserProfile(generateUserDetailDto(profile)).then((data: AxiosResponse) =>
       dispatch(setProfile(generateProfile(data).user))
+    );
+    getDrDates().then((data: AxiosResponse) =>
+      dispatch(setDrAvailableDates(data.data))
     );
   }, []);
 
@@ -294,71 +300,23 @@ function Index() {
                     <div className="col-lg-6 col-12 mt-4">
                       <h5>لیست نوبت ها</h5>
 
-                      <div className="d-flex justify-content-between align-items-center rounded p-3 shadow mt-3">
-                        <i className="ri-heart-pulse-line h3 fw-normal text-primary mb-0"></i>
-                        <div className="flex-1 overflow-hidden me-2">
-                          <h6 className="mb-0"> قلب و عروق </h6>
-                          <p className="text-muted mb-0 text-truncate small">
-                            پزشک. کلوین کارلو
-                          </p>
-                        </div>
-                        <span className="mb-0">10 مهر</span>
-                      </div>
-
-                      <div className="d-flex justify-content-between align-items-center rounded p-3 shadow mt-3">
-                        <i className="ri-stethoscope-line h3 fw-normal text-success mb-0"></i>
-                        <div className="flex-1 overflow-hidden me-2">
-                          <h6 className="mb-0"> چک آپ </h6>
-                          <p className="text-muted mb-0 text-truncate small">
-                            پزشک. کریستین مورفی
-                          </p>
-                        </div>
-                        <span className="mb-0">12 مهر</span>
-                      </div>
-
-                      <div className="d-flex justify-content-between align-items-center rounded p-3 shadow mt-3">
-                        <i className="ri-virus-line h3 fw-normal text-warning mb-0"></i>
-                        <div className="flex-1 overflow-hidden me-2">
-                          <h6 className="mb-0"> تست کووید </h6>
-                          <p className="text-muted mb-0 text-truncate small">
-                            پزشک. آیا ردی
-                          </p>
-                        </div>
-                        <span className="mb-0">13 مهر</span>
-                      </div>
-
-                      <div className="d-flex justify-content-between align-items-center rounded p-3 shadow mt-3">
-                        <i className="ri-dossier-line h3 fw-normal text-secondary mb-0"></i>
-                        <div className="flex-1 overflow-hidden me-2">
-                          <h6 className="mb-0"> دندانپزشک </h6>
-                          <p className="text-muted mb-0 text-truncate small">
-                            پزشک. تونی کوار
-                          </p>
-                        </div>
-                        <span className="mb-0">15 مهر</span>
-                      </div>
-
-                      <div className="d-flex justify-content-between align-items-center rounded p-3 shadow mt-3">
-                        <i className="ri-eye-2-line h3 fw-normal text-info mb-0"></i>
-                        <div className="flex-1 overflow-hidden me-2">
-                          <h6 className="mb-0"> تست بینایی</h6>
-                          <p className="text-muted mb-0 text-truncate small">
-                            پزشک. جسیکار میکفرنس
-                          </p>
-                        </div>
-                        <span className="mb-0">17 مهر</span>
-                      </div>
-
-                      <div className="d-flex justify-content-between align-items-center rounded p-3 shadow mt-3">
-                        <i className="ri-microscope-line h3 fw-normal text-danger mb-0"></i>
-                        <div className="flex-1 overflow-hidden me-2">
-                          <h6 className="mb-0"> ارتوپدی </h6>
-                          <p className="text-muted mb-0 text-truncate small">
-                            پزشک. الیس شرمن
-                          </p>
-                        </div>
-                        <span className="mb-0">18 مهر</span>
-                      </div>
+                      {drAvailableDates &&
+                        drAvailableDates.drAvailableDates?.map((item) => (
+                          <div className="d-flex justify-content-between align-items-center rounded p-3 shadow mt-3">
+                            <i className="ri-stethoscope-line h3 fw-normal text-success mb-0"></i>
+                            <div className="flex-1 overflow-hidden me-2">
+                              <h6 className="mb-0"> وقت آزاد </h6>
+                              <p className="text-muted mb-0 text-truncate small">
+                                پزشک. کریستین مورفی
+                              </p>
+                            </div>
+                            <span className="mb-0">
+                              {moment(item.date)
+                                .locale("fa")
+                                .format("jYYYY-jMM-jD")}
+                            </span>
+                          </div>
+                        ))}
                     </div>
 
                     <div className="col-lg-6 col-12 mt-4">
