@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { getDrTimesByDate } from "_api";
 import { useAppDispatch, useAppSelector } from "_redux/hooks";
 import { IValues } from "./index";
+import moment from "moment-jalaali";
 
 interface ITime {
   dateID: number;
@@ -76,10 +77,13 @@ const FormHandler: React.FC<IProps> = ({
             onChange={handleSelectDate}
             style={touched.date && errors.date ? { borderColor: "red" } : {}}
           >
+            <option key={0} value={0}>
+              لطفا تاریخ را انتخاب نمایید
+            </option>
             {drAvailableDates &&
               drAvailableDates.map((item) => (
                 <option key={item.id} value={item.id}>
-                  {item.date}
+                  {moment(item.date).locale("fa").format("jYYYY-jMM-jDD")}
                 </option>
               ))}
           </select>
