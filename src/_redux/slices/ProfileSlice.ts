@@ -18,6 +18,7 @@ export interface IUser {
   email: string | null;
   height: string | null;
   image: string | null;
+  codemelli: string | null;
 }
 interface IProfile {
   user: IUser;
@@ -41,6 +42,7 @@ const initialState: IProfile = {
     email: null,
     height: null,
     image: null,
+    codemelli: null,
   },
 };
 

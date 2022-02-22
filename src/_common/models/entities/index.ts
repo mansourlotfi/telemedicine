@@ -14,6 +14,7 @@ interface IUser {
   email: string;
   height: string;
   image: string;
+  codemelli: string;
 }
 
 interface IProfile {

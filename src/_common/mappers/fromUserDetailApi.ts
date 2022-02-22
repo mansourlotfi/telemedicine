@@ -17,6 +17,7 @@ export const generateProfile = (data: AxiosResponse): IProfile => ({
     email: data.data[0].email,
     height: data.data[0].height,
     image: data.data[0].image,
+    codemelli: data.data[0].codemelli,
   },
 });
 

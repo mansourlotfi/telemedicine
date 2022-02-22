@@ -15,6 +15,7 @@ interface ISetProfile {
   description: string | null;
   height: string;
   weight: string;
+  codemelli: string;
 }
 
 interface ISetReserve {

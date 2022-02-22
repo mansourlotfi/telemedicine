@@ -14,4 +14,5 @@ export const generateSetProfileDto = (values: any): ISetProfileDto => ({
   description: values.description ?? null,
   height: values.height,
   weight: values.weight,
+  codemelli: values.codemelli,
 });

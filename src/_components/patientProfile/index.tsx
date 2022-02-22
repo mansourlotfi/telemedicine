@@ -30,6 +30,7 @@ export interface IValues {
   city: string | null;
   state: string | null;
   description: string | null;
+  codemelli: string | null;
 }
 
 // interface IToast {
@@ -73,6 +74,7 @@ function Index() {
     city: profile.user.city,
     state: profile.user.state,
     description: profile.user.description,
+    codemelli: profile.user.codemelli,
   };
 
   const handleClick = () => {
@@ -169,6 +171,13 @@ function Index() {
                   <i className="uil uil-book-open align-text-bottom text-primary h5 mb-0 ms-2"></i>
                   <h6 className="mb-0">شماره تماس</h6>
                   <p className="text-muted mb-0 me-2">{profile.user.phone}</p>
+                </div>
+                <div className="d-flex align-items-center mt-2">
+                  <i className="uil uil-book-open align-text-bottom text-primary h5 mb-0 ms-2"></i>
+                  <h6 className="mb-0"> کد ملی</h6>
+                  <p className="text-muted mb-0 me-2">
+                    {profile.user.codemelli}
+                  </p>
                 </div>
 
                 <div className="d-flex align-items-center mt-2">

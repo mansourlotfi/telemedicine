@@ -29,7 +29,9 @@ const SetProfileFormHandler: React.FC<IProps> = ({
       <div className="row">
         <div className="col-lg-6">
           <div className="mb-3">
-            <label className="form-label">نام و نام خانوادگی</label>
+            <label className="form-label">
+              نام و نام خانوادگی<span className="text-danger">*</span>
+            </label>
             <input
               name="name"
               id="name"
@@ -45,7 +47,9 @@ const SetProfileFormHandler: React.FC<IProps> = ({
         </div>
         <div className="col-lg-6">
           <div className="mb-3">
-            <label className="form-label">شماره تماس</label>
+            <label className="form-label">
+              شماره تماس<span className="text-danger">*</span>
+            </label>
             <input
               name="phone"
               id="phone"
@@ -56,6 +60,24 @@ const SetProfileFormHandler: React.FC<IProps> = ({
               placeholder="شماره تماس"
               onChange={handleChange}
               style={errors.phone ? { borderColor: "red" } : {}}
+            />
+          </div>
+        </div>
+
+        <div className="col-lg-6">
+          <div className="mb-3">
+            <label className="form-label">
+              کد ملی<span className="text-danger">*</span>
+            </label>
+            <input
+              name="codemelli"
+              id="codemelli"
+              type="text"
+              value={values.codemelli || ""}
+              className="form-control"
+              placeholder="کد ملی"
+              onChange={handleChange}
+              style={errors.codemelli ? { borderColor: "red" } : {}}
             />
           </div>
         </div>
@@ -78,7 +100,9 @@ const SetProfileFormHandler: React.FC<IProps> = ({
 
         <div className="col-lg-6">
           <div className="mb-3">
-            <label className="form-label">سن </label>
+            <label className="form-label">
+              سن <span className="text-danger">*</span>
+            </label>
             <input
               name="age"
               id="age"
@@ -109,7 +133,9 @@ const SetProfileFormHandler: React.FC<IProps> = ({
         </div>
         <div className="col-lg-6">
           <div className="mb-3">
-            <label className="form-label">قد </label>
+            <label className="form-label">
+              قد <span className="text-danger">*</span>
+            </label>
             <input
               name="height"
               id="height"
@@ -124,7 +150,9 @@ const SetProfileFormHandler: React.FC<IProps> = ({
         </div>
         <div className="col-lg-6">
           <div className="mb-3">
-            <label className="form-label">وزن </label>
+            <label className="form-label">
+              وزن <span className="text-danger">*</span>
+            </label>
             <input
               name="weight"
               id="weight"
@@ -149,12 +177,15 @@ const SetProfileFormHandler: React.FC<IProps> = ({
                 touched.state && errors.state ? { borderColor: "red" } : {}
               }
               value={
-                states.find((item) => item.slug === values.state)?.name ?? ""
+                states.find((item) => item.slug === values.state)?.slug ?? 0
               }
             >
+              <option key={0} value={0}>
+                لطفا استان را انتخاب کنید
+              </option>
               {states.map((item: any) => (
                 <option key={item.id} value={item.slug}>
-                  {item.slug}
+                  {item.name}
                 </option>
               ))}
             </select>
@@ -169,10 +200,10 @@ const SetProfileFormHandler: React.FC<IProps> = ({
             <select
               className="form-control doctor-name select2input"
               onChange={(e) => setFieldValue("city", e.target.value)}
-              disabled={values.state === null ? true : false}
+              disabled={values.city === null ? true : false}
               style={touched.city && errors.city ? { borderColor: "red" } : {}}
               value={
-                cities.find((item) => item.slug === values.state)?.name ?? ""
+                cities.find((item) => item.slug === values.city)?.slug ?? 0
               }
             >
               {/* {cities
@@ -185,6 +216,9 @@ const SetProfileFormHandler: React.FC<IProps> = ({
                     {item.name}
                   </option>
                 ))} */}
+              <option key={0} value={0}>
+                لطفا شهر را انتخاب کنید
+              </option>
               {cities.map((item) => (
                 <option key={item.id} value={item.slug}>
                   {item.name}
