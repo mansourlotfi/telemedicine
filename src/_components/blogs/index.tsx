@@ -96,7 +96,7 @@ function Index() {
               alignItems: "center",
             }}
           >
-            <CircularProgress color="secondary" size={20} />
+            <CircularProgress />
           </div>
         )}
       </section>
