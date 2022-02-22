@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { getBlogPostById } from "_api";
 import { IBlogPost } from "_common/models/entities";
+import moment from "moment-jalaali";
 
 function Index() {
   const location = useLocation();
@@ -62,7 +63,8 @@ function Index() {
                       <i className="mdi mdi-account"></i> {post.title}
                     </li>
                     <li className="list-inline-item date text-muted">
-                      <i className="mdi mdi-calendar-check"></i> {post.date}
+                      <i className="mdi mdi-calendar-check"></i>{" "}
+                      {moment(post.date).locale("fa").format("jYYYY-jMM-jD")}
                     </li>
                   </ul>
 

@@ -6,6 +6,7 @@ import { getAllBlogPosts } from "_api";
 import { generateBlogPosts } from "_common/mappers/fromBlogPostsApi";
 import { useAppDispatch, useAppSelector } from "_redux/hooks";
 import { setBlosPosts } from "_redux/slices/BlogSlice";
+import moment from "moment-jalaali";
 
 function Index() {
   const dispatch = useAppDispatch();
@@ -76,10 +77,12 @@ function Index() {
                         <ul className="list-unstyled mb-2">
                           <li className="list-inline-item text-muted small me-3">
                             <i className="uil uil-calendar-alt text-dark h6 me-1"></i>
-                            {item.date}
+                            {moment(item.date)
+                              .locale("fa")
+                              .format("jYYYY-jMM-jD")}
                           </li>
                         </ul>
-                        {item.title}
+                        {item.title} this is title from api
                         <div>{item.description}</div>
                       </div>
                     </div>
