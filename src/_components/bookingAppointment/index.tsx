@@ -7,12 +7,13 @@ import { setDrAvailableDates } from "_redux/slices/DrbookingDateTimeSlice";
 import FormHandler from "./formHandler";
 import * as yup from "yup";
 import { generateSetReserveDto } from "_common/mappers/toSetReserveApi";
+import { SuccessData } from "_utils/toast";
 
 const schema = yup.object({
   phone: yup.number().required(),
   description: yup.string().required(),
-  date: yup.string().required(),
-  time: yup.string().required(),
+  date: yup.string().min(3).required(),
+  time: yup.string().min(3).required(),
 });
 
 export interface IValues {
@@ -47,7 +48,10 @@ function Index() {
   ) => {
     setFormsIsSubmitting(true);
     setReserve(generateSetReserveDto(values, visitType))
-      .then(() => resetForm())
+      .then(() => {
+        resetForm();
+        SuccessData("اطلاعات ذخیره شد");
+      })
       .finally(() => setFormsIsSubmitting(false));
   };
 

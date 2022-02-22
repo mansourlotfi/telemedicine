@@ -75,7 +75,7 @@ const FormHandler: React.FC<IProps> = ({
           <select
             className="form-control doctor-name select2input"
             onChange={handleSelectDate}
-            style={touched.date && errors.date ? { borderColor: "red" } : {}}
+            style={errors.date ? { borderColor: "red" } : {}}
           >
             <option key={0} value={0}>
               لطفا تاریخ را انتخاب نمایید
@@ -83,7 +83,7 @@ const FormHandler: React.FC<IProps> = ({
             {drAvailableDates &&
               drAvailableDates.map((item) => (
                 <option key={item.id} value={item.id}>
-                  {moment(item.date).locale("fa").format("jYYYY-jMM-jDD")}
+                  {moment(item.date).locale("fa").format("jYYYY-jMM-jD")}
                 </option>
               ))}
           </select>
@@ -93,14 +93,17 @@ const FormHandler: React.FC<IProps> = ({
       <div className="col-md-6">
         <div className="mb-3">
           <label className="form-label">
-            زمان<span className="text-danger">*</span>
+            ساعت<span className="text-danger">*</span>
           </label>
           <select
             className="form-control doctor-name select2input"
             onChange={handleSelectTime}
             disabled={selectedDate === null ? true : false}
-            style={touched.time && errors.time ? { borderColor: "red" } : {}}
+            style={errors.time ? { borderColor: "red" } : {}}
           >
+            <option key={0} value={0}>
+              لطفا ساعت را انتخاب نمایید
+            </option>
             {drTimes &&
               Array.isArray(drTimes) &&
               drTimes.map((item) => (
