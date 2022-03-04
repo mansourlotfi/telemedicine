@@ -24,11 +24,6 @@ function Index() {
                 <div className="col-12">
                   <div className="section-title text-center">
                     <h3 className="sub-title mb-4">{post?.title}</h3>
-                    <p className="para-desc mx-auto text-muted">
-                      پزشکانی عالی، اگر برای خود یا خانواده تان به دنبال یک کمک
-                      موثر در موارد بیماری و اضطراری یا حتی مشاوره ای ساده نیاز
-                      دارید؛ همینجا باشید
-                    </p>
                   </div>
                 </div>
               </div>
@@ -48,7 +43,7 @@ function Index() {
               </svg>
             </div>
           </div>
-          <section className="section">
+          <section style={{ padding: "0 0 100px 0" }}>
             <div className="container">
               <div className="row">
                 <div className="col-lg-12 col-lg-11">
@@ -60,7 +55,8 @@ function Index() {
 
                   <ul className="list-unstyled mt-4">
                     <li className="list-inline-item user text-muted me-2">
-                      <i className="mdi mdi-account"></i> {post.title}
+                      <i className="mdi mdi-account"></i>
+                      <b>{post.title}</b>
                     </li>
                     <li className="list-inline-item date text-muted">
                       <i className="mdi mdi-calendar-check"></i>{" "}
@@ -68,7 +64,7 @@ function Index() {
                     </li>
                   </ul>
 
-                  <p className="text-muted mt-4">{post.description}</p>
+                  <b>{post.description}</b>
                 </div>
               </div>
             </div>

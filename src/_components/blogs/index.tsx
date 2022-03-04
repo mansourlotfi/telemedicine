@@ -58,7 +58,6 @@ function Index() {
       </div>
 
       <section className="section">
-        {console.log("posts", posts)}
         {posts ? (
           <div className="container">
             <div className="row">
