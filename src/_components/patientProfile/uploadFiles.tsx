@@ -49,7 +49,7 @@ function UploadFiles() {
         container
         xs={12}
         style={{
-          backgroundColor: "lightblue",
+          backgroundColor: "#0070cc",
           margin: "20px 0",
           minHeight: 200,
           borderRadius: 8,

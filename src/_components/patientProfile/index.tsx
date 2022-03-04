@@ -170,7 +170,7 @@ function Index() {
                 </div>
 
                 <div className="d-flex align-items-center mt-2">
-                  <i className="uil uil-envelope align-text-bottom text-primary h5 mb-0 ms-2"></i>
+                  <i className="uil uil-book-open align-text-bottom text-primary h5 mb-0 ms-2"></i>
                   <h6 className="mb-0">تاریخ تولد</h6>
                   <p className="text-muted mb-0 me-2">19 مهر 1371</p>
                 </div>
@@ -189,25 +189,25 @@ function Index() {
                 </div>
 
                 <div className="d-flex align-items-center mt-2">
-                  <i className="uil uil-italic align-text-bottom text-primary h5 mb-0 ms-2"></i>
+                  <i className="uil uil-book-open align-text-bottom text-primary h5 mb-0 ms-2"></i>
                   <h6 className="mb-0">آدرس</h6>
                   <p className="text-muted mb-0 me-2">{profile.user.address}</p>
                 </div>
 
                 <div className="d-flex align-items-center mt-2">
-                  <i className="uil uil-medical-drip align-text-bottom text-primary h5 mb-0 ms-2"></i>
+                  <i className="uil uil-book-open align-text-bottom text-primary h5 mb-0 ms-2"></i>
                   <h6 className="mb-0">گروه خونی</h6>
                   <p className="text-muted mb-0 me-2">{profile.user.blood}</p>
                 </div>
 
                 <div className="d-flex align-items-center mt-2">
-                  <i className="uil uil-medical-drip align-text-bottom text-primary h5 mb-0 ms-2"></i>
+                  <i className="uil uil-book-open align-text-bottom text-primary h5 mb-0 ms-2"></i>
                   <h6 className="mb-0">تلفن</h6>
                   <p className="text-muted mb-0 me-2">{profile.user.phone}</p>
                 </div>
 
                 <div className="d-flex align-items-center mt-2">
-                  <i className="uil uil-medical-drip align-text-bottom text-primary h5 mb-0 ms-2"></i>
+                  <i className="uil uil-book-open align-text-bottom text-primary h5 mb-0 ms-2"></i>
                   <h6 className="mb-0">استان</h6>
                   <p className="text-muted mb-0 me-2">
                     {states.find((item) => item.id == profile.user.state)?.name}
@@ -215,24 +215,24 @@ function Index() {
                 </div>
 
                 <div className="d-flex align-items-center mt-2">
-                  <i className="uil uil-medical-drip align-text-bottom text-primary h5 mb-0 ms-2"></i>
+                  <i className="uil uil-book-open align-text-bottom text-primary h5 mb-0 ms-2"></i>
                   <h6 className="mb-0">شهر</h6>
                   <p className="text-muted mb-0 me-2">{profile.user.city}</p>
                 </div>
 
                 <div className="d-flex align-items-center mt-2">
-                  <i className="uil uil-medical-drip align-text-bottom text-primary h5 mb-0 ms-2"></i>
+                  <i className="uil uil-book-open align-text-bottom text-primary h5 mb-0 ms-2"></i>
                   <h6 className="mb-0">قد</h6>
                   <p className="text-muted mb-0 me-2">{profile.user.height}</p>
                 </div>
 
                 <div className="d-flex align-items-center mt-2">
-                  <i className="uil uil-medical-drip align-text-bottom text-primary h5 mb-0 ms-2"></i>
+                  <i className="uil uil-book-open align-text-bottom text-primary h5 mb-0 ms-2"></i>
                   <h6 className="mb-0">وزن</h6>
                   <p className="text-muted mb-0 me-2">{profile.user.weight}</p>
                 </div>
                 <div className="d-flex align-items-center mt-2">
-                  <i className="uil uil-medical-drip align-text-bottom text-primary h5 mb-0 ms-2"></i>
+                  <i className="uil uil-book-open align-text-bottom text-primary h5 mb-0 ms-2"></i>
                   <h6 className="mb-0">توضیحات</h6>
                   <p className="text-muted mb-0 me-2">
                     {profile.user.description}
