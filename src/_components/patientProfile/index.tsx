@@ -309,9 +309,9 @@ function Index() {
                           <div className="d-flex justify-content-between align-items-center rounded p-3 shadow mt-3">
                             <i className="ri-stethoscope-line h3 fw-normal text-success mb-0"></i>
                             <div className="flex-1 overflow-hidden me-2">
-                              <h6 className="mb-0"> وقت آزاد </h6>
+                              <h6 className="mb-0"> وقت حضوری یا آنلاین </h6>
                               <p className="text-muted mb-0 text-truncate small">
-                                پزشک. کریستین مورفی
+                                پزشک : آقای دکتر علی طبیبی
                               </p>
                             </div>
                             <span className="mb-0">
@@ -326,107 +326,28 @@ function Index() {
                     <div className="col-lg-6 col-12 mt-4">
                       <h5>لیست پرداخت ها</h5>
 
-                      <div className="d-flex justify-content-between align-items-center rounded p-3 shadow mt-3">
-                        <div className="flex-1 overflow-hidden">
-                          <h6 className="flex-1 mb-0"> قلب و عروق </h6>
-                          <p className="text-muted mb-0 text-truncate small">
-                            کل قبض پرداخت شده
-                          </p>
-                        </div>
-                        <a
-                          href="#"
-                          className="btn btn-icon btn-primary"
-                          data-bs-toggle="modal"
-                          data-bs-target="#view-invoice"
-                        >
-                          <i className="uil uil-clipboard-notes icons"></i>
-                        </a>
-                      </div>
-
-                      <div className="d-flex justify-content-between align-items-center rounded p-3 shadow mt-3">
-                        <div className="flex-1 overflow-hidden">
-                          <h6 className="flex-1 mb-0"> چک آپ </h6>
-                          <p className="text-muted mb-0 text-truncate small">
-                            کل قبض پرداخت شده
-                          </p>
-                        </div>
-                        <a
-                          href="#"
-                          className="btn btn-icon btn-primary"
-                          data-bs-toggle="modal"
-                          data-bs-target="#view-invoice"
-                        >
-                          <i className="uil uil-clipboard-notes icons"></i>
-                        </a>
-                      </div>
-
-                      <div className="d-flex justify-content-between align-items-center rounded p-3 shadow mt-3">
-                        <div className="flex-1 overflow-hidden">
-                          <h6 className="flex-1 mb-0"> تست کووید </h6>
-                          <p className="text-muted mb-0 text-truncate small">
-                            کل قبض پرداخت شده
-                          </p>
-                        </div>
-                        <a
-                          href="#"
-                          className="btn btn-icon btn-primary"
-                          data-bs-toggle="modal"
-                          data-bs-target="#view-invoice"
-                        >
-                          <i className="uil uil-clipboard-notes icons"></i>
-                        </a>
-                      </div>
-
-                      <div className="d-flex justify-content-between align-items-center rounded p-3 shadow mt-3">
-                        <div className="flex-1 overflow-hidden">
-                          <h6 className="flex-1 mb-0"> دندانپزشک </h6>
-                          <p className="text-muted mb-0 text-truncate small">
-                            کل قبض پرداخت شده
-                          </p>
-                        </div>
-                        <a
-                          href="#"
-                          className="btn btn-icon btn-primary"
-                          data-bs-toggle="modal"
-                          data-bs-target="#view-invoice"
-                        >
-                          <i className="uil uil-clipboard-notes icons"></i>
-                        </a>
-                      </div>
-
-                      <div className="d-flex justify-content-between align-items-center rounded p-3 shadow mt-3">
-                        <div className="flex-1 overflow-hidden">
-                          <h6 className="flex-1 mb-0"> تست بینایی</h6>
-                          <p className="text-muted mb-0 text-truncate small">
-                            کل قبض پرداخت شده
-                          </p>
-                        </div>
-                        <a
-                          href="#"
-                          className="btn btn-icon btn-primary"
-                          data-bs-toggle="modal"
-                          data-bs-target="#view-invoice"
-                        >
-                          <i className="uil uil-clipboard-notes icons"></i>
-                        </a>
-                      </div>
-
-                      <div className="d-flex justify-content-between align-items-center rounded p-3 shadow mt-3">
-                        <div className="flex-1 overflow-hidden">
-                          <h6 className="flex-1 mb-0"> ارتوپدی </h6>
-                          <p className="text-muted mb-0 text-truncate small">
-                            کل قبض پرداخت شده
-                          </p>
-                        </div>
-                        <a
-                          href="#"
-                          className="btn btn-icon btn-primary"
-                          data-bs-toggle="modal"
-                          data-bs-target="#view-invoice"
-                        >
-                          <i className="uil uil-clipboard-notes icons"></i>
-                        </a>
-                      </div>
+                      {drAvailableDates &&
+                        drAvailableDates.drAvailableDates?.map((item) => (
+                          <div className="d-flex justify-content-between align-items-center rounded p-3 shadow mt-3">
+                            <div className="flex-1 overflow-hidden">
+                              <h6 className="flex-1 mb-0">
+                                {" "}
+                                نوبت حضوری / آنلاین{" "}
+                              </h6>
+                              <p className="text-muted mb-0 text-truncate small">
+                                پرداخت شده
+                              </p>
+                            </div>
+                            <a
+                              href="#"
+                              className="btn btn-icon btn-primary"
+                              data-bs-toggle="modal"
+                              data-bs-target="#view-invoice"
+                            >
+                              <i className="uil uil-clipboard-notes icons"></i>
+                            </a>
+                          </div>
+                        ))}
                     </div>
                   </div>
                 </div>

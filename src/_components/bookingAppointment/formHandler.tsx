@@ -11,6 +11,7 @@ interface ITime {
   dateID: number;
   id: number;
   time: string;
+  isReserved: boolean;
 }
 interface IProps extends FormikProps<IValues> {
   values: IValues;
@@ -106,11 +107,13 @@ const FormHandler: React.FC<IProps> = ({
             </option>
             {drTimes &&
               Array.isArray(drTimes) &&
-              drTimes.map((item) => (
-                <option key={item.id} value={item.time}>
-                  {item.time}
-                </option>
-              ))}
+              drTimes
+                .filter((item) => item.isReserved == false)
+                .map((item) => (
+                  <option key={item.id} value={item.time}>
+                    {item.time}
+                  </option>
+                ))}
           </select>
         </div>
       </div>

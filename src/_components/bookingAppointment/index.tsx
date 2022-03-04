@@ -50,7 +50,7 @@ function Index() {
     setReserve(generateSetReserveDto(values, visitType))
       .then(() => {
         resetForm();
-        SuccessData("اطلاعات ذخیره شد");
+        SuccessData("نوبت رزرو شد");
       })
       .finally(() => setFormsIsSubmitting(false));
   };
