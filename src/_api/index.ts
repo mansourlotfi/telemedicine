@@ -30,8 +30,11 @@ const SERVICE = {
   GET_ALL_Dr_Dates: () =>
     routeToService("/API/DR_Date.aspx", process.env.REACT_APP_BASE_URL),
 
-  GET_Dr_TIMES_BYID: (id: number) =>
-    routeToService("/API/DR_Time.aspx", process.env.REACT_APP_BASE_URL, id),
+  GET_Dr_TIMES_BYID: (date_id: number) =>
+    routeToService(
+      `/API/DR_Time.aspx?date_id=${date_id}`,
+      process.env.REACT_APP_BASE_URL
+    ),
 
   GET_BLOG_POST_BYID: (id: any) =>
     routeToService("/API/Blog.aspx", process.env.REACT_APP_BASE_URL, id),
