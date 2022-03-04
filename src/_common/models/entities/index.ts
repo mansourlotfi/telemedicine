@@ -3,7 +3,7 @@ interface IUser {
   name: string;
   phone: string;
   smscode: string;
-  state: string;
+  state: number;
   weight: string;
   address: string;
   age: string;

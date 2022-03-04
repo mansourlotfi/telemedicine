@@ -7,7 +7,7 @@ export interface IUser {
   name: string | null;
   phone: string;
   smscode: string | null;
-  state: string | null;
+  state: number | null;
   weight: string | null;
   address: string | null;
   age: string | null;

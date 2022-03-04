@@ -18,10 +18,11 @@ const SetProfileFormHandler: React.FC<IProps> = ({
   isLoading,
   handleSubmit,
 }) => {
-  // const [selectedStateId, setselectedStateId] = useState<number>();
+  const [selectedStateId, setselectedStateId] = useState<number>();
+
   const handleSelectProvience = (e: any) => {
     setFieldValue("state", e.target.value);
-    // setselectedStateId(e.target.value);
+    setselectedStateId(e.target.value);
   };
 
   return (
@@ -176,15 +177,13 @@ const SetProfileFormHandler: React.FC<IProps> = ({
               style={
                 touched.state && errors.state ? { borderColor: "red" } : {}
               }
-              value={
-                states.find((item) => item.slug === values.state)?.slug ?? 0
-              }
+              value={states.find((item) => item.id == values.state)?.id ?? 0}
             >
               <option key={0} value={0}>
                 لطفا استان را انتخاب کنید
               </option>
               {states.map((item: any) => (
-                <option key={item.id} value={item.slug}>
+                <option key={item.id} value={item.id}>
                   {item.name}
                 </option>
               ))}
@@ -200,30 +199,23 @@ const SetProfileFormHandler: React.FC<IProps> = ({
             <select
               className="form-control doctor-name select2input"
               onChange={(e) => setFieldValue("city", e.target.value)}
-              disabled={values.city === null ? true : false}
+              disabled={values.state === null ? true : false}
               style={touched.city && errors.city ? { borderColor: "red" } : {}}
               value={
                 cities.find((item) => item.slug === values.city)?.slug ?? 0
               }
             >
-              {/* {cities
-                .map((item: any) => {
-                  return item.province_id;
-                })
-                .filter((item) => item.province_id === selectedStateId)
+              <option key={0} value={0}>
+                لطفا شهر را انتخاب کنید
+              </option>
+              {cities
+
+                .filter((item) => item.province_id == selectedStateId)
                 .map((item) => (
                   <option key={item.id} value={item.slug}>
                     {item.name}
                   </option>
-                ))} */}
-              <option key={0} value={0}>
-                لطفا شهر را انتخاب کنید
-              </option>
-              {cities.map((item) => (
-                <option key={item.id} value={item.slug}>
-                  {item.name}
-                </option>
-              ))}
+                ))}
             </select>
           </div>
         </div>

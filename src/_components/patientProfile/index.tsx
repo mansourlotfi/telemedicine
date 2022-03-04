@@ -29,7 +29,7 @@ export interface IValues {
   height: string | null;
   weight: string | null;
   city: string | null;
-  state: string | null;
+  state: number | null;
   description: string | null;
   codemelli: string | null;
 }
@@ -272,7 +272,7 @@ function Index() {
                     aria-selected="false"
                   >
                     <div className="text-center pt-1 pb-1">
-                      <h4 className="title fw-normal mb-0">تنظیمات پروفایل</h4>
+                      <h4 className="title fw-normal mb-0"> پرونده پزشکی</h4>
                     </div>
                   </a>
                 </li>
