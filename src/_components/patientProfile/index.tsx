@@ -17,6 +17,7 @@ import { generateProfileValueToState } from "_common/mappers/fromProfileValueToP
 import { SuccessData, WarningData } from "_utils/toast";
 import { setDrAvailableDates } from "_redux/slices/DrbookingDateTimeSlice";
 import moment from "moment-jalaali";
+import states from "assets/states";
 
 export interface IValues {
   name: string | null;
@@ -207,7 +208,9 @@ function Index() {
                 <div className="d-flex align-items-center mt-2">
                   <i className="uil uil-medical-drip align-text-bottom text-primary h5 mb-0 ms-2"></i>
                   <h6 className="mb-0">استان</h6>
-                  <p className="text-muted mb-0 me-2">{profile.user.state}</p>
+                  <p className="text-muted mb-0 me-2">
+                    {states.find((item) => item.id == profile.user.state)?.name}
+                  </p>
                 </div>
 
                 <div className="d-flex align-items-center mt-2">
