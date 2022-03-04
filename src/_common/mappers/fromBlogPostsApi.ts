@@ -2,7 +2,7 @@ import { AxiosResponse } from "axios";
 import { IBlogPost } from "_common/models/entities";
 const generateBlogPost = (data: IBlogPost): IBlogPost => ({
   id: data.id,
-  title: data.date,
+  title: data.title,
   date: data.date,
   image: data.image,
   link: data.link,

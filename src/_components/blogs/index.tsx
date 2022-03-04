@@ -58,6 +58,7 @@ function Index() {
       </div>
 
       <section className="section">
+        {console.log("posts", posts)}
         {posts ? (
           <div className="container">
             <div className="row">
@@ -82,7 +83,7 @@ function Index() {
                               .format("jYYYY-jMM-jD")}
                           </li>
                         </ul>
-                        {item.title} this is title from api
+                        {item.title}
                         <div>{item.description}</div>
                       </div>
                     </div>

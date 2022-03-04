@@ -18,6 +18,7 @@ import { SuccessData, WarningData } from "_utils/toast";
 import { setDrAvailableDates } from "_redux/slices/DrbookingDateTimeSlice";
 import moment from "moment-jalaali";
 import states from "assets/states";
+import UploadFiles from "./uploadFiles";
 
 export interface IValues {
   name: string | null;
@@ -449,7 +450,7 @@ function Index() {
                     </div>
 
                     <div className="col-lg-5 col-md-8 text-center text-md-end mt-4 mt-sm-0">
-                      <h6 className=""> عکس خود را بارگذاری کنید </h6>
+                      <h6 className=""> عکس پروفایل را بارگذاری کنید </h6>
                       <p className="text-muted mb-0">
                         برای بهترین نتیجه ، از تصویری حداقل 256 پیکسل در 256
                         پیکسل در قالب .jpg یا .png استفاده کنید
@@ -503,6 +504,9 @@ function Index() {
                       </Form>
                     )}
                   </Formik>
+                  <div style={{ marginTop: 20 }}>
+                    <UploadFiles />
+                  </div>
                 </div>
               </div>
             </div>

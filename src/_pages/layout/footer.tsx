@@ -1,6 +1,11 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import IconButton from "@mui/material/IconButton";
 
 function Footer() {
   const { pathname } = useLocation();
@@ -30,7 +35,7 @@ function Footer() {
                 className="col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0"
                 style={{ textAlign: "right" }}
               >
-                <h5 className="text-light footer-head">وبسایت</h5>
+                {/* <h5 className="text-light footer-head">وبسایت</h5> */}
                 <ul className="list-unstyled footer-list mt-4">
                   <li>
                     <Link to="/" className="text-foot">
@@ -52,6 +57,14 @@ function Footer() {
                       <i className="mdi mdi-chevron-left ms-1"></i>درباره ما
                     </Link>
                   </li>
+                </ul>
+              </div>
+
+              <div
+                className="col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0"
+                style={{ textAlign: "right" }}
+              >
+                <ul className="list-unstyled footer-list mt-4">
                   <li>
                     <Link to="/faqs" className="text-foot">
                       <i className="mdi mdi-chevron-left ms-1"></i> سوالات
@@ -72,43 +85,6 @@ function Footer() {
                     <Link to="/contactUs" className="text-foot">
                       <i className="mdi mdi-chevron-left ms-1"></i>ارتباط با ما
                     </Link>
-                  </li>
-                </ul>
-              </div>
-
-              <div
-                className="col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0"
-                style={{ textAlign: "right" }}
-              >
-                <h5 className="text-light title-dark footer-head">
-                  دپارتمان ها
-                </h5>
-                <ul className="list-unstyled footer-list mt-4">
-                  <li>
-                    <a href="#" className="text-foot">
-                      <i className="mdi mdi-chevron-left ms-1"></i>پزشکان
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-foot">
-                      <i className="mdi mdi-chevron-left ms-1"></i>کلینیک ها
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-foot">
-                      <i className="mdi mdi-chevron-left ms-1"></i>
-                      آزمایشگاه ها
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-foot">
-                      <i className="mdi mdi-chevron-left ms-1"></i> اورژانس
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-foot">
-                      <i className="mdi mdi-chevron-left ms-1"></i>بیمه
-                    </a>
                   </li>
                 </ul>
               </div>
@@ -155,36 +131,24 @@ function Footer() {
 
                 <ul className="list-unstyled social-icon footer-social mb-0 mt-4">
                   <li className="list-inline-item">
-                    <a href="#" className="rounded-pill">
-                      <i
-                        data-feather="facebook"
-                        className="fea icon-sm fea-social"
-                      ></i>
-                    </a>
+                    <IconButton>
+                      <FacebookIcon color="primary" />
+                    </IconButton>
                   </li>
                   <li className="list-inline-item">
-                    <a href="#" className="rounded-pill">
-                      <i
-                        data-feather="instagram"
-                        className="fea icon-sm fea-social"
-                      ></i>
-                    </a>
+                    <IconButton>
+                      <InstagramIcon color="error" />
+                    </IconButton>
                   </li>
                   <li className="list-inline-item">
-                    <a href="#" className="rounded-pill">
-                      <i
-                        data-feather="twitter"
-                        className="fea icon-sm fea-social"
-                      ></i>
-                    </a>
+                    <IconButton>
+                      <TwitterIcon color="primary" />
+                    </IconButton>
                   </li>
                   <li className="list-inline-item">
-                    <a href="#" className="rounded-pill">
-                      <i
-                        data-feather="linkedin"
-                        className="fea icon-sm fea-social"
-                      ></i>
-                    </a>
+                    <IconButton>
+                      <LinkedInIcon color="primary" />
+                    </IconButton>
                   </li>
                 </ul>
               </div>
