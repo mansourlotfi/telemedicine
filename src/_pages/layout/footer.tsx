@@ -20,7 +20,7 @@ function Footer() {
         <div className="row">
           <div className="col-xl-5 col-lg-4 mb-0 mb-md-4 pb-0 pb-md-2">
             <a href="#" className="logo-footer">
-              <img src="../assets/images/drLogo.png" height="22" alt="" />
+              <img src="../assets/images/logo/dr ali tabibi logo.png" height="50"  alt="" />
             </a>
             <p className="mt-4 me-xl-5">
               پزشکانی عالی، اگر برای خود یا خانواده تان به دنبال یک کمک موثر در

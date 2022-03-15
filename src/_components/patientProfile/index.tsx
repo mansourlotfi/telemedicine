@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { AxiosResponse } from "axios";
 import { useAppSelector, useAppDispatch } from "_redux/hooks";
-import { getUserProfile, setUserProfile, getDrDates } from "_api";
+import { getUserProfile, setUserProfile, getDrDates,getUserPayments,getUserReservation,payment } from "_api";
 import { generateUserDetailDto } from "_common/mappers/toUserDetailApi";
 import { generateProfile } from "_common/mappers/fromUserDetailApi";
 import { setProfile, setProfileImage } from "_redux/slices/ProfileSlice";
@@ -45,16 +45,17 @@ export interface IValues {
 const schema = yup.object({
   name: yup.string().required(),
   phone: yup.string().required(),
-  email: yup.string().email().nullable(),
-  image: yup.string().nullable(),
-  address: yup.string().required(),
+  email: yup.string().email().required(),
+  // image: yup.string().nullable(),
+  // address: yup.string().required(),
   age: yup.number().required(),
-  blood: yup.string().required(),
-  city: yup.string().required(),
-  state: yup.string().required(),
+  // blood: yup.string().required(),
+  // city: yup.string().required(),
+  // state: yup.string().required(),
   description: yup.string().nullable(),
-  height: yup.string().required(),
-  weight: yup.string().required(),
+  // height: yup.string().required(),
+  // weight: yup.string().required(),
+  codemelli:yup.string().required()
 });
 
 function Index() {
@@ -128,6 +129,16 @@ function Index() {
     getDrDates().then((data: AxiosResponse) =>
       dispatch(setDrAvailableDates(data.data))
     );
+    getUserPayments({userphone:Number(profile.user.phone)}).then((data:AxiosResponse)=>
+    console.log('getUserPayments', data)
+    )
+
+    getUserReservation({userphone:Number(profile.user.phone)}).then((data:AxiosResponse)=>
+    console.log('getUserReservation', data))
+
+    payment({
+      reservation:Number(1)}).then((data:AxiosResponse)=>
+      console.log('payment', data))
   }, []);
 
   return (
@@ -146,7 +157,7 @@ function Index() {
 
               <div className="text-center avatar-profile margin-nagative mt-n5 position-relative pb-4 border-bottom">
                 <img
-                  src={profile.user.image ?? "../assets/images/client/09.jpg"}
+                  src={profile.user.image ?? "../assets/images/user.png"}
                   className="rounded-circle shadow-md avatar avatar-md-md"
                   alt=""
                 />
@@ -155,7 +166,7 @@ function Index() {
               </div>
 
               <div className="list-unstyled p-4">
-                <div className="progress-box mb-4">
+                {/* <div className="progress-box mb-4">
                   <h6 className="title">تکمیل پروفایل کاربری</h6>
                   <div className="progress">
                     <div
@@ -167,7 +178,7 @@ function Index() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
 
                 <div className="d-flex align-items-center mt-2">
                   <i className="uil uil-book-open align-text-bottom text-primary h5 mb-0 ms-2"></i>
@@ -359,7 +370,7 @@ function Index() {
                   aria-labelledby="experience-tab"
                 >
                   <h5 className="mb-0"> اطلاعات شخصی: </h5>
-                  <div className="row align-items-center mt-4">
+                  {/* <div className="row align-items-center mt-4">
                     <div className="col-lg-2 col-md-4">
                       <img
                         src={
@@ -407,7 +418,7 @@ function Index() {
                         </button>
                       )}
                     </div>
-                  </div>
+                  </div> */}
                   <Formik
                     initialValues={initialValue}
                     validationSchema={schema}

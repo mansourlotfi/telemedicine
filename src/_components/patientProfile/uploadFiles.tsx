@@ -47,7 +47,7 @@ function UploadFiles() {
     <div>
       <Grid
         container
-        xs={12}
+        // xs={12}
         style={{
           backgroundColor: "#0070cc",
           margin: "20px 0",

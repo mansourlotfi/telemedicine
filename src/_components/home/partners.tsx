@@ -1,56 +1,49 @@
 function Partners() {
   return (
-    <section className="py-4 bg-light">
+    <section className="bg-light">
       <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-lg-2 col-md-2 col-6 text-center py-4">
-            <img
-              src="../assets/images/client/amazon.svg"
-              className="avatar avatar-client"
-              alt=""
-            />
+        {/* <div  style={{minHeight:100,display:"flex",justifyContent:"space-between"}}> */}
+        <div className="row justify-content-center" style={{minHeight:100}}>
+          <div  className="col-lg-3 col-md-3 col-6" style={{  
+  backgroundImage: "url(" + "../assets/images/client/client1.png" + ")",
+  backgroundPosition: 'center',
+  backgroundSize: 'contain',
+  backgroundRepeat: 'no-repeat'
+}} >
+       
           </div>
 
-          <div className="col-lg-2 col-md-2 col-6 text-center py-4">
-            <img
-              src="../assets/images/client/google.svg"
-              className="avatar avatar-client"
-              alt=""
-            />
+
+          <div  className="col-lg-3 col-md-3 col-6" style={{  
+  backgroundImage: "url(" + "../assets/images/client/client2.png" + ")",
+  backgroundPosition: 'center',
+  backgroundSize: 'contain',
+  backgroundRepeat: 'no-repeat'
+}} >
+       
           </div>
 
-          <div className="col-lg-2 col-md-2 col-6 text-center py-4">
-            <img
-              src="../assets/images/client/lenovo.svg"
-              className="avatar avatar-client"
-              alt=""
-            />
+          <div  className="col-lg-3 col-md-3 col-6" style={{  
+  backgroundImage: "url(" + "../assets/images/client/client3.png" + ")",
+  backgroundPosition: 'center',
+  backgroundSize: 'contain',
+  backgroundRepeat: 'no-repeat'
+}} >
+       
           </div>
 
-          <div className="col-lg-2 col-md-2 col-6 text-center py-4">
-            <img
-              src="../assets/images/client/paypal.svg"
-              className="avatar avatar-client"
-              alt=""
-            />
+          <div  className="col-lg-3 col-md-3 col-6" style={{  
+  backgroundImage: "url(" + "../assets/images/client/client4.png" + ")",
+  backgroundPosition: 'center',
+  backgroundSize: 'contain',
+  backgroundRepeat: 'no-repeat'
+}} >
+       
           </div>
-
-          <div className="col-lg-2 col-md-2 col-6 text-center py-4">
-            <img
-              src="../assets/images/client/shopify.svg"
-              className="avatar avatar-client"
-              alt=""
-            />
-          </div>
-
-          <div className="col-lg-2 col-md-2 col-6 text-center py-4">
-            <img
-              src="../assets/images/client/spotify.svg"
-              className="avatar avatar-client"
-              alt=""
-            />
-          </div>
+        
         </div>
+
+
       </div>
     </section>
   );

@@ -49,7 +49,7 @@ const SetProfileFormHandler: React.FC<IProps> = ({
         <div className="col-lg-6">
           <div className="mb-3">
             <label className="form-label">
-              شماره تماس<span className="text-danger">*</span>
+              شماره موبایل<span className="text-danger">*</span>
             </label>
             <input
               name="phone"
@@ -85,7 +85,9 @@ const SetProfileFormHandler: React.FC<IProps> = ({
 
         <div className="col-lg-6">
           <div className="mb-3">
-            <label className="form-label">ایمیل</label>
+          <label className="form-label">
+             ایمیل<span className="text-danger">*</span>
+            </label>
             <input
               name="email"
               id="email"
@@ -102,7 +104,7 @@ const SetProfileFormHandler: React.FC<IProps> = ({
         <div className="col-lg-6">
           <div className="mb-3">
             <label className="form-label">
-              سن <span className="text-danger">*</span>
+              تاریخ تولد <span className="text-danger">*</span>
             </label>
             <input
               name="age"
@@ -116,7 +118,7 @@ const SetProfileFormHandler: React.FC<IProps> = ({
             />
           </div>
         </div>
-
+{/* 
         <div className="col-lg-6">
           <div className="mb-3">
             <label className="form-label">گروه خونی </label>
@@ -131,8 +133,8 @@ const SetProfileFormHandler: React.FC<IProps> = ({
               style={errors.blood ? { borderColor: "red" } : {}}
             />
           </div>
-        </div>
-        <div className="col-lg-6">
+        </div> */}
+        {/* <div className="col-lg-6">
           <div className="mb-3">
             <label className="form-label">
               قد <span className="text-danger">*</span>
@@ -148,8 +150,8 @@ const SetProfileFormHandler: React.FC<IProps> = ({
               style={errors.height ? { borderColor: "red" } : {}}
             />
           </div>
-        </div>
-        <div className="col-lg-6">
+        </div> */}
+        {/* <div className="col-lg-6">
           <div className="mb-3">
             <label className="form-label">
               وزن <span className="text-danger">*</span>
@@ -165,8 +167,8 @@ const SetProfileFormHandler: React.FC<IProps> = ({
               style={errors.weight ? { borderColor: "red" } : {}}
             />
           </div>
-        </div>
-        <div className="col-lg-6">
+        </div> */}
+        {/* <div className="col-lg-6">
           <div className="mb-3">
             <label className="form-label">
               استان<span className="text-danger">*</span>
@@ -189,9 +191,9 @@ const SetProfileFormHandler: React.FC<IProps> = ({
               ))}
             </select>
           </div>
-        </div>
+        </div> */}
 
-        <div className="col-lg-6">
+        {/* <div className="col-lg-6">
           <div className="mb-3">
             <label className="form-label">
               شهر<span className="text-danger">*</span>
@@ -218,8 +220,8 @@ const SetProfileFormHandler: React.FC<IProps> = ({
                 ))}
             </select>
           </div>
-        </div>
-        <div className="col-lg-6">
+        </div> */}
+        {/* <div className="col-lg-6">
           <div className="mb-3">
             <label className="form-label">آدرس</label>
             <input
@@ -233,7 +235,7 @@ const SetProfileFormHandler: React.FC<IProps> = ({
               style={errors.address ? { borderColor: "red" } : {}}
             />
           </div>
-        </div>
+        </div> */}
 
         <div className="col-md-12">
           <div className="mb-3">

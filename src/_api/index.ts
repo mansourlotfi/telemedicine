@@ -1,4 +1,4 @@
-import { IUserDetailDto } from "_common/models/dtos";
+import { IUserDetailDto ,IUserPaymentsDto,IPaymentDto} from "_common/models/dtos";
 import { axios } from "_utils/axios";
 import { routeToService } from "_utils/routeToService";
 
@@ -13,6 +13,27 @@ const SERVICE = {
   SET_USER_PROFILE: (params: IUserDetailDto) =>
     routeToService(
       "/API/SetProfile.aspx",
+      process.env.REACT_APP_BASE_URL,
+      params
+    ),
+
+    GET_USER_PAYMENTS: (params: IUserPaymentsDto) =>
+    routeToService(
+      "/API/UserPayment.aspx",
+      process.env.REACT_APP_BASE_URL,
+      params
+    ),
+
+    PAYMENTS: (params: IPaymentDto) =>
+    routeToService(
+      "/API/payment.aspx",
+      process.env.REACT_APP_BASE_URL,
+      params
+    ),
+
+    GET_USER_RESERVATION: (params: IUserPaymentsDto) =>
+    routeToService(
+      "/API/UserReservation.aspx",
       process.env.REACT_APP_BASE_URL,
       params
     ),
@@ -70,3 +91,14 @@ export const uploadFile = (user: IUserDetailDto, fileObject: any) => {
   formData.append("file", fileObject);
   return axios.post(SERVICE.UPLOAD_FILE(user), formData);
 };
+
+export const getUserPayments = (params: IUserPaymentsDto) =>
+  axios.get(SERVICE.GET_USER_PAYMENTS(params));
+
+
+  export const payment = (params: IPaymentDto) =>
+  axios.get(SERVICE.PAYMENTS(params));
+
+
+  export const getUserReservation = (params: IUserPaymentsDto) =>
+  axios.get(SERVICE.GET_USER_RESERVATION(params));

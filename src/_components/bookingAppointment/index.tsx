@@ -110,7 +110,7 @@ function Index() {
                     >
                       <div className="text-center pt-1 pb-1">
                         <h4 className="title fw-normal mb-0">
-                          رزرو نوبت کلینیک
+                          رزرو نوبت حضوری
                         </h4>
                       </div>
                     </a>
@@ -128,7 +128,7 @@ function Index() {
                     >
                       <div className="text-center pt-1 pb-1">
                         <h4 className="title fw-normal mb-0">
-                          رزرو آنلاین نوبت{" "}
+                         رزرو نوبت آنلاین
                         </h4>
                       </div>
                     </a>
