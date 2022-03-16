@@ -3,6 +3,12 @@ import { axios } from "_utils/axios";
 import { routeToService } from "_utils/routeToService";
 
 const SERVICE = {
+  LOGIN: (params: any) =>
+  routeToService(
+    "/API/LoginRegister.aspx",
+    process.env.REACT_APP_BASE_URL,
+    params
+  ),
   GET_USER_PROFILE: (params: IUserDetailDto) =>
     routeToService(
       "/API/UserDetail.aspx",
@@ -67,6 +73,12 @@ const SERVICE = {
       params
     ),
 };
+
+
+export const loginOrRegister = (params: any) =>
+axios.get(SERVICE.LOGIN(params));
+
+
 export const getUserProfile = (params: IUserDetailDto) =>
   axios.get(SERVICE.GET_USER_PROFILE(params));
 

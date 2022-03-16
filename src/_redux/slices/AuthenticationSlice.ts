@@ -32,8 +32,9 @@ export const AuthenticationSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    signIn: (state) => {
+    signIn: (state,action: PayloadAction<any>) => {
       state.isSignedIn = true;
+      state.authData = action.payload
     },
     signOut: (state) => {
       state.isSignedIn = false;

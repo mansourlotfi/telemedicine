@@ -9,6 +9,8 @@ const Blogs = loadable(() => import("_pages/blogs"));
 const ContactUs = loadable(() => import("_pages/contactUs"));
 const BlogPost = loadable(() => import("_pages/blogPost"));
 const Error404 = loadable(() => import("_pages/404"));
+const Login = loadable(() => import("_pages/login"));
+
 
 interface IRoute {
   title: string;
@@ -71,8 +73,12 @@ export const routesName: IRoutesName = {
   },
   error404: {
     title: "Error 404",
-    path: "/login",
+    path: "/404",
   },
+  login:{
+    title:"Login/register",
+    path:"/login"
+  }
 };
 
 const routes: IRoute[] = [
@@ -90,7 +96,7 @@ const routes: IRoute[] = [
   },
   {
     ...routesName.BookingAppointment,
-    isPrivate: false,
+    isPrivate: true,
     hasMenuField: false,
     element: BookingAppointment,
   },
@@ -164,6 +170,12 @@ const routes: IRoute[] = [
     isPrivate: false,
     hasMenuField: false,
     element: Error404,
+  },
+  {
+    ...routesName.login,
+    isPrivate: false,
+    hasMenuField: false,
+    element: Login,
   },
 ];
 
