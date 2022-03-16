@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import * as yup from "yup";
 import { useAppSelector } from '_redux/hooks';
 import FormHandler from './formHandler';
+import { loginOrRegister } from "_api";
 
 
 const schema = yup.object({
@@ -18,10 +19,8 @@ const schema = yup.object({
 
 function Login() {
     const [isLoading, setIsLoading] = useState(false)
+    const [step, setStep] = useState(1)
     // const profile = useAppSelector((state) => state.profile);
-
-    
-
 
     const initialValue: IValues = {
         phone:  null,
@@ -34,36 +33,43 @@ function Login() {
         { resetForm }: any,
         visitType: boolean
       ) => {
-      console.log('values', values)
+        loginOrRegister({phone:Number(values.phone)}).then((res)=>console.log('res', res))
       };
 
     return (
-        <Formik
-        initialValues={initialValue}
-        validationSchema={schema}
-        enableReinitialize
-        onSubmit={(values, { resetForm }) =>
-          handleSubmit(values, { resetForm }, false)
-        }
-      >
-
-{(formikProps) => (
-                        <Form>
-                          <FormHandler
-                            isLoading={isLoading}
-                            {...formikProps}
-                          />
-                        </Form>
-                      )}
-
-
-      
+        <>
+        {step ===  1 ?
+         <Formik
+         initialValues={initialValue}
+         validationSchema={schema}
+         enableReinitialize
+         onSubmit={(values, { resetForm }) =>
+           handleSubmit(values, { resetForm }, false)
+         }
+       >
+ 
+ {(formikProps) => (
+                         <Form>
+                           <FormHandler
+                             isLoading={isLoading}
+                             {...formikProps}
+                           />
+                         </Form>
+                       )}
+ 
+ 
+       
+         
+ 
+ 
+ 
+         
+       </Formik> : ""
+    
+    }
         
-
-
-
-        
-      </Formik>
+        </>
+       
 
 
    
