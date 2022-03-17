@@ -13,6 +13,28 @@ const SERVICE = {
       process.env.REACT_APP_BASE_URL,
       params
     ),
+
+  VERIFY: (params: any) =>
+    routeToService(
+      "/API/VerifySMSCode.aspx",
+      process.env.REACT_APP_BASE_URL,
+      params
+    ),
+
+  SEND_FILE: (params: any) =>
+    routeToService(
+      "/API/SendFile.aspx",
+      process.env.REACT_APP_BASE_URL,
+      params
+    ),
+
+  USER_FILE: (params: any) =>
+    routeToService(
+      "/API/UserFile.aspx",
+      process.env.REACT_APP_BASE_URL,
+      params
+    ),
+
   GET_USER_PROFILE: (params: IUserDetailDto) =>
     routeToService(
       "/API/UserDetail.aspx",
@@ -76,6 +98,12 @@ const SERVICE = {
 
 export const loginOrRegister = (params: any) =>
   axios.get(SERVICE.LOGIN(params));
+
+export const verifyCode = (params: any) => axios.get(SERVICE.VERIFY(params));
+
+export const sendFile = (params: any) => axios.get(SERVICE.SEND_FILE(params));
+
+export const userFile = (params: any) => axios.get(SERVICE.USER_FILE(params));
 
 export const getUserProfile = (params: IUserDetailDto) =>
   axios.get(SERVICE.GET_USER_PROFILE(params));

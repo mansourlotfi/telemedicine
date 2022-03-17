@@ -20,7 +20,11 @@ function Footer() {
         <div className="row">
           <div className="col-xl-5 col-lg-4 mb-0 mb-md-4 pb-0 pb-md-2">
             <a href="#" className="logo-footer">
-              <img src="../assets/images/logo/dr ali tabibi logo.png" height="50"  alt="" />
+              <img
+                src="../assets/images/logo/dr ali tabibi logo.png"
+                height="50"
+                alt=""
+              />
             </a>
             <p className="mt-4 me-xl-5">
               پزشکانی عالی، اگر برای خود یا خانواده تان به دنبال یک کمک موثر در
@@ -101,20 +105,21 @@ function Footer() {
                       href="mailto:contact@example.com"
                       className="text-foot me-2"
                     >
-                      contact@example.com
+                      dr.alitabibi.ir@gmail.com{" "}
                     </a>
                   </li>
-
                   <li className="d-flex align-items-center">
                     <i
                       data-feather="phone"
                       className="fea icon-sm text-foot align-middle"
                     ></i>
-                    <a href="tel:+152534-468-854" className="text-foot me-2">
-                      +152 534-468-854
+                    <a href="tel:02142603000" className="text-foot me-2">
+                      02142603000
+                    </a>
+                    <a href="tel:02123021763" className="text-foot me-2">
+                      02123021764
                     </a>
                   </li>
-
                   {/* <li className="d-flex align-items-center">
                     <i
                       data-feather="map-pin"

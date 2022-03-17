@@ -1,36 +1,46 @@
+import { Button } from "@mui/material";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "_redux/hooks";
+import { signOut } from "_redux/slices/AuthenticationSlice";
 
 const style = {
-  normal:{
+  normal: {
     fontSize: 16,
-letterSpacing: 0,
-color: "#00c3ff",
-fontWeight: 400,
-border: "1px solid #00c3ff",
-borderRadius: 30,
-padding: "10px 25px",
+    letterSpacing: 0,
+    color: "#00c3ff",
+    fontWeight: 400,
+    border: "1px solid #00c3ff",
+    borderRadius: 30,
+    padding: "10px 25px",
   },
   hover: {
     backgroundColor: "#00c3ff",
-    color: "#fff"
-  }
-}
+    color: "#fff",
+  },
+};
 function Navbar() {
-
   const [hover, setHover] = useState(false);
+  const { isSignedIn } = useAppSelector((state) => state.Authentication);
+  const dispatch = useAppDispatch();
 
+  let navigate = useNavigate();
 
-  const toggleMenuHandler = ()=>{
-    document.getElementById('isToggle')?.classList.toggle('open');
-    var isOpen = document.getElementById('navigation')
+  const toggleMenuHandler = () => {
+    document.getElementById("isToggle")?.classList.toggle("open");
+    var isOpen = document.getElementById("navigation");
     if (isOpen?.style.display === "block") {
-        isOpen.style.display = "none";
-    } else if(isOpen) {
-        isOpen.style.display = "block";
+      isOpen.style.display = "none";
+    } else if (isOpen) {
+      isOpen.style.display = "block";
     }
-  }
+  };
+
+  const signOutHandler = () => {
+    localStorage.removeItem("phone");
+    dispatch(signOut());
+    return navigate("/login");
+  };
   return (
     <header id="topnav" className="defaultscroll sticky">
       <div className="container">
@@ -49,9 +59,13 @@ function Navbar() {
           />
         </Link>
 
-        <div className="menu-extras" style={{marginLeft:20}}>
+        <div className="menu-extras" style={{ marginLeft: 20 }}>
           <div className="menu-item">
-            <a className="navbar-toggle" id="isToggle" onClick={toggleMenuHandler}>
+            <a
+              className="navbar-toggle"
+              id="isToggle"
+              onClick={toggleMenuHandler}
+            >
               <div className="lines">
                 <span></span>
                 <span></span>
@@ -68,22 +82,42 @@ function Navbar() {
               <span className="menu-arrow"></span>
             </li>
 
-            <li className="has-submenu parent-menu-item">
-              <a href="javascript:void(0)">کاربران</a>
-              <span className="menu-arrow"></span>
-              <ul className="submenu">
-                <li>
-                  <Link to="/patientProfile" className="sub-menu-item">
-                    پروفایل
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/bookingAppointment" className="sub-menu-item">
-                    رزرو نوبت
-                  </Link>
-                </li>
-              </ul>
-            </li>
+            {isSignedIn ? (
+              <li className="has-submenu parent-menu-item">
+                <a href="javascript:void(0)">کاربران</a>
+                <span className="menu-arrow"></span>
+                <ul className="submenu">
+                  <li>
+                    <Link to="/patientProfile" className="sub-menu-item">
+                      پروفایل
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/bookingAppointment" className="sub-menu-item">
+                      رزرو نوبت
+                    </Link>
+                  </li>
+                  <li>
+                    <Button
+                      style={{
+                        font: "inherit",
+                        fontSize: 12,
+                        color: "black",
+                      }}
+                      onClick={signOutHandler}
+                    >
+                      خروج
+                    </Button>
+                  </li>
+                </ul>
+              </li>
+            ) : (
+              <li>
+                <Link to="/login" className="sub-menu-item">
+                  ورود
+                </Link>
+              </li>
+            )}
 
             <li>
               <Link to="/aboutUs" className="sub-menu-item">
@@ -115,30 +149,31 @@ function Navbar() {
               </Link>
             </li>
             <li>
-            <div style={{
-              marginTop:25
-            }}>
-            <Link to="/bookingAppointment"
-          
-            onMouseEnter={()=>{
-              setHover(true);
-            
-            }}
-            onMouseLeave={()=>{
-              setHover(false);
-            }}
-            style={{
-              ...style.normal,
-              ...(hover ? style.hover : null)
-            }}>دریافت نوبت</Link>
-                </div>
-
-           
+              <div
+                style={{
+                  marginTop: 25,
+                }}
+              >
+                <Link
+                  to="/bookingAppointment"
+                  onMouseEnter={() => {
+                    setHover(true);
+                  }}
+                  onMouseLeave={() => {
+                    setHover(false);
+                  }}
+                  style={{
+                    ...style.normal,
+                    ...(hover ? style.hover : null),
+                  }}
+                >
+                  دریافت نوبت
+                </Link>
+              </div>
             </li>
           </ul>
         </div>
       </div>
-    
     </header>
   );
 }

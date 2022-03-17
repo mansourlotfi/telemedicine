@@ -6,42 +6,54 @@ import {
   TextField,
 } from "@mui/material";
 import { FieldArray, Form, Formik, FormikProps } from "formik";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { uploadFile } from "_api";
+import { sendFile, uploadFile, userFile } from "_api";
 import { generateUserDetailDto } from "_common/mappers/toUserDetailApi";
-import { AxiosResponse } from "axios";
+import { Axios, AxiosResponse } from "axios";
 import { SuccessData } from "_utils/toast";
 import { useAppSelector } from "_redux/hooks";
 
 interface IValues {
-  files: string[] | null;
+  files: any;
 }
 
 function UploadFiles() {
-  const [isLoading, setIsLoading] = useState(false);
-
   const profile = useAppSelector((state) => state.profile);
 
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [files, setFiles] = useState([]);
+
   const initialValue: IValues = {
-    files: ["1", "2"],
+    files: [],
   };
 
-  const handleSubmit = (values: IValues, { resetForm }: any) => {
-    console.log("values", values);
-  };
+  const handleSubmit = (values: IValues, { resetForm }: any) => {};
 
   const handleChange = (event: any) => {
     setIsLoading(true);
     const fileUploaded = event.target.files[0];
     uploadFile(generateUserDetailDto(profile), fileUploaded)
       .then((data: AxiosResponse) => {
-        // dispatch(toast(alertData));
-        SuccessData("فایل با موفقیت بارگذاری شد");
+        sendFile({ phone: profile.user.phone, url: data.data }).then((res) => {
+          if (res) {
+            let prevFiles: any = files;
+            prevFiles.push({ url: data.data });
+            setFiles(prevFiles);
+            SuccessData("فایل با موفقیت بارگذاری شد");
+          }
+        });
       })
       .finally(() => setIsLoading(false));
   };
+
+  useEffect(() => {
+    userFile({ phone: profile.user.phone }).then((data: AxiosResponse) => {
+      setFiles(data.data);
+    });
+  }, []);
 
   return (
     <div>
@@ -61,22 +73,31 @@ function UploadFiles() {
         <Grid item xs={12}>
           <span>مدارک پزشکی آپلود شده</span>
         </Grid>
-        {initialValue.files?.map((item, index) => (
-          <Grid
-            item
-            xs={2}
-            key={index}
-            style={{
-              backgroundColor: "white",
-              borderRadius: 8,
-              margin: 10,
-              alignItems: "center",
-              minHeight: 100,
-            }}
-          >
-            مدرک نمونه
-          </Grid>
-        ))}
+        {files &&
+          files?.map((item: any, index: number) => (
+            <Grid
+              item
+              xs={2}
+              key={index}
+              style={{
+                backgroundColor: "white",
+                borderRadius: 8,
+                margin: 10,
+                alignItems: "center",
+                minHeight: 100,
+                cursor: "pointer",
+              }}
+            >
+              <img
+                src={item.URL}
+                width={100}
+                height={100}
+                onClick={() => {
+                  window.open(item.URL);
+                }}
+              />
+            </Grid>
+          ))}
       </Grid>
       <Formik
         initialValues={initialValue}

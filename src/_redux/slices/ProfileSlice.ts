@@ -5,7 +5,7 @@ import type { RootState } from "../store";
 export interface IUser {
   id: number | null;
   name: string | null;
-  phone: string;
+  phone: string | null;
   smscode: string | null;
   state: number | null;
   weight: string | null;
@@ -29,7 +29,7 @@ const initialState: IProfile = {
   user: {
     id: null,
     name: null,
-    phone: "09354273664",
+    phone: null,
     smscode: null,
     state: null,
     weight: null,
@@ -50,23 +50,9 @@ export const ProfileSlice = createSlice({
   name: "Profile",
   initialState,
   reducers: {
-    setProfile: (state, action: PayloadAction<IUser>) => {
+    // setProfile: (state, action: PayloadAction<IUser>) => {
+    setProfile: (state, action: any) => {
       state.user = action.payload;
-      // state.user.id = action.payload.id;
-      // state.user.name = action.payload.name;
-      // state.user.phone = action.payload.phone;
-      // state.user.smscode = action.payload.smscode;
-      // state.user.state = action.payload.state;
-      // state.user.weight = action.payload.weight;
-      // state.user.address = action.payload.address;
-      // state.user.age = action.payload.age;
-      // state.user.blood = action.payload.blood;
-      // state.user.city = action.payload.city;
-      // state.user.date = action.payload.date;
-      // state.user.description = action.payload.description;
-      // state.user.email = action.payload.email;
-      // state.user.height = action.payload.height;
-      // state.user.image = action.payload.image;
     },
     setProfileImage: (state, action: PayloadAction<string>) => {
       state.user.image = action.payload;

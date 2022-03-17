@@ -16,7 +16,7 @@ export interface IAuthentication {
 
 // Define the initial state using that type
 const initialState: IAuthentication = {
-  isSignedIn: true,
+  isSignedIn: false,
   authData: {
     username: "",
     accessToken: "",
@@ -32,9 +32,8 @@ export const AuthenticationSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    signIn: (state, action: PayloadAction<any>) => {
+    signIn: (state) => {
       state.isSignedIn = true;
-      state.authData = action.payload;
     },
     signOut: (state) => {
       state.isSignedIn = false;

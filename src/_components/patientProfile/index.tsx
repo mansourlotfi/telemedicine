@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { AxiosResponse } from "axios";
 import { useAppSelector, useAppDispatch } from "_redux/hooks";
-import { getUserProfile, setUserProfile, getDrDates,getUserPayments,getUserReservation,payment } from "_api";
+import {
+  getUserProfile,
+  setUserProfile,
+  getDrDates,
+  getUserPayments,
+  getUserReservation,
+} from "_api";
 import { generateUserDetailDto } from "_common/mappers/toUserDetailApi";
 import { generateProfile } from "_common/mappers/fromUserDetailApi";
 import { setProfile, setProfileImage } from "_redux/slices/ProfileSlice";
@@ -17,13 +23,13 @@ import { generateProfileValueToState } from "_common/mappers/fromProfileValueToP
 import { SuccessData, WarningData } from "_utils/toast";
 import { setDrAvailableDates } from "_redux/slices/DrbookingDateTimeSlice";
 import moment from "moment-jalaali";
-import states from "assets/states";
+// import states from "assets/states";
 import UploadFiles from "./uploadFiles";
 
 export interface IValues {
   name: string | null;
   email: string | null;
-  phone: string;
+  phone: string | null;
   image: string | null;
   address: string | null;
   age: string | null;
@@ -48,24 +54,27 @@ const schema = yup.object({
   email: yup.string().email().required(),
   // image: yup.string().nullable(),
   // address: yup.string().required(),
-  age: yup.number().required(),
+  age: yup.string().required(),
   // blood: yup.string().required(),
   // city: yup.string().required(),
   // state: yup.string().required(),
   description: yup.string().nullable(),
   // height: yup.string().required(),
   // weight: yup.string().required(),
-  codemelli:yup.string().required()
+  codemelli: yup.string().required(),
 });
 
 function Index() {
   let hiddenFileInput = React.useRef<HTMLInputElement>(null);
   const profile = useAppSelector((state) => state.profile);
+
   const drAvailableDates = useAppSelector((state) => state.DrDates);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [formsIsSubmitting, setformsIsSubmitting] = useState<boolean>(false);
   const [ProfileUrl, setProfileUrl] = useState("");
+  const [userReservation, setUserReservation] = useState([]);
+
   const dispatch = useAppDispatch();
   const initialValue: IValues = {
     name: profile.user.name,
@@ -123,22 +132,21 @@ function Index() {
   };
 
   useEffect(() => {
-    getUserProfile(generateUserDetailDto(profile)).then((data: AxiosResponse) =>
-      dispatch(setProfile(generateProfile(data).user))
+    getUserProfile(generateUserDetailDto(profile)).then(
+      (data: AxiosResponse) => {
+        dispatch(setProfile(generateProfile(data).user));
+      }
     );
     getDrDates().then((data: AxiosResponse) =>
       dispatch(setDrAvailableDates(data.data))
     );
-    getUserPayments({userphone:Number(profile.user.phone)}).then((data:AxiosResponse)=>
-    console.log('getUserPayments', data)
-    )
+    // getUserPayments({ userphone: Number(profile.user.phone) }).then(
+    //   (data: AxiosResponse) => console.log("getUserPayments", data)
+    // );
 
-    getUserReservation({userphone:Number(profile.user.phone)}).then((data:AxiosResponse)=>
-    console.log('getUserReservation', data))
-
-    payment({
-      reservation:Number(1)}).then((data:AxiosResponse)=>
-      console.log('payment', data))
+    getUserReservation({ userphone: Number(profile.user.phone) }).then(
+      (data: AxiosResponse) => setUserReservation(data.data)
+    );
   }, []);
 
   return (
@@ -183,7 +191,7 @@ function Index() {
                 <div className="d-flex align-items-center mt-2">
                   <i className="uil uil-book-open align-text-bottom text-primary h5 mb-0 ms-2"></i>
                   <h6 className="mb-0">تاریخ تولد</h6>
-                  <p className="text-muted mb-0 me-2">19 مهر 1371</p>
+                  <p className="text-muted mb-0 me-2">{profile.user.age}</p>
                 </div>
 
                 <div className="d-flex align-items-center mt-2">
@@ -199,7 +207,7 @@ function Index() {
                   </p>
                 </div>
 
-                <div className="d-flex align-items-center mt-2">
+                {/* <div className="d-flex align-items-center mt-2">
                   <i className="uil uil-book-open align-text-bottom text-primary h5 mb-0 ms-2"></i>
                   <h6 className="mb-0">آدرس</h6>
                   <p className="text-muted mb-0 me-2">{profile.user.address}</p>
@@ -209,14 +217,14 @@ function Index() {
                   <i className="uil uil-book-open align-text-bottom text-primary h5 mb-0 ms-2"></i>
                   <h6 className="mb-0">گروه خونی</h6>
                   <p className="text-muted mb-0 me-2">{profile.user.blood}</p>
-                </div>
+                </div> */}
 
                 <div className="d-flex align-items-center mt-2">
                   <i className="uil uil-book-open align-text-bottom text-primary h5 mb-0 ms-2"></i>
                   <h6 className="mb-0">تلفن</h6>
                   <p className="text-muted mb-0 me-2">{profile.user.phone}</p>
                 </div>
-
+                {/* 
                 <div className="d-flex align-items-center mt-2">
                   <i className="uil uil-book-open align-text-bottom text-primary h5 mb-0 ms-2"></i>
                   <h6 className="mb-0">استان</h6>
@@ -241,7 +249,7 @@ function Index() {
                   <i className="uil uil-book-open align-text-bottom text-primary h5 mb-0 ms-2"></i>
                   <h6 className="mb-0">وزن</h6>
                   <p className="text-muted mb-0 me-2">{profile.user.weight}</p>
-                </div>
+                </div> */}
                 <div className="d-flex align-items-center mt-2">
                   <i className="uil uil-book-open align-text-bottom text-primary h5 mb-0 ms-2"></i>
                   <h6 className="mb-0">توضیحات</h6>
@@ -314,8 +322,7 @@ function Index() {
                   <div className="row">
                     <div className="col-lg-6 col-12 mt-4">
                       <h5>لیست نوبت ها</h5>
-
-                      {drAvailableDates &&
+                      {/* {drAvailableDates &&
                         drAvailableDates.drAvailableDates?.map((item) => (
                           <div className="d-flex justify-content-between align-items-center rounded p-3 shadow mt-3">
                             <i className="ri-stethoscope-line h3 fw-normal text-success mb-0"></i>
@@ -330,6 +337,37 @@ function Index() {
                                 .locale("fa")
                                 .format("jYYYY-jMM-jD")}
                             </span>
+                          </div>
+                        ))} */}
+
+                      {userReservation &&
+                        userReservation?.map((item: any) => (
+                          <div className="d-flex justify-content-between align-items-center rounded p-3 shadow mt-3">
+                            <i className="ri-stethoscope-line h3 fw-normal text-success mb-0"></i>
+                            <div className="flex-1 overflow-hidden me-2">
+                              <h6 className="mb-0">
+                                {item.type === "hozori"
+                                  ? "نوبت حضوری"
+                                  : "نوبت آنلاین"}{" "}
+                              </h6>
+                              <p className="text-muted mb-0 text-truncate small">
+                                پزشک : آقای دکتر علی طبیبی
+                              </p>
+                            </div>
+                            <div
+                              className="mb-0"
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                              }}
+                            >
+                              <span>
+                                {moment(item.date)
+                                  .locale("fa")
+                                  .format("jYYYY-jMM-jD")}
+                              </span>
+                              <span>{item.time}</span>
+                            </div>
                           </div>
                         ))}
                     </div>

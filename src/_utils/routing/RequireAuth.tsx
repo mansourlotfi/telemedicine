@@ -1,8 +1,19 @@
-import { useAppSelector } from "_redux/hooks";
+import { useAppDispatch, useAppSelector } from "_redux/hooks";
 import { Navigate, useLocation } from "react-router-dom";
 import { RootState } from "_redux/store";
+import { useEffect } from "react";
+import { signIn } from "_redux/slices/AuthenticationSlice";
 
 const RequireAuth = ({ children }: { children: JSX.Element }) => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    let phone = localStorage.getItem("phone");
+    if (phone?.length === 11) {
+      dispatch(signIn());
+    }
+  }, []);
+
   let location = useLocation();
   const isSignedIn =
     useAppSelector((S: RootState) => S.Authentication)?.isSignedIn || false;

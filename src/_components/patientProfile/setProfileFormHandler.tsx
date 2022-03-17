@@ -56,7 +56,7 @@ const SetProfileFormHandler: React.FC<IProps> = ({
               id="phone"
               type="text"
               disabled
-              value={values.phone}
+              value={values.phone ?? ""}
               className="form-control"
               placeholder="شماره تماس"
               onChange={handleChange}
@@ -85,8 +85,8 @@ const SetProfileFormHandler: React.FC<IProps> = ({
 
         <div className="col-lg-6">
           <div className="mb-3">
-          <label className="form-label">
-             ایمیل<span className="text-danger">*</span>
+            <label className="form-label">
+              ایمیل<span className="text-danger">*</span>
             </label>
             <input
               name="email"
@@ -118,7 +118,7 @@ const SetProfileFormHandler: React.FC<IProps> = ({
             />
           </div>
         </div>
-{/* 
+        {/* 
         <div className="col-lg-6">
           <div className="mb-3">
             <label className="form-label">گروه خونی </label>

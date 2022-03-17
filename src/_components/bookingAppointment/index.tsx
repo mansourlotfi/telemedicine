@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 import { Form, Formik } from "formik";
 import { useEffect, useState } from "react";
-import { getDrDates, setReserve } from "_api";
+import { getDrDates, payment, setReserve } from "_api";
 import { useAppDispatch, useAppSelector } from "_redux/hooks";
 import { setDrAvailableDates } from "_redux/slices/DrbookingDateTimeSlice";
 import FormHandler from "./formHandler";
@@ -48,9 +48,18 @@ function Index() {
   ) => {
     setFormsIsSubmitting(true);
     setReserve(generateSetReserveDto(values, visitType))
-      .then(() => {
+      .then((data: AxiosResponse) => {
         resetForm();
-        SuccessData("نوبت رزرو شد");
+        SuccessData("نوبت ثبت شد به صفحه پرداخت هدایت می شوید");
+        payment({ reservation: Number(data.data) }).then(
+          (response: AxiosResponse) => {
+            let responseHtml = response.data;
+            var w = window.open("about:blank");
+            w?.document.open();
+            w?.document.write(responseHtml);
+            w?.document.close();
+          }
+        );
       })
       .finally(() => setFormsIsSubmitting(false));
   };

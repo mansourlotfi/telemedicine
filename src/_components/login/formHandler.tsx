@@ -1,15 +1,14 @@
 import { CircularProgress } from "@mui/material";
-import { AxiosResponse } from "axios";
 import { FormikProps } from "formik";
 import React, { useEffect, useState } from "react";
-import { getDrTimesByDate } from "_api";
 import { useAppDispatch, useAppSelector } from "_redux/hooks";
 import { IValues } from "./index";
-import moment from "moment-jalaali";
+import { Link } from "react-router-dom";
 
 interface IProps extends FormikProps<IValues> {
   values: IValues;
   isLoading: boolean;
+  step: number;
 }
 const FormHandler: React.FC<IProps> = ({
   values,
@@ -18,6 +17,7 @@ const FormHandler: React.FC<IProps> = ({
   handleChange,
   setFieldValue,
   isLoading,
+  step,
   handleSubmit,
 }) => {
   const [rulesAccepted, setRulesAccepted] = useState(true);
@@ -41,26 +41,49 @@ const FormHandler: React.FC<IProps> = ({
                 <div className="login-form mt-4">
                   <div className="row">
                     <div className="col-lg-12">
-                      <div className="mb-3">
-                        <label className="form-label">
-                          شماره همراه <span className="text-danger">*</span>
-                        </label>
-                        <input
-                          name="phone"
-                          id="phone"
-                          type="text"
-                          value={values.phone ?? ""}
-                          onChange={handleChange}
-                          className="form-control"
-                          disabled={rulesAccepted}
-                          placeholder="شماره همراه"
-                          style={
-                            touched.phone && errors.phone
-                              ? { borderColor: "red" }
-                              : {}
-                          }
-                        />{" "}
-                      </div>
+                      {step === 1 ? (
+                        <div className="mb-3">
+                          <label className="form-label">
+                            شماره همراه <span className="text-danger">*</span>
+                          </label>
+                          <input
+                            name="phone"
+                            id="phone"
+                            type="text"
+                            value={values.phone ?? ""}
+                            onChange={handleChange}
+                            className="form-control"
+                            disabled={rulesAccepted}
+                            placeholder="شماره همراه"
+                            style={
+                              touched.phone && errors.phone
+                                ? { borderColor: "red" }
+                                : {}
+                            }
+                          />
+                        </div>
+                      ) : (
+                        <div className="mb-3">
+                          <label className="form-label">
+                            کد ارسال شده <span className="text-danger">*</span>
+                          </label>
+                          <input
+                            name="smscode"
+                            id="smscode"
+                            type="text"
+                            value={values.smscode ?? ""}
+                            onChange={handleChange}
+                            className="form-control"
+                            disabled={rulesAccepted}
+                            placeholder="کد ارسال شده به شماره همراه را وارد نمایید"
+                            style={
+                              touched.smscode && errors.smscode
+                                ? { borderColor: "red" }
+                                : {}
+                            }
+                          />
+                        </div>
+                      )}
                     </div>
 
                     <div className="col-lg-12 mb-0">
@@ -69,7 +92,13 @@ const FormHandler: React.FC<IProps> = ({
                           className="btn btn-primary"
                           disabled={rulesAccepted}
                         >
-                          ورود / ثبت نام
+                          {isLoading ? (
+                            <CircularProgress color="secondary" size={20} />
+                          ) : (
+                            <span>
+                              {step === 1 ? "دریافت کد" : "ورود / ثبت نام"}
+                            </span>
+                          )}
                         </button>
                       </div>
                     </div>
@@ -79,23 +108,29 @@ const FormHandler: React.FC<IProps> = ({
                         style={{
                           display: "flex",
                           alignItems: "center",
-                          justifyContent: "center",
+                          justifyContent: "space-between",
                           width: "100%",
                         }}
                       >
-                        <input
-                          className="form-check-input align-middle"
-                          type="checkbox"
-                          defaultChecked={!rulesAccepted}
-                          id="rule-check"
-                          onChange={() => setRulesAccepted(!rulesAccepted)}
-                        />
-
-                        <p className="mb-0 mt-3">
-                          <small className="text-dark me-2">
-                            قوانین و مقررات
-                          </small>{" "}
-                        </p>
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                          <input
+                            className="form-check-input align-middle"
+                            type="checkbox"
+                            defaultChecked={!rulesAccepted}
+                            id="rule-check"
+                            onChange={() => setRulesAccepted(!rulesAccepted)}
+                          />
+                          <p className="mb-0 mt-3">
+                            <small className="text-dark me-2">
+                              قوانین و مقررات
+                            </small>
+                          </p>
+                        </div>
+                        <Link to="/privacy">
+                          <p className="mb-0 mt-3">
+                            <small className="text-dark me-2">حریم خصوصی</small>
+                          </p>
+                        </Link>
                       </div>
                     </div>
                   </div>
