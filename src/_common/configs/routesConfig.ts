@@ -11,7 +11,6 @@ const BlogPost = loadable(() => import("_pages/blogPost"));
 const Error404 = loadable(() => import("_pages/404"));
 const Login = loadable(() => import("_pages/login"));
 
-
 interface IRoute {
   title: string;
   path: string;
@@ -75,10 +74,10 @@ export const routesName: IRoutesName = {
     title: "Error 404",
     path: "/404",
   },
-  login:{
-    title:"Login/register",
-    path:"/login"
-  }
+  login: {
+    title: "Login/register",
+    path: "/login",
+  },
 };
 
 const routes: IRoute[] = [

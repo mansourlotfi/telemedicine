@@ -1,14 +1,18 @@
-import { IUserDetailDto ,IUserPaymentsDto,IPaymentDto} from "_common/models/dtos";
+import {
+  IUserDetailDto,
+  IUserPaymentsDto,
+  IPaymentDto,
+} from "_common/models/dtos";
 import { axios } from "_utils/axios";
 import { routeToService } from "_utils/routeToService";
 
 const SERVICE = {
   LOGIN: (params: any) =>
-  routeToService(
-    "/API/LoginRegister.aspx",
-    process.env.REACT_APP_BASE_URL,
-    params
-  ),
+    routeToService(
+      "/API/LoginRegister.aspx",
+      process.env.REACT_APP_BASE_URL,
+      params
+    ),
   GET_USER_PROFILE: (params: IUserDetailDto) =>
     routeToService(
       "/API/UserDetail.aspx",
@@ -23,21 +27,17 @@ const SERVICE = {
       params
     ),
 
-    GET_USER_PAYMENTS: (params: IUserPaymentsDto) =>
+  GET_USER_PAYMENTS: (params: IUserPaymentsDto) =>
     routeToService(
       "/API/UserPayment.aspx",
       process.env.REACT_APP_BASE_URL,
       params
     ),
 
-    PAYMENTS: (params: IPaymentDto) =>
-    routeToService(
-      "/API/payment.aspx",
-      process.env.REACT_APP_BASE_URL,
-      params
-    ),
+  PAYMENTS: (params: IPaymentDto) =>
+    routeToService("/API/payment.aspx", process.env.REACT_APP_BASE_URL, params),
 
-    GET_USER_RESERVATION: (params: IUserPaymentsDto) =>
+  GET_USER_RESERVATION: (params: IUserPaymentsDto) =>
     routeToService(
       "/API/UserReservation.aspx",
       process.env.REACT_APP_BASE_URL,
@@ -74,10 +74,8 @@ const SERVICE = {
     ),
 };
 
-
 export const loginOrRegister = (params: any) =>
-axios.get(SERVICE.LOGIN(params));
-
+  axios.get(SERVICE.LOGIN(params));
 
 export const getUserProfile = (params: IUserDetailDto) =>
   axios.get(SERVICE.GET_USER_PROFILE(params));
@@ -107,10 +105,8 @@ export const uploadFile = (user: IUserDetailDto, fileObject: any) => {
 export const getUserPayments = (params: IUserPaymentsDto) =>
   axios.get(SERVICE.GET_USER_PAYMENTS(params));
 
-
-  export const payment = (params: IPaymentDto) =>
+export const payment = (params: IPaymentDto) =>
   axios.get(SERVICE.PAYMENTS(params));
 
-
-  export const getUserReservation = (params: IUserPaymentsDto) =>
+export const getUserReservation = (params: IUserPaymentsDto) =>
   axios.get(SERVICE.GET_USER_RESERVATION(params));
