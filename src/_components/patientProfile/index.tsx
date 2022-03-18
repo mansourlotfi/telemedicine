@@ -143,10 +143,11 @@ function Index() {
     // getUserPayments({ userphone: Number(profile.user.phone) }).then(
     //   (data: AxiosResponse) => console.log("getUserPayments", data)
     // );
-
-    getUserReservation({ userphone: Number(profile.user.phone) }).then(
-      (data: AxiosResponse) => setUserReservation(data.data)
-    );
+    if (profile.user.phone) {
+      getUserReservation({ userphone: profile.user.phone }).then(
+        (data: AxiosResponse) => setUserReservation(data.data)
+      );
+    }
   }, []);
 
   return (
@@ -169,29 +170,23 @@ function Index() {
                   className="rounded-circle shadow-md avatar avatar-md-md"
                   alt=""
                 />
-                <h5 className="mt-3 mb-1">{profile.user.name}</h5>
-                <p className="text-muted mb-0">{profile.user.age} سال</p>
+                <h5 className="mt-3 mb-1">
+                  {profile.user.name ?? "اطلاعات تکمیل نشده است"}
+                </h5>
+                <p className="text-muted mb-0">
+                  {moment(profile.user.age).locale("fa").format("jYYYY-jMM-jD")}
+                </p>
               </div>
 
               <div className="list-unstyled p-4">
-                {/* <div className="progress-box mb-4">
-                  <h6 className="title">تکمیل پروفایل کاربری</h6>
-                  <div className="progress">
-                    <div
-                      className="progress-bar position-relative bg-primary"
-                      style={{ width: "89%" }}
-                    >
-                      <div className="progress-value d-block text-muted h6">
-                        89%
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
-
                 <div className="d-flex align-items-center mt-2">
                   <i className="uil uil-book-open align-text-bottom text-primary h5 mb-0 ms-2"></i>
                   <h6 className="mb-0">تاریخ تولد</h6>
-                  <p className="text-muted mb-0 me-2">{profile.user.age}</p>
+                  <p className="text-muted mb-0 me-2">
+                    {moment(profile.user.age)
+                      .locale("fa")
+                      .format("jYYYY-jMM-jD")}
+                  </p>
                 </div>
 
                 <div className="d-flex align-items-center mt-2">
@@ -340,7 +335,7 @@ function Index() {
                           </div>
                         ))} */}
 
-                      {userReservation &&
+                      {userReservation ? (
                         userReservation?.map((item: any) => (
                           <div className="d-flex justify-content-between align-items-center rounded p-3 shadow mt-3">
                             <i className="ri-stethoscope-line h3 fw-normal text-success mb-0"></i>
@@ -369,7 +364,14 @@ function Index() {
                               <span>{item.time}</span>
                             </div>
                           </div>
-                        ))}
+                        ))
+                      ) : (
+                        <div className="d-flex justify-content-between align-items-center rounded p-3 shadow mt-3">
+                          <div className="flex-1 overflow-hidden me-2">
+                            <h6 className="mb-0">نوبت رزرو شده ندارید</h6>
+                          </div>
+                        </div>
+                      )}
                     </div>
 
                     <div className="col-lg-6 col-12 mt-4">
@@ -380,8 +382,7 @@ function Index() {
                           <div className="d-flex justify-content-between align-items-center rounded p-3 shadow mt-3">
                             <div className="flex-1 overflow-hidden">
                               <h6 className="flex-1 mb-0">
-                                {" "}
-                                نوبت حضوری / آنلاین{" "}
+                                نوبت حضوری / آنلاین
                               </h6>
                               <p className="text-muted mb-0 text-truncate small">
                                 پرداخت شده

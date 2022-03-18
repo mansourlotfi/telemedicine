@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { FormikProps } from "formik";
 import { IValues } from "./index";
-import { CircularProgress } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 import states from "assets/states";
 import cities from "assets/cities";
+import { DesktopDatePicker, LocalizationProvider } from "@mui/lab";
+import AdapterJalali from "@date-io/date-fns-jalali";
+import moment from "moment-jalaali";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 interface IProps extends FormikProps<IValues> {
   values: IValues;
@@ -19,6 +24,7 @@ const SetProfileFormHandler: React.FC<IProps> = ({
   handleSubmit,
 }) => {
   const [selectedStateId, setselectedStateId] = useState<number>();
+  const [open, setOpen] = useState(false);
 
   const handleSelectProvience = (e: any) => {
     setFieldValue("state", e.target.value);
@@ -106,16 +112,43 @@ const SetProfileFormHandler: React.FC<IProps> = ({
             <label className="form-label">
               تاریخ تولد <span className="text-danger">*</span>
             </label>
-            <input
-              name="age"
-              id="age"
-              type="text"
-              value={values.age || ""}
-              className="form-control"
-              placeholder=" سن"
-              onChange={handleChange}
-              style={errors.age ? { borderColor: "red" } : {}}
-            />
+
+            <LocalizationProvider dateAdapter={AdapterJalali}>
+              <DesktopDatePicker
+                label=" تاریخ تولد"
+                value={moment(values.age)}
+                open={open}
+                onOpen={() => setOpen(true)}
+                onClose={() => setOpen(false)}
+                components={{
+                  LeftArrowIcon: ArrowForwardIcon,
+                  RightArrowIcon: ArrowBackIcon,
+                }}
+                onChange={(newValue) => {
+                  setFieldValue(
+                    "age",
+                    moment(newValue).toISOString().split("T")[0]
+                  );
+                }}
+                renderInput={({ inputRef, inputProps, InputProps }) => (
+                  <Box
+                    sx={{
+                      fontFamily: "iransans",
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    <input
+                      ref={inputRef}
+                      {...inputProps}
+                      placeholder="انتخاب تاریخ"
+                      onClick={(e) => setOpen(true)}
+                      style={{ width: "100%" }}
+                    />
+                  </Box>
+                )}
+              />
+            </LocalizationProvider>
           </div>
         </div>
         {/* 

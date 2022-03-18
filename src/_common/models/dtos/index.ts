@@ -3,14 +3,12 @@ interface IUserDetail {
 }
 
 interface IUserPayments {
-  userphone: number;
+  userphone: string;
 }
-
 
 interface IPayment {
   reservation: number;
 }
-
 
 interface ISetProfile {
   name: string;
@@ -41,5 +39,5 @@ export type {
   ISetProfile as ISetProfileDto,
   ISetReserve as ISetReserveDto,
   IUserPayments as IUserPaymentsDto,
-  IPayment as IPaymentDto
+  IPayment as IPaymentDto,
 };

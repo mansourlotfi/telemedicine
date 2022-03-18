@@ -21,7 +21,6 @@ const FormHandler: React.FC<IProps> = ({
   step,
   handleSubmit,
 }) => {
-  const [rulesAccepted, setRulesAccepted] = useState(true);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {}, []);
@@ -53,9 +52,13 @@ const FormHandler: React.FC<IProps> = ({
                             id="phone"
                             type="text"
                             value={values.phone ?? ""}
-                            onChange={handleChange}
+                            onChange={(e) => {
+                              var regEx = /^\d{0,11}$/;
+                              if (regEx.test(e.target.value)) {
+                                setFieldValue("phone", e.target.value);
+                              }
+                            }}
                             className="form-control"
-                            disabled={rulesAccepted}
                             placeholder="شماره همراه"
                             style={
                               touched.phone && errors.phone
@@ -76,7 +79,6 @@ const FormHandler: React.FC<IProps> = ({
                             value={values.smscode ?? ""}
                             onChange={handleChange}
                             className="form-control"
-                            disabled={rulesAccepted}
                             placeholder="کد ارسال شده به شماره همراه را وارد نمایید"
                             style={
                               touched.smscode && errors.smscode
@@ -90,10 +92,7 @@ const FormHandler: React.FC<IProps> = ({
 
                     <div className="col-lg-12 mb-0">
                       <div className="d-grid">
-                        <button
-                          className="btn btn-primary"
-                          disabled={rulesAccepted}
-                        >
+                        <button className="btn btn-primary">
                           {isLoading ? (
                             <CircularProgress color="secondary" size={20} />
                           ) : (
@@ -114,16 +113,27 @@ const FormHandler: React.FC<IProps> = ({
                           width: "100%",
                         }}
                       >
-                        <div style={{ display: "flex", alignItems: "center" }}>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            marginTop: 20,
+                          }}
+                        >
                           <input
                             className="form-check-input align-middle"
                             type="checkbox"
-                            defaultChecked={!rulesAccepted}
+                            defaultChecked={values.rulesAccepted}
                             id="rule-check"
-                            onChange={() => setRulesAccepted(!rulesAccepted)}
+                            onChange={() =>
+                              setFieldValue(
+                                "rulesAccepted",
+                                !values.rulesAccepted
+                              )
+                            }
                           />
                           <p
-                            className="mb-0 mt-3"
+                            className="mb-0 mt-2"
                             onClick={() => setOpen(true)}
                             style={{ cursor: "pointer" }}
                           >
@@ -133,7 +143,7 @@ const FormHandler: React.FC<IProps> = ({
                           </p>
                         </div>
                         <Link to="/privacy">
-                          <p className="mb-0 mt-3">
+                          <p className="mb-0 mt-4">
                             <small className="text-dark me-2">حریم خصوصی</small>
                           </p>
                         </Link>
