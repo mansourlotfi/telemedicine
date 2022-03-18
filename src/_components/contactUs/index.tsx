@@ -53,8 +53,8 @@ function index() {
                     موثر در موارد بیماری و اضطراری یا حتی مشاوره ای ساده نیاز
                     دارید؛ همینجا باشید
                   </p>
-                  <a href="tel:+152534-468-854" className="link">
-                    +152 534-468-854
+                  <a href="tel:02123021764" className="link">
+                    02123021764
                   </a>
                 </div>
               </div>
@@ -72,8 +72,8 @@ function index() {
                     موثر در موارد بیماری و اضطراری یا حتی مشاوره ای ساده نیاز
                     دارید؛ همینجا باشید
                   </p>
-                  <a href="mailto:contact@example.com" className="link">
-                    contact@example.com
+                  <a href="mailto:dr.alitabibi.ir@gmail.com" className="link">
+                    dr.alitabibi.ir@gmail.com
                   </a>
                 </div>
               </div>
