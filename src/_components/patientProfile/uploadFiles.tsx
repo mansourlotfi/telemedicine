@@ -39,10 +39,12 @@ function UploadFiles() {
       .then((data: AxiosResponse) => {
         sendFile({ phone: profile.user.phone, url: data.data }).then((res) => {
           if (res) {
-            let prevFiles: any = files;
-            prevFiles.push({ url: data.data });
-            setFiles(prevFiles);
             SuccessData("فایل با موفقیت بارگذاری شد");
+            userFile({ phone: profile.user.phone }).then(
+              (data: AxiosResponse) => {
+                setFiles(data.data);
+              }
+            );
           }
         });
       })

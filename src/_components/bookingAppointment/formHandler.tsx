@@ -54,6 +54,7 @@ const FormHandler: React.FC<IProps> = ({
   const { drAvailableDates } = useAppSelector((state) => state.DrDates);
   const [selectedDate, setSelectedDate] = useState<number | null>(null);
   const [drTimes, setDrTimes] = useState<ITime[]>([]);
+  const [open, setOpen] = useState(false);
 
   const handleSelectDate = (e: any) => {
     setSelectedDate(e.target.value);
@@ -134,6 +135,9 @@ const FormHandler: React.FC<IProps> = ({
                 <DesktopDatePicker
                   label="تاریخ"
                   value={moment(values.date)}
+                  open={open}
+                  onOpen={() => setOpen(true)}
+                  onClose={() => setOpen(false)}
                   components={{
                     LeftArrowIcon: ArrowForwardIcon,
                     RightArrowIcon: ArrowBackIcon,
@@ -185,8 +189,9 @@ const FormHandler: React.FC<IProps> = ({
                         ref={inputRef}
                         {...inputProps}
                         placeholder="انتخاب تاریخ"
+                        onClick={(e) => setOpen(true)}
+                        style={{ width: "100%" }}
                       />
-                      {InputProps?.endAdornment}
                     </Box>
                   )}
                 />

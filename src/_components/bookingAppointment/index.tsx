@@ -175,31 +175,6 @@ function Index() {
                       )}
                     </Formik>
                   </div>
-
-                  <div
-                    className="tab-pane fade"
-                    id="pills-online"
-                    role="tabpanel"
-                    aria-labelledby="online-booking"
-                  >
-                    <Formik
-                      initialValues={initialValue}
-                      validationSchema={schema}
-                      enableReinitialize
-                      onSubmit={(values, { resetForm }) =>
-                        handleSubmit(values, { resetForm }, true)
-                      }
-                    >
-                      {(formikProps) => (
-                        <Form>
-                          <FormHandler
-                            isLoading={formsIsSubmitting}
-                            {...formikProps}
-                          />
-                        </Form>
-                      )}
-                    </Formik>
-                  </div>
                 </div>
               </div>
             </div>
