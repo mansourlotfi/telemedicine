@@ -1,8 +1,9 @@
 import { Button } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "_redux/hooks";
-import { signOut } from "_redux/slices/AuthenticationSlice";
+import { signIn, signOut } from "_redux/slices/AuthenticationSlice";
+import { setProfile } from "_redux/slices/ProfileSlice";
 
 const style = {
   normal: {
@@ -41,6 +42,16 @@ function Navbar() {
     dispatch(signOut());
     return navigate("/login");
   };
+
+  let phone = localStorage.getItem("phone");
+
+  useEffect(() => {
+    if (phone?.length === 11) {
+      dispatch(signIn());
+      dispatch(setProfile({ phone: phone }));
+    }
+  }, []);
+
   return (
     <header id="topnav" className="defaultscroll sticky">
       <div className="container">
