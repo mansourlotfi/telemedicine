@@ -15,6 +15,8 @@ import createCache from "@emotion/cache";
 import { prefixer } from "stylis";
 import { create } from "jss";
 import rtl from "jss-rtl";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 moment.loadPersian({ usePersianDigits: true, dialect: "persian-modern" });
 
@@ -132,6 +134,10 @@ const FormHandler: React.FC<IProps> = ({
                 <DesktopDatePicker
                   label="تاریخ"
                   value={moment(values.date)}
+                  components={{
+                    LeftArrowIcon: ArrowForwardIcon,
+                    RightArrowIcon: ArrowBackIcon,
+                  }}
                   shouldDisableDate={shouldDisableDate}
                   onChange={(newValue) => {
                     let dateValue = drAvailableDates.find(
