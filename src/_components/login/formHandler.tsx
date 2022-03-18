@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "_redux/hooks";
 import { IValues } from "./index";
 import { Link } from "react-router-dom";
+import RulesModal from "./rulesModal";
 
 interface IProps extends FormikProps<IValues> {
   values: IValues;
@@ -21,6 +22,7 @@ const FormHandler: React.FC<IProps> = ({
   handleSubmit,
 }) => {
   const [rulesAccepted, setRulesAccepted] = useState(true);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {}, []);
 
@@ -120,7 +122,11 @@ const FormHandler: React.FC<IProps> = ({
                             id="rule-check"
                             onChange={() => setRulesAccepted(!rulesAccepted)}
                           />
-                          <p className="mb-0 mt-3">
+                          <p
+                            className="mb-0 mt-3"
+                            onClick={() => setOpen(true)}
+                            style={{ cursor: "pointer" }}
+                          >
                             <small className="text-dark me-2">
                               قوانین و مقررات
                             </small>
@@ -140,6 +146,12 @@ const FormHandler: React.FC<IProps> = ({
           </div>
         </div>
       </div>
+      <RulesModal
+        open={open}
+        handleClose={() => {
+          setOpen(false);
+        }}
+      />
     </section>
   );
 };

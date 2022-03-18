@@ -66,7 +66,11 @@ function Index() {
 
   return (
     <>
-      <section className="bg-half-170 d-table w-100 bg-light">
+      <section
+        className="bg-half-170 d-table w-100"
+        style={{ backgroundImage: "url(../assets/images/bg/02.jpg)" }}
+      >
+        <div className="bg-overlay bg-overlay-dark"></div>
         <div className="container">
           <div className="row mt-5 justify-content-center">
             <div className="col-12">
