@@ -66,7 +66,7 @@ function Index() {
                     aria-expanded="true"
                     aria-controls="collapseOne"
                   >
-                    چگونه کار می کند؟
+                    چجوری می تونم آنلاین توسط آقای دکتر ویزیت بشم؟
                   </button>
                 </h2>
                 <div
@@ -76,9 +76,12 @@ function Index() {
                   data-bs-parent="#accordionExample"
                 >
                   <div className="accordion-body text-muted">
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و
-                    با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه
-                    و مجله در ستون و سطرآنچنان که لازم است
+                    از قسمت رزور نوبت اقدام کنید به تعیین تاریخ و ساعت مدنظرتون
+                    و سپس اگر مدارکی از قبیل آزمایش یا تصویربرداری مرتبط با مشکل
+                    ارولوژی خود دارید در قسمت مربوطه بارگزاری کنید. در زمان مشخص
+                    شده برای شما لینکی پیامک خواهد شد که با کلیک بر روی اون تماس
+                    تصویری شما با دکتر طبیبی برقرار میشه و ویزیت خواهید شد. به
+                    ویدئو آموزشی ابتدای پیج مراجعه کنید.
                   </div>
                 </div>
               </div>
@@ -93,7 +96,8 @@ function Index() {
                     aria-expanded="false"
                     aria-controls="collapseTwo"
                   >
-                    آیا برای استفاده از داکتریس به طراح نیاز دارم؟
+                    قبلا توسط پزشک دیگری ویزیت شدم و الان نظر آقای دکتر رو
+                    میخوام بدونم
                   </button>
                 </h2>
                 <div
@@ -103,9 +107,8 @@ function Index() {
                   data-bs-parent="#accordionExample"
                 >
                   <div className="accordion-body text-muted">
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و
-                    با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه
-                    و مجله در ستون و سطرآنچنان که لازم است
+                    از قسمت رزرو نوبت گزینه مشاوره رو انتخاب کنید و سوالتون رو
+                    بپرسید. پاسخ سوال به شماره موبایل شما پیامک خواهد شد.
                   </div>
                 </div>
               </div>
@@ -120,7 +123,7 @@ function Index() {
                     aria-expanded="false"
                     aria-controls="collapseThree"
                   >
-                    برای شروع فروش چه کاری باید انجام دهم؟
+                    چجوری می تونم دکتر طبیبی رو حضوری ببینم؟
                   </button>
                 </h2>
                 <div
@@ -130,36 +133,8 @@ function Index() {
                   data-bs-parent="#accordionExample"
                 >
                   <div className="accordion-body text-muted">
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و
-                    با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه
-                    و مجله در ستون و سطرآنچنان که لازم است
-                  </div>
-                </div>
-              </div>
-
-              <div className="accordion-item border rounded mt-2">
-                <h2 className="accordion-header" id="headingFour">
-                  <button
-                    className="accordion-button border-0 bg-light collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapseFour"
-                    aria-expanded="false"
-                    aria-controls="collapseFour"
-                  >
-                    با دریافت سفارش چه اتفاقی می افتد؟
-                  </button>
-                </h2>
-                <div
-                  id="collapseFour"
-                  className="accordion-collapse border-0 collapse"
-                  aria-labelledby="headingFour"
-                  data-bs-parent="#accordionExample"
-                >
-                  <div className="accordion-body text-muted">
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و
-                    با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه
-                    و مجله در ستون و سطرآنچنان که لازم است
+                    در صفحه اصلی وب سایت در پایین ترین قسمت صفحه ، راه های ویزیت
+                    حضوری ، ساعت و محل اون قرار داده شده است.
                   </div>
                 </div>
               </div>
