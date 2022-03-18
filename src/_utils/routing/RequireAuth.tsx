@@ -3,14 +3,16 @@ import { Navigate, useLocation } from "react-router-dom";
 import { RootState } from "_redux/store";
 import { useEffect } from "react";
 import { signIn } from "_redux/slices/AuthenticationSlice";
+import { setProfile } from "_redux/slices/ProfileSlice";
 
 const RequireAuth = ({ children }: { children: JSX.Element }) => {
   const dispatch = useAppDispatch();
+  let phone = localStorage.getItem("phone");
 
   useEffect(() => {
-    let phone = localStorage.getItem("phone");
     if (phone?.length === 11) {
       dispatch(signIn());
+      dispatch(setProfile({ phone: phone }));
     }
   }, []);
 
