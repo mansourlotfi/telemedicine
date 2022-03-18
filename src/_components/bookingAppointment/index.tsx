@@ -75,7 +75,9 @@ function Index() {
           <div className="row mt-5 justify-content-center">
             <div className="col-12">
               <div className="section-title text-center">
-                <h3 className="sub-title mb-4">رزرو نوبت</h3>
+                <h3 className="sub-title mb-4" style={{ color: "white" }}>
+                  رزرو نوبت
+                </h3>
                 <p className="para-desc mx-auto text-muted">
                   پزشکانی عالی، اگر برای خود یا خانواده تان به دنبال یک کمک موثر
                   در موارد بیماری و اضطراری یا حتی مشاوره ای ساده نیاز دارید؛
