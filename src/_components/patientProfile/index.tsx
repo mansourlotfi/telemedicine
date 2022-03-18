@@ -336,8 +336,7 @@ function Index() {
                             </span>
                           </div>
                         ))} */}
-
-                      {userReservation ? (
+                      {userReservation.length ? (
                         userReservation?.map((item: any) => (
                           <div className="d-flex justify-content-between align-items-center rounded p-3 shadow mt-3">
                             <i className="ri-stethoscope-line h3 fw-normal text-success mb-0"></i>
