@@ -34,14 +34,14 @@ function RTL(props: any) {
 
 const types = [
   {
-    id: 1,
-    type: "moshavere",
-    lable: "مشاوره",
-  },
-  {
     id: 2,
     type: "online",
     lable: "ویزیت آنلاین",
+  },
+  {
+    id: 1,
+    type: "moshavere",
+    lable: "مشاوره",
   },
 ];
 
@@ -296,8 +296,16 @@ const FormHandlerOnline: React.FC<IProps> = ({
           justifyContent: "space-around",
         }}
       >
-        <div>{price && `نرخ ویزیت آنلاین : ${price[0].amount} تومان`}</div>
-        <div>{price && `نرخ  مشاوره : ${price[1].amount} تومان`}</div>
+        <div>
+          {price &&
+            `نرخ ویزیت آنلاین : ${Number(
+              price[0].amount
+            ).toLocaleString()} تومان`}
+        </div>
+        <div>
+          {price &&
+            `نرخ  مشاوره : ${Number(price[1].amount).toLocaleString()} تومان`}
+        </div>
       </div>
       <div className="col-lg-12">
         <div className="mb-3">
