@@ -56,6 +56,13 @@ const SERVICE = {
       params
     ),
 
+  CONTACT_US: (params: any) =>
+    routeToService(
+      "/API/SetContactUs.aspx",
+      process.env.REACT_APP_BASE_URL,
+      params
+    ),
+
   PAYMENTS: (params: IPaymentDto) =>
     routeToService("/API/payment.aspx", process.env.REACT_APP_BASE_URL, params),
 
@@ -110,6 +117,8 @@ export const getUserProfile = (params: IUserDetailDto) =>
 
 export const setUserProfile = (params: IUserDetailDto) =>
   axios.get(SERVICE.SET_USER_PROFILE(params));
+
+export const contactUs = (params: any) => axios.get(SERVICE.CONTACT_US(params));
 
 export const getDrDates = () => axios.get(SERVICE.GET_ALL_Dr_Dates());
 

@@ -1,4 +1,44 @@
-function index() {
+import { Form, Formik } from "formik";
+import FormHandler from "./formHandler";
+import * as yup from "yup";
+import { useState } from "react";
+import { SuccessData } from "_utils/toast";
+import { AxiosResponse } from "axios";
+import { contactUs } from "_api";
+
+const schema = yup.object({
+  name: yup.string().required(),
+  email: yup.string().required(),
+  mobile: yup.string().min(10).required(),
+  nazar: yup.string().min(3).required(),
+});
+
+export interface IValues {
+  name: string | null;
+  email: string | null;
+  mobile: string | null;
+  nazar: string | null;
+}
+
+const initialValue: IValues = {
+  name: null,
+  email: null,
+  mobile: null,
+  nazar: null,
+};
+
+function Index() {
+  const [formsIsSubmitting, setFormsIsSubmitting] = useState(false);
+
+  const handleSubmit = (values: any, { resetForm }: any) => {
+    setFormsIsSubmitting(true);
+    contactUs(values)
+      .then((data: AxiosResponse) => {
+        SuccessData("پیام شما دریافت شد");
+      })
+      .finally(() => setFormsIsSubmitting(false));
+  };
+
   return (
     <>
       <section
@@ -111,85 +151,24 @@ function index() {
                 />
               </div>
             </div>
-
             <div className="col-lg-7 col-md-6 mt-4 pt-2 mt-sm-0 pt-sm-0">
-              <div className="custom-form rounded shadow p-4">
-                <h5 className="mb-4">در تماس باشید</h5>
-                <form method="post" name="myForm">
-                  <p id="error-msg"></p>
-                  <div id="simple-msg"></div>
-                  <div className="row">
-                    <div className="col-md-6">
-                      <div className="mb-3">
-                        <label className="form-label">
-                          نام شما<span className="text-danger">*</span>
-                        </label>
-                        <input
-                          name="name"
-                          id="name"
-                          type="text"
-                          className="form-control border rounded"
-                          placeholder="نام"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="col-md-6">
-                      <div className="mb-3">
-                        <label className="form-label">
-                          ایمیل شما <span className="text-danger">*</span>
-                        </label>
-                        <input
-                          name="email"
-                          id="email"
-                          type="email"
-                          className="form-control border rounded"
-                          placeholder="ایمیل شما"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="col-md-12">
-                      <div className="mb-3">
-                        <label className="form-label">موضوع</label>
-                        <input
-                          name="subject"
-                          id="subject"
-                          className="form-control border rounded"
-                          placeholder="موضوع"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="col-md-12">
-                      <div className="mb-3">
-                        <label className="form-label">
-                          نظرات<span className="text-danger">*</span>
-                        </label>
-                        <textarea
-                          name="comments"
-                          id="comments"
-                          rows={4}
-                          className="form-control border rounded"
-                          placeholder="پیام شما:"
-                        ></textarea>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-sm-12">
-                      <button
-                        type="submit"
-                        id="submit"
-                        name="send"
-                        className="btn btn-primary"
-                      >
-                        ارسال پیام
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
+              <Formik
+                initialValues={initialValue}
+                validationSchema={schema}
+                enableReinitialize
+                onSubmit={(values, { resetForm, setFieldValue }) =>
+                  handleSubmit(values, { resetForm, setFieldValue })
+                }
+              >
+                {(formikProps) => (
+                  <Form>
+                    <FormHandler
+                      isLoading={formsIsSubmitting}
+                      {...formikProps}
+                    />
+                  </Form>
+                )}
+              </Formik>
             </div>
           </div>
         </div>
@@ -198,4 +177,4 @@ function index() {
   );
 }
 
-export default index;
+export default Index;
