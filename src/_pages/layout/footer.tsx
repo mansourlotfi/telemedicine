@@ -102,10 +102,10 @@ function Footer() {
                       className="fea icon-sm text-foot align-middle"
                     ></i>
                     <a
-                      href="mailto:contact@example.com"
+                      href="mailto:dr.alitabibi.ir@gmail.com"
                       className="text-foot me-2"
                     >
-                      dr.alitabibi.ir@gmail.com{" "}
+                      dr.alitabibi.ir@gmail.com
                     </a>
                   </li>
                   <li className="d-flex align-items-center">
