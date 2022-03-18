@@ -148,17 +148,30 @@ const FormHandler: React.FC<IProps> = ({
                           .toISOString()
                           .split("T")[0]
                     );
-                    console.log("dateValue", dateValue);
                     if (dateValue) {
                       setSelectedDate(dateValue.id);
                     }
-                    setFieldValue(
-                      "date",
-                      moment(newValue)
-                        .add(1, "days")
-                        .toISOString()
-                        .split("T")[0]
-                    );
+                    if (dateValue) {
+                      setFieldValue(
+                        "date",
+                        moment(newValue)
+                          .add(1, "days")
+                          .toISOString()
+                          .split("T")[0]
+                      );
+                    } else {
+                      dateValue = drAvailableDates.find(
+                        (item) =>
+                          item.date.split("T")[0] ==
+                          moment(newValue).toISOString().split("T")[0]
+                      );
+                      setSelectedDate(dateValue?.id ?? 1);
+
+                      setFieldValue(
+                        "date",
+                        moment(newValue).toISOString().split("T")[0]
+                      );
+                    }
                   }}
                   renderInput={({ inputRef, inputProps, InputProps }) => (
                     <Box
