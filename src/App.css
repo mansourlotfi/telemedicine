@@ -45,3 +45,7 @@
     width: 350px !important;
   }
 }
+
+.muirtl-bkrceb-MuiButtonBase-root-MuiPickersDay-root:not(:disabled) {
+  background-color: green;
+}
