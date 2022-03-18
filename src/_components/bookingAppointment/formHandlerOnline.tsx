@@ -54,6 +54,7 @@ interface ITime {
 interface IProps extends FormikProps<IValues> {
   values: IValues;
   isLoading: boolean;
+  price: any;
 }
 const FormHandlerOnline: React.FC<IProps> = ({
   values,
@@ -63,8 +64,8 @@ const FormHandlerOnline: React.FC<IProps> = ({
   setFieldValue,
   isLoading,
   handleSubmit,
+  price,
 }) => {
-  console.log("errors", errors);
   const { drAvailableDates } = useAppSelector((state) => state.DrDates);
   const [selectedDate, setSelectedDate] = useState<number | null>(null);
   const [drTimes, setDrTimes] = useState<ITime[]>([]);
@@ -197,18 +198,29 @@ const FormHandlerOnline: React.FC<IProps> = ({
                         fontFamily: "iransans",
                         display: "flex",
                         alignItems: "center",
+                        minHeight: 40,
                       }}
                     >
                       <input
                         ref={inputRef}
                         {...inputProps}
-                        value={values.date || ""}
+                        value={
+                          values.date
+                            ? moment(values.date)
+                                .locale("fa")
+                                .format("jYYYY-jMM-jD")
+                            : ""
+                        }
                         placeholder="انتخاب تاریخ"
                         onClick={(e) => setOpen(true)}
                         style={
                           errors.date
-                            ? { borderColor: "red", width: "100%" }
-                            : { width: "100%" }
+                            ? {
+                                borderColor: "red",
+                                width: "100%",
+                                minHeight: 40,
+                              }
+                            : { width: "100%", minHeight: 40 }
                         }
                       />
                     </Box>
@@ -270,7 +282,18 @@ const FormHandlerOnline: React.FC<IProps> = ({
           </select>
         </div>
       </div>
-
+      <div
+        className="col-lg-12"
+        style={{
+          minHeight: 100,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-around",
+        }}
+      >
+        <div>{price && `نرخ ویزیت آنلاین : ${price[0].amount} تومان`}</div>
+        <div>{price && `نرخ  مشاوره : ${price[1].amount} تومان`}</div>
+      </div>
       <div className="col-lg-12">
         <div className="mb-3">
           <label className="form-label">

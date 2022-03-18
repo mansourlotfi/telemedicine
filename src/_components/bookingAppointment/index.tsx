@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 import { Form, Formik } from "formik";
 import { useEffect, useState } from "react";
-import { getDrDates, payment, setReserve } from "_api";
+import { getDrDates, getPrice, payment, setReserve } from "_api";
 import { useAppDispatch, useAppSelector } from "_redux/hooks";
 import { setDrAvailableDates } from "_redux/slices/DrbookingDateTimeSlice";
 import FormHandler from "./formHandler";
@@ -36,6 +36,7 @@ export interface IValues {
 function Index() {
   const dispatch = useAppDispatch();
   const profile = useAppSelector((state) => state.profile);
+  const [price, setPrice] = useState();
 
   const [formsIsSubmitting, setFormsIsSubmitting] = useState<boolean>(false);
   const initialValue: IValues = {
@@ -49,24 +50,29 @@ function Index() {
     getDrDates().then((data: AxiosResponse) =>
       dispatch(setDrAvailableDates(data.data))
     );
+    getPrice().then((res: AxiosResponse) => setPrice(res.data));
   }, []);
 
   const handleSubmit = (values: IValues, { resetForm, setFieldValue }: any) => {
     setFormsIsSubmitting(true);
     setReserve(generateSetReserveDto(values))
       .then((data: AxiosResponse) => {
-        resetForm();
-
-        SuccessData("نوبت ثبت شد به صفحه پرداخت هدایت می شوید");
-        payment({ reservation: Number(data.data) }).then(
-          (response: AxiosResponse) => {
-            let responseHtml = response.data;
-            var w = window.open("about:blank");
-            w?.document.open();
-            w?.document.write(responseHtml);
-            w?.document.close();
-          }
-        );
+        if (values.type !== "hozori" && values.type !== null) {
+          resetForm();
+          SuccessData("نوبت ثبت شد به صفحه پرداخت هدایت می شوید");
+          payment({ reservation: Number(data.data) }).then(
+            (response: AxiosResponse) => {
+              let responseHtml = response.data;
+              var w = window.open("about:blank");
+              w?.document.open();
+              w?.document.write(responseHtml);
+              w?.document.close();
+            }
+          );
+        } else {
+          resetForm();
+          SuccessData("نوبت ثبت شد");
+        }
       })
       .finally(() => setFormsIsSubmitting(false));
   };
@@ -202,6 +208,7 @@ function Index() {
                           <FormHandlerOnline
                             isLoading={formsIsSubmitting}
                             {...formikProps}
+                            price={price}
                           />
                         </Form>
                       )}

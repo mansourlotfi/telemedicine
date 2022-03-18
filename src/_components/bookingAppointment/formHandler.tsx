@@ -183,6 +183,7 @@ const FormHandler: React.FC<IProps> = ({
                         fontFamily: "iransans",
                         display: "flex",
                         alignItems: "center",
+                        minHeight: 40,
                       }}
                     >
                       <input
@@ -190,13 +191,23 @@ const FormHandler: React.FC<IProps> = ({
                         id="date"
                         ref={inputRef}
                         {...inputProps}
-                        value={values.date || ""}
+                        value={
+                          values.date
+                            ? moment(values.date)
+                                .locale("fa")
+                                .format("jYYYY-jMM-jD")
+                            : ""
+                        }
                         placeholder="انتخاب تاریخ"
                         onClick={(e) => setOpen(true)}
                         style={
                           errors.date
-                            ? { borderColor: "red", width: "100%" }
-                            : { width: "100%" }
+                            ? {
+                                borderColor: "red",
+                                width: "100%",
+                                minHeight: 40,
+                              }
+                            : { width: "100%", minHeight: 40 }
                         }
                       />
                     </Box>
@@ -237,9 +248,6 @@ const FormHandler: React.FC<IProps> = ({
           </select>
         </div>
       </div>
-      {/* <div className="col-lg-12">
-        {values.type && values.type === "hozori" && ""}
-      </div> */}
 
       <div className="col-lg-12">
         <div className="mb-3">
