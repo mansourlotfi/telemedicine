@@ -8,12 +8,22 @@ import FormHandler from "./formHandler";
 import * as yup from "yup";
 import { generateSetReserveDto } from "_common/mappers/toSetReserveApi";
 import { SuccessData } from "_utils/toast";
+import FormHandlerOnline from "./formHandlerOnline";
 
 const schema = yup.object({
   phone: yup.number().required(),
   description: yup.string().required(),
   date: yup.string().min(3).required(),
   time: yup.string().min(3).required(),
+  type: yup.string().nullable(),
+});
+
+const schemaOnline = yup.object({
+  phone: yup.number().required(),
+  description: yup.string().required(),
+  date: yup.string().min(3).required(),
+  time: yup.string().min(3).required(),
+  type: yup.string().required(),
 });
 
 export interface IValues {
@@ -21,7 +31,7 @@ export interface IValues {
   description: string | null;
   date: string | null;
   time: string | null;
-  type: "hozori";
+  type: string | null;
 }
 function Index() {
   const dispatch = useAppDispatch();
@@ -33,7 +43,7 @@ function Index() {
     description: null,
     date: null,
     time: null,
-    type: "hozori",
+    type: null,
   };
   useEffect(() => {
     getDrDates().then((data: AxiosResponse) =>
@@ -41,15 +51,12 @@ function Index() {
     );
   }, []);
 
-  const handleSubmit = (
-    values: IValues,
-    { resetForm }: any,
-    visitType: boolean
-  ) => {
+  const handleSubmit = (values: IValues, { resetForm, setFieldValue }: any) => {
     setFormsIsSubmitting(true);
-    setReserve(generateSetReserveDto(values, visitType))
+    setReserve(generateSetReserveDto(values))
       .then((data: AxiosResponse) => {
         resetForm();
+
         SuccessData("نوبت ثبت شد به صفحه پرداخت هدایت می شوید");
         payment({ reservation: Number(data.data) }).then(
           (response: AxiosResponse) => {
@@ -161,13 +168,38 @@ function Index() {
                       initialValues={initialValue}
                       validationSchema={schema}
                       enableReinitialize
-                      onSubmit={(values, { resetForm }) =>
-                        handleSubmit(values, { resetForm }, false)
+                      onSubmit={(values, { resetForm, setFieldValue }) =>
+                        handleSubmit(values, { resetForm, setFieldValue })
                       }
                     >
                       {(formikProps) => (
                         <Form>
                           <FormHandler
+                            isLoading={formsIsSubmitting}
+                            {...formikProps}
+                          />
+                        </Form>
+                      )}
+                    </Formik>
+                  </div>
+
+                  <div
+                    className="tab-pane fade"
+                    id="pills-online"
+                    role="tabpanel"
+                    aria-labelledby="online-booking"
+                  >
+                    <Formik
+                      initialValues={initialValue}
+                      validationSchema={schemaOnline}
+                      enableReinitialize
+                      onSubmit={(values, { resetForm, setFieldValue }) =>
+                        handleSubmit(values, { resetForm, setFieldValue })
+                      }
+                    >
+                      {(formikProps) => (
+                        <Form>
+                          <FormHandlerOnline
                             isLoading={formsIsSubmitting}
                             {...formikProps}
                           />

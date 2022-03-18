@@ -119,6 +119,7 @@ function Index() {
     setformsIsSubmitting(true);
     setUserProfile(generateSetProfileDto(values))
       .then(() => {
+        // resetForm();
         dispatch(setProfile(generateProfileValueToState(values, profile)));
         SuccessData("اطلاعات ذخیره شد");
         setformsIsSubmitting(false);

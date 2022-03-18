@@ -32,6 +32,19 @@ function RTL(props: any) {
   return <CacheProvider value={cacheRtl}>{props.children}</CacheProvider>;
 }
 
+const types = [
+  {
+    id: 1,
+    type: "moshavere",
+    lable: "مشاوره",
+  },
+  {
+    id: 2,
+    type: "online",
+    lable: "ویزیت آنلاین",
+  },
+];
+
 interface ITime {
   dateID: number;
   id: number;
@@ -42,7 +55,7 @@ interface IProps extends FormikProps<IValues> {
   values: IValues;
   isLoading: boolean;
 }
-const FormHandler: React.FC<IProps> = ({
+const FormHandlerOnline: React.FC<IProps> = ({
   values,
   errors,
   touched,
@@ -51,6 +64,7 @@ const FormHandler: React.FC<IProps> = ({
   isLoading,
   handleSubmit,
 }) => {
+  console.log("errors", errors);
   const { drAvailableDates } = useAppSelector((state) => state.DrDates);
   const [selectedDate, setSelectedDate] = useState<number | null>(null);
   const [drTimes, setDrTimes] = useState<ITime[]>([]);
@@ -186,8 +200,6 @@ const FormHandler: React.FC<IProps> = ({
                       }}
                     >
                       <input
-                        name="date"
-                        id="date"
                         ref={inputRef}
                         {...inputProps}
                         value={values.date || ""}
@@ -214,11 +226,9 @@ const FormHandler: React.FC<IProps> = ({
             ساعت<span className="text-danger">*</span>
           </label>
           <select
-            name="time"
-            id="time"
-            value={values.time || ""}
             className="form-control doctor-name select2input"
             onChange={handleSelectTime}
+            value={values.time || ""}
             disabled={selectedDate === null ? true : false}
             style={errors.time ? { borderColor: "red" } : {}}
           >
@@ -237,9 +247,29 @@ const FormHandler: React.FC<IProps> = ({
           </select>
         </div>
       </div>
-      {/* <div className="col-lg-12">
-        {values.type && values.type === "hozori" && ""}
-      </div> */}
+
+      <div className="col-lg-6">
+        <div className="mb-3">
+          <label className="form-label">
+            نوع ویزیت آنلاین<span className="text-danger">*</span>
+          </label>
+          <select
+            className="form-control doctor-name select2input"
+            onChange={(e) => setFieldValue("type", e.target.value)}
+            style={touched.type && errors.type ? { borderColor: "red" } : {}}
+            value={values.type || undefined}
+          >
+            <option key={0} value={0}>
+              لطفا نوع ویزیت خود را انتخاب نمایید
+            </option>
+            {types.map((item: any) => (
+              <option key={item.id} value={item.type}>
+                {item.lable}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
 
       <div className="col-lg-12">
         <div className="mb-3">
@@ -282,4 +312,4 @@ const FormHandler: React.FC<IProps> = ({
   );
 };
 
-export default FormHandler;
+export default FormHandlerOnline;

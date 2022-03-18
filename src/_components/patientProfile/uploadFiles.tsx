@@ -72,8 +72,8 @@ function UploadFiles() {
         // rowSpacing={5}
         // columnSpacing={5}
       >
-        <Grid item xs={12}>
-          <span>مدارک پزشکی آپلود شده</span>
+        <Grid item xs={12} style={{ padding: 20 }}>
+          <span style={{ color: "white" }}>مدارک پزشکی آپلود شده</span>
         </Grid>
         {files &&
           files?.map((item: any, index: number) => (

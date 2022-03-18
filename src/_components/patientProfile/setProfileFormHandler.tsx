@@ -80,7 +80,7 @@ const SetProfileFormHandler: React.FC<IProps> = ({
               name="codemelli"
               id="codemelli"
               type="text"
-              value={values.codemelli || ""}
+              value={values.codemelli ?? ""}
               className="form-control"
               placeholder="کد ملی"
               onChange={handleChange}
@@ -98,7 +98,7 @@ const SetProfileFormHandler: React.FC<IProps> = ({
               name="email"
               id="email"
               type="text"
-              value={values.email || ""}
+              value={values.email ?? ""}
               className="form-control"
               placeholder="ایمیل"
               onChange={handleChange}
@@ -141,6 +141,11 @@ const SetProfileFormHandler: React.FC<IProps> = ({
                     <input
                       ref={inputRef}
                       {...inputProps}
+                      value={
+                        moment(values.age)
+                          .locale("fa")
+                          .format("jYYYY-jMM-jD") ?? ""
+                      }
                       placeholder="انتخاب تاریخ"
                       onClick={(e) => setOpen(true)}
                       style={{ width: "100%" }}
