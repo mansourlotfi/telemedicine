@@ -175,18 +175,24 @@ function Index() {
                   {profile.user.name ?? "اطلاعات تکمیل نشده است"}
                 </h5>
                 <p className="text-muted mb-0">
-                  {moment(profile.user.age).locale("fa").format("jYYYY-jMM-jD")}
+                  {profile.user.age && profile.user.age + " سال "}
                 </p>
               </div>
 
               <div className="list-unstyled p-4">
                 <div className="d-flex align-items-center mt-2">
                   <i className="uil uil-book-open align-text-bottom text-primary h5 mb-0 ms-2"></i>
-                  <h6 className="mb-0">تاریخ تولد</h6>
+                  <h6 className="mb-0"> سن</h6>
+                  {/* <p className="text-muted mb-0 me-2">
+                    {/* {profile.user.age &&
+                      moment(profile.user.age)
+                        .locale("fa")
+                        .format("jYYYY-jMM-jD")} */}
+                  {/* </p>  */}
                   <p className="text-muted mb-0 me-2">
-                    {moment(profile.user.age)
-                      .locale("fa")
-                      .format("jYYYY-jMM-jD")}
+                    {profile.user.age
+                      ? profile.user.age + " سال "
+                      : "سن وارد نشده است"}
                   </p>
                 </div>
 
@@ -215,11 +221,6 @@ function Index() {
                   <p className="text-muted mb-0 me-2">{profile.user.blood}</p>
                 </div> */}
 
-                <div className="d-flex align-items-center mt-2">
-                  <i className="uil uil-book-open align-text-bottom text-primary h5 mb-0 ms-2"></i>
-                  <h6 className="mb-0">تلفن</h6>
-                  <p className="text-muted mb-0 me-2">{profile.user.phone}</p>
-                </div>
                 {/* 
                 <div className="d-flex align-items-center mt-2">
                   <i className="uil uil-book-open align-text-bottom text-primary h5 mb-0 ms-2"></i>

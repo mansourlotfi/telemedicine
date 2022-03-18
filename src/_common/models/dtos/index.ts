@@ -16,7 +16,7 @@ interface ISetProfile {
   image: string | null;
   email: string | null;
   address: string | null;
-  age: number;
+  age: string;
   blood: string | null;
   city: string;
   state: string;

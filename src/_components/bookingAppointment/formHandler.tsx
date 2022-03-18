@@ -144,14 +144,19 @@ const FormHandler: React.FC<IProps> = ({
                   }}
                   shouldDisableDate={shouldDisableDate}
                   onChange={(newValue) => {
-                    let dateValue = drAvailableDates.find(
-                      (item) =>
-                        item.date.split("T")[0] ==
-                        moment(newValue)
-                          .add(1, "days")
-                          .toISOString()
-                          .split("T")[0]
-                    );
+                    let dateValue;
+                    if (newValue) {
+                      dateValue = drAvailableDates.find(
+                        (item) =>
+                          item.date.split("T")[0] ==
+                          moment(newValue)
+                            .add(1, "days")
+                            .toISOString()
+                            .split("T")[0]
+                      );
+                    } else {
+                      setOpen(false);
+                    }
                     if (dateValue) {
                       setSelectedDate(dateValue.id);
                     }

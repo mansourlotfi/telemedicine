@@ -110,13 +110,23 @@ const SetProfileFormHandler: React.FC<IProps> = ({
         <div className="col-lg-6">
           <div className="mb-3">
             <label className="form-label">
-              تاریخ تولد <span className="text-danger">*</span>
+              سن <span className="text-danger">*</span>
             </label>
 
-            <LocalizationProvider dateAdapter={AdapterJalali}>
+            <input
+              name="age"
+              id="age"
+              type="text"
+              value={values.age ?? ""}
+              className="form-control"
+              placeholder="سن"
+              onChange={handleChange}
+              style={errors.email ? { borderColor: "red" } : {}}
+            />
+            {/* <LocalizationProvider dateAdapter={AdapterJalali}>
               <DesktopDatePicker
                 label=" تاریخ تولد"
-                value={moment(values.age)}
+                value={moment(values.age) || ""}
                 open={open}
                 onOpen={() => setOpen(true)}
                 onClose={() => setOpen(false)}
@@ -136,24 +146,27 @@ const SetProfileFormHandler: React.FC<IProps> = ({
                       fontFamily: "iransans",
                       display: "flex",
                       alignItems: "center",
+                      minHeight: 40,
                     }}
                   >
                     <input
                       ref={inputRef}
                       {...inputProps}
                       value={
-                        moment(values.age)
-                          .locale("fa")
-                          .format("jYYYY-jMM-jD") ?? ""
+                        values.age
+                          ? moment(values.age)
+                              .locale("fa")
+                              .format("jYYYY-jMM-jD")
+                          : ""
                       }
                       placeholder="انتخاب تاریخ"
                       onClick={(e) => setOpen(true)}
-                      style={{ width: "100%" }}
+                      style={{ width: "100%", minHeight: 40 }}
                     />
                   </Box>
                 )}
               />
-            </LocalizationProvider>
+            </LocalizationProvider> */}
           </div>
         </div>
         {/* 
