@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { getBlogPostById } from "_api";
 import { IBlogPost } from "_common/models/entities";
 import moment from "moment-jalaali";
+import ReactPlayer from "react-player";
 
 function Index() {
   const location = useLocation();
@@ -47,11 +48,33 @@ function Index() {
             <div className="container">
               <div className="row">
                 <div className="col-lg-12 col-lg-11">
-                  <img
-                    src={post.image}
-                    className="img-fluid rounded shadow"
-                    alt=""
-                  />
+                  {post.type === "video" ? (
+                    <div
+                      style={{
+                        position: "relative",
+                        display: "flex",
+                        justifyContent: "center",
+                        width: "100%",
+                        height: "calc(100% - 210px)",
+                        minHeight: 200,
+                        margin: 30,
+                      }}
+                    >
+                      <ReactPlayer
+                        style={{ position: "absolute", overflow: "hidden" }}
+                        url={post.link}
+                        width="50%"
+                        height="100%"
+                        controls
+                      />
+                    </div>
+                  ) : (
+                    <img
+                      src={post.image}
+                      className="img-fluid rounded shadow"
+                      alt=""
+                    />
+                  )}
 
                   <ul className="list-unstyled mt-4">
                     <li className="list-inline-item user text-muted me-2">
