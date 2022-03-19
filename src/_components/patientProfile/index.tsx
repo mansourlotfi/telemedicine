@@ -74,6 +74,7 @@ function Index() {
   const [formsIsSubmitting, setformsIsSubmitting] = useState<boolean>(false);
   const [ProfileUrl, setProfileUrl] = useState("");
   const [userReservation, setUserReservation] = useState([]);
+  const [paymentHistory, setPaymentHistory] = useState([]);
 
   const dispatch = useAppDispatch();
   const initialValue: IValues = {
@@ -141,10 +142,10 @@ function Index() {
     getDrDates().then((data: AxiosResponse) =>
       dispatch(setDrAvailableDates(data.data))
     );
-    // getUserPayments({ userphone: Number(profile.user.phone) }).then(
-    //   (data: AxiosResponse) => console.log("getUserPayments", data)
-    // );
     if (profile.user.phone) {
+      getUserPayments({ userphone: profile.user.phone }).then(
+        (data: AxiosResponse) => setPaymentHistory(data.data)
+      );
       getUserReservation({ userphone: profile.user.phone }).then(
         (data: AxiosResponse) => setUserReservation(data.data)
       );
@@ -378,25 +379,22 @@ function Index() {
                     <div className="col-lg-6 col-12 mt-4">
                       <h5>لیست پرداخت ها</h5>
 
-                      {drAvailableDates &&
-                        drAvailableDates.drAvailableDates?.map((item) => (
+                      {paymentHistory.length &&
+                        paymentHistory.map((item: any) => (
                           <div className="d-flex justify-content-between align-items-center rounded p-3 shadow mt-3">
                             <div className="flex-1 overflow-hidden">
-                              <h6 className="flex-1 mb-0">
-                                نوبت حضوری / آنلاین
-                              </h6>
+                              <h6 className="flex-1 mb-0">نوبت آنلاین</h6>
                               <p className="text-muted mb-0 text-truncate small">
-                                پرداخت شده
+                                {`پرداخت شده مبلغ ${Number(
+                                  item.amount
+                                ).toLocaleString()}`}
                               </p>
+                              <p className="text-muted mb-0 text-truncate small">{`تاریخ پرداخت : ${moment(
+                                item.date
+                              )
+                                // .locale("fa")
+                                .format("jD-jMM-jYYYY")}`}</p>
                             </div>
-                            <a
-                              href="#"
-                              className="btn btn-icon btn-primary"
-                              data-bs-toggle="modal"
-                              data-bs-target="#view-invoice"
-                            >
-                              <i className="uil uil-clipboard-notes icons"></i>
-                            </a>
                           </div>
                         ))}
                     </div>
