@@ -60,8 +60,7 @@ function Index() {
                         display: "flex",
                         justifyContent: "center",
                         width: "100%",
-
-                        minHeight: 200,
+                        minHeight: 400,
                         margin: 30,
                       }}
                     >
