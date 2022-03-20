@@ -7,7 +7,7 @@ import { setDrAvailableDates } from "_redux/slices/DrbookingDateTimeSlice";
 import FormHandler from "./formHandler";
 import * as yup from "yup";
 import { generateSetReserveDto } from "_common/mappers/toSetReserveApi";
-import { SuccessData } from "_utils/toast";
+import { ErrorData, SuccessData } from "_utils/toast";
 import FormHandlerOnline from "./formHandlerOnline";
 
 const schema = yup.object({
@@ -60,13 +60,26 @@ function Index() {
         if (values.type !== "hozori" && values.type !== null) {
           resetForm();
           SuccessData("نوبت ثبت شد به صفحه پرداخت هدایت می شوید");
+          // payment({ reservation: Number(data.data) }).then(
+          //   (response: AxiosResponse) => {
+          //     let responseHtml = response.data;
+          //     var w = window.open("about:blank");
+          //     w?.document.open();
+          //     w?.document.write(responseHtml);
+          //     w?.document.close();
+          //   }
+          // );
+
           payment({ reservation: Number(data.data) }).then(
             (response: AxiosResponse) => {
-              let responseHtml = response.data;
-              var w = window.open("about:blank");
-              w?.document.open();
-              w?.document.write(responseHtml);
-              w?.document.close();
+              if (response.status == 200) {
+                let url = `https://dr-alitabibi.ir/api/payment.aspx?reservation=${Number(
+                  data.data
+                )}`;
+                window?.open(url, "_blank")?.focus();
+              } else {
+                ErrorData("مشکلی در ارتباط با سامانه پرداخت وجود دارد");
+              }
             }
           );
         } else {
