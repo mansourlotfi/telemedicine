@@ -72,14 +72,14 @@ function Index() {
 
           payment({ reservation: Number(data.data) }).then(
             (response: AxiosResponse) => {
-              if (response.status == 200) {
-                let url = `https://dr-alitabibi.ir/api/payment.aspx?reservation=${Number(
-                  data.data
-                )}`;
-                window?.open(url, "_blank")?.focus();
-              } else {
-                ErrorData("مشکلی در ارتباط با سامانه پرداخت وجود دارد");
-              }
+              // if (response.status == 200) {
+              let url = `https://dr-alitabibi.ir/api/payment.aspx?reservation=${Number(
+                data.data
+              )}`;
+              window?.open(url, "_blank")?.focus();
+              // } else {
+              //   ErrorData("مشکلی در ارتباط با سامانه پرداخت وجود دارد");
+              // }
             }
           );
         } else {

@@ -3,7 +3,7 @@ function Index() {
     <>
       <section
         className="bg-half-170 d-table w-100"
-        style={{ background: "url(../assets/images/bg/department.jpg)" }}
+        style={{ background: "url(../assets/images/bg/ali-back2.jpg)" }}
       >
         <div className="bg-overlay"></div>
         <div className="container">

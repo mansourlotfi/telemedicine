@@ -11,6 +11,7 @@ export function ErrorData(result: any) {
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
+        progress: undefined,
       });
     });
   } else {
@@ -21,6 +22,7 @@ export function ErrorData(result: any) {
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
+      progress: undefined,
     });
   }
 }
@@ -33,15 +35,18 @@ export function SuccessData(result: any) {
     closeOnClick: true,
     pauseOnHover: true,
     draggable: true,
+    progress: undefined,
   });
 }
 
 export function WarningData(result: any) {
-  toast.info(result, {
-    position: "bottom-center",
+  toast.warn(result, {
+    position: "bottom-right",
+    autoClose: 5000,
     hideProgressBar: false,
-    closeOnClick: false,
-    pauseOnHover: false,
-    draggable: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
   });
 }
