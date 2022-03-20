@@ -95,8 +95,8 @@ function Index() {
       <section
         className="bg-half-170 d-table w-100"
         style={{
-          color: "red",
-          backgroundImage: "url(../assets/images/bg/about.jpg)",
+          backgroundImage: "url(../assets/images/bg/ali-back2.jpg)",
+          backgroundPosition: "unset",
         }}
       >
         <div className="bg-overlay bg-overlay-dark"></div>

@@ -1,13 +1,26 @@
 function Index() {
   return (
     <>
-      <section className="bg-half-150 d-table w-100 bg-light">
+      <section
+        className="bg-half-150 d-table w-100 bg-light"
+        style={{
+          backgroundImage: "url(../assets/images/bg/about.jpg)",
+          // backgroundPosition: "unset",
+        }}
+      >
+        <div className="bg-overlay bg-overlay-dark"></div>
+
         <div className="container">
           <div className="row mt-5 justify-content-center">
             <div className="col-12">
               <div className="section-title text-center">
-                <h3 className="sub-title mb-4">حفظ حریم شخصی</h3>
-                <p className="para-desc mx-auto text-muted">
+                <h3 className="sub-title mb-4" style={{ color: "white" }}>
+                  حفظ حریم شخصی
+                </h3>
+                <p
+                  className="para-desc mx-auto text-muted"
+                  style={{ color: "white" }}
+                >
                   پزشکانی عالی، اگر برای خود یا خانواده تان به دنبال یک کمک موثر
                   در موارد بیماری و اضطراری یا حتی مشاوره ای ساده نیاز دارید؛
                   همینجا باشید
