@@ -8,6 +8,14 @@ import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
     <div className="App">
+      <div id="preloader">
+        <div id="status">
+          <div className="spinner">
+            <div className="double-bounce1"></div>
+            <div className="double-bounce2"></div>
+          </div>
+        </div>
+      </div>
       <Provider store={store}>
         <Routing />
         <ToastContainer
