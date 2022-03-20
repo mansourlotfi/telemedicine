@@ -45,7 +45,11 @@ function FindDr() {
           </div>
 
           <div className="col-md-6 mt-4 pt-2 mt-sm-0 pt-sm-0">
-            <img src="../assets/images/hero.png" className="img-fluid" alt="" />
+            <img
+              src="../assets/images/dr tabibi.png"
+              className="img-fluid"
+              alt=""
+            />
           </div>
         </div>
       </div>
