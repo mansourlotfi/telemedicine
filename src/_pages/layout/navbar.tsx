@@ -37,6 +37,22 @@ function Navbar() {
     }
   };
 
+  const toggleSubMenuHandler = () => {
+    if (document.getElementById("navigation")) {
+      var elements = document
+        ?.getElementById("navigation")
+        ?.getElementsByTagName("a");
+      if (elements) {
+        for (var i = 0, len = elements.length; i < len; i++) {
+          elements[i].onclick = function (elem: any) {
+            var submenu = elem.target.nextElementSibling?.nextElementSibling;
+            submenu.classList.toggle("open");
+          };
+        }
+      }
+    }
+  };
+
   const signOutHandler = () => {
     localStorage.removeItem("phone");
     dispatch(signOut());
@@ -88,22 +104,24 @@ function Navbar() {
 
         <div id="navigation">
           <ul className="navigation-menu nav-left">
-            <li>
+            <li onClick={toggleMenuHandler}>
               <Link to="/">خانه</Link>
               <span className="menu-arrow"></span>
             </li>
 
             {isSignedIn ? (
               <li className="has-submenu parent-menu-item">
-                <a href="javascript:void(0)">کاربران</a>
+                <a href="javascript:void(0)" onClick={toggleSubMenuHandler}>
+                  کاربران
+                </a>
                 <span className="menu-arrow"></span>
                 <ul className="submenu">
-                  <li>
+                  <li onClick={toggleMenuHandler}>
                     <Link to="/patientProfile" className="sub-menu-item">
                       پروفایل
                     </Link>
                   </li>
-                  <li>
+                  <li onClick={toggleMenuHandler}>
                     <Link to="/bookingAppointment" className="sub-menu-item">
                       رزرو نوبت
                     </Link>
@@ -123,43 +141,43 @@ function Navbar() {
                 </ul>
               </li>
             ) : (
-              <li>
+              <li onClick={toggleMenuHandler}>
                 <Link to="/login" className="sub-menu-item">
                   ورود
                 </Link>
               </li>
             )}
 
-            <li>
+            <li onClick={toggleMenuHandler}>
               <Link to="/aboutUs" className="sub-menu-item">
                 درباره ما
               </Link>
             </li>
 
-            <li>
+            <li onClick={toggleMenuHandler}>
               <Link to="/faqs" className="sub-menu-item">
                 سوالات متدوال
               </Link>
             </li>
 
-            <li>
+            <li onClick={toggleMenuHandler}>
               <Link to="/blogs" className="sub-menu-item">
                 مقالات آموزشی
               </Link>
             </li>
 
-            <li>
+            <li onClick={toggleMenuHandler}>
               <Link to="/privacy" className="sub-menu-item">
                 حفظ حریم شخصی
               </Link>
             </li>
 
-            <li>
+            <li onClick={toggleMenuHandler}>
               <Link to="/contactUs" className="sub-menu-item">
                 ارتباط با ما
               </Link>
             </li>
-            <li>
+            <li onClick={toggleMenuHandler}>
               <div
                 style={{
                   marginTop: 25,

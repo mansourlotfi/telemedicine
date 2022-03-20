@@ -300,11 +300,11 @@ const FormHandlerOnline: React.FC<IProps> = ({
           {price &&
             `نرخ ویزیت آنلاین : ${Number(
               price[0].amount
-            ).toLocaleString()} تومان`}
+            ).toLocaleString()} ریال`}
         </div>
         <div>
           {price &&
-            `نرخ  مشاوره : ${Number(price[1].amount).toLocaleString()} تومان`}
+            `نرخ  مشاوره : ${Number(price[1].amount).toLocaleString()} ریال`}
         </div>
       </div>
       <div className="col-lg-12">

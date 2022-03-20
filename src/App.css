@@ -45,7 +45,13 @@
     width: 350px !important;
   }
 }
+.MuiPickersDay-dayWithMargin {
+  font-family: iransans !important;
+}
+.MuiPickersDay-dayWithMargin:not(:disabled) {
+  background-color: rgb(72, 235, 72) !important;
+}
 
-.muirtl-bkrceb-MuiButtonBase-root-MuiPickersDay-root:not(:disabled) {
-  background-color: green;
+.MuiTypography-root {
+  font-family: iransans !important;
 }
