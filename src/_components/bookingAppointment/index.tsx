@@ -69,14 +69,18 @@ function Index() {
           //     w?.document.close();
           //   }
           // );
+          let url = `https://dr-alitabibi.ir/api/payment.aspx?reservation=${Number(
+            data.data
+          )}`;
+          window?.open(url, "_blank")?.focus();
 
           payment({ reservation: Number(data.data) }).then(
             (response: AxiosResponse) => {
               // if (response.status == 200) {
-              let url = `https://dr-alitabibi.ir/api/payment.aspx?reservation=${Number(
-                data.data
-              )}`;
-              window?.open(url, "_blank")?.focus();
+              // let url = `https://dr-alitabibi.ir/api/payment.aspx?reservation=${Number(
+              //   data.data
+              // )}`;
+              // window?.open(url, "_blank")?.focus();
               // } else {
               //   ErrorData("مشکلی در ارتباط با سامانه پرداخت وجود دارد");
               // }
