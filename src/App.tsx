@@ -4,8 +4,17 @@ import { store } from "./_redux/store";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [isloading, setIsloading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsloading(false);
+    }, 1000);
+  }, []);
+
   return (
     <div className="App">
       <ToastContainer
@@ -20,14 +29,16 @@ function App() {
         pauseOnHover
         theme="colored"
       />
-      <div id="preloader">
-        <div id="status">
-          <div className="spinner">
-            <div className="double-bounce1"></div>
-            <div className="double-bounce2"></div>
+      {isloading && (
+        <div id="preloader">
+          <div id="status">
+            <div className="spinner">
+              <div className="double-bounce1"></div>
+              <div className="double-bounce2"></div>
+            </div>
           </div>
         </div>
-      </div>
+      )}
       <Provider store={store}>
         <Routing />
       </Provider>

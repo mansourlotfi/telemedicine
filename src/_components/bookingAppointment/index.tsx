@@ -12,7 +12,7 @@ import FormHandlerOnline from "./formHandlerOnline";
 
 const schema = yup.object({
   phone: yup.number().required(),
-  description: yup.string().required(),
+  description: yup.string().nullable(),
   date: yup.string().min(3).required(),
   time: yup.string().min(3).required(),
   type: yup.string().nullable(),
@@ -20,7 +20,7 @@ const schema = yup.object({
 
 const schemaOnline = yup.object({
   phone: yup.number().required(),
-  description: yup.string().required(),
+  description: yup.string().nullable(),
   date: yup.string().min(3).required(),
   time: yup.string().min(3).required(),
   type: yup.string().required(),
@@ -111,11 +111,6 @@ function Index() {
                 <h3 className="sub-title mb-4" style={{ color: "white" }}>
                   رزرو نوبت
                 </h3>
-                <p className="para-desc mx-auto text-muted">
-                  پزشکانی عالی، اگر برای خود یا خانواده تان به دنبال یک کمک موثر
-                  در موارد بیماری و اضطراری یا حتی مشاوره ای ساده نیاز دارید؛
-                  همینجا باشید
-                </p>
               </div>
             </div>
           </div>

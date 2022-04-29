@@ -22,7 +22,12 @@ function Index() {
     <>
       <section
         className="bg-half-170 d-table w-100"
-        style={{ backgroundImage: "url(../assets/images/bg/02.jpg)" }}
+        style={{
+          backgroundImage: "url(../assets/images/docsImage.png)",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "top",
+        }}
       >
         <div className="bg-overlay bg-overlay-dark"></div>
         <div className="container">
@@ -30,12 +35,11 @@ function Index() {
             <div className="col-12">
               <div className="section-title text-center">
                 <h3 className="sub-title mb-4 text-white title-dark">
-                  بلاگ و اخبار
+                  مقالات آموزشی
                 </h3>
                 <p className="para-desc mx-auto text-white-50">
-                  پزشکانی عالی، اگر برای خود یا خانواده تان به دنبال یک کمک موثر
-                  در موارد بیماری و اضطراری یا حتی مشاوره ای ساده نیاز دارید؛
-                  همینجا باشید
+                  از این قسمت مصاحبه های دکتر علی طبیبی و مقالات آموزشی ایشان را
+                  ببینید.
                 </p>
               </div>
             </div>

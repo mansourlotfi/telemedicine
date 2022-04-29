@@ -53,11 +53,6 @@ function Index() {
                 <h3 className="sub-title mb-4 text-white title-dark">
                   ارتباط با ما
                 </h3>
-                <p className="para-desc mx-auto text-white-50">
-                  پزشکانی عالی، اگر برای خود یا خانواده تان به دنبال یک کمک موثر
-                  در موارد بیماری و اضطراری یا حتی مشاوره ای ساده نیاز دارید؛
-                  همینجا باشید
-                </p>
               </div>
             </div>
           </div>
@@ -88,11 +83,9 @@ function Index() {
                 </div>
                 <div className="card-body p-0 mt-3">
                   <h5>شماره تماس</h5>
-                  <p className="text-muted mt-3">
-                    پزشکانی عالی، اگر برای خود یا خانواده تان به دنبال یک کمک
-                    موثر در موارد بیماری و اضطراری یا حتی مشاوره ای ساده نیاز
-                    دارید؛ همینجا باشید
-                  </p>
+                  {/* <p className="text-muted mt-3">
+                 
+                  </p> */}
                   <a href="tel:02123021764" className="link">
                     02123021764
                   </a>
@@ -107,11 +100,7 @@ function Index() {
                 </div>
                 <div className="card-body p-0 mt-3">
                   <h5>ایمیل</h5>
-                  <p className="text-muted mt-3">
-                    پزشکانی عالی، اگر برای خود یا خانواده تان به دنبال یک کمک
-                    موثر در موارد بیماری و اضطراری یا حتی مشاوره ای ساده نیاز
-                    دارید؛ همینجا باشید
-                  </p>
+
                   <a href="mailto:dr.alitabibi.ir@gmail.com" className="link">
                     dr.alitabibi.ir@gmail.com
                   </a>
@@ -126,12 +115,11 @@ function Index() {
                 </div>
                 <div className="card-body p-0 mt-3">
                   <h5>لوکیشن</h5>
-                  <p className="text-muted mt-3">
-                    یک آدرس فرضی در این محل وجود دارد و میتواند شامل چندین خط
-                    باشد یک آدرس فرضی در این محل وجود دارد و میتواند شامل چندین
-                    خط باشد
-                  </p>
-                  <a href="#" className="link">
+
+                  <a
+                    href="https://www.google.com/maps/dir//%D8%A8%DB%8C%D9%85%D8%A7%D8%B1%D8%B3%D8%AA%D8%A7%D9%86+%DA%AF%D8%A7%D9%86%D8%AF%DB%8C%E2%80%AD/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x3f8e06b82fb560d7:0x49bed8454986cc3b?sa=X&ved=2ahUKEwi3_bXeyJD3AhUUtaQKHd8sDz8Q9Rd6BAhdEAQ"
+                    className="link"
+                  >
                     مشاهده لوکیشن ما
                   </a>
                 </div>
@@ -143,13 +131,17 @@ function Index() {
         <div className="container mt-100 mt-60">
           <div className="row align-items-center">
             <div className="col-lg-5 col-md-6">
-              <div className="me-lg-5">
-                <img
-                  src="../assets/images/about/about-2.png"
-                  className="img-fluid"
-                  alt=""
-                />
-              </div>
+              <div
+                className="me-lg-5"
+                style={{
+                  backgroundImage: "url(" + "../assets/images/drAli.png" + ")",
+                  backgroundPosition: "center",
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  minHeight: 500,
+                  boxShadow: "8px 8px 8px 14px white inset",
+                }}
+              ></div>
             </div>
             <div className="col-lg-7 col-md-6 mt-4 pt-2 mt-sm-0 pt-sm-0">
               <Formik

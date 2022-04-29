@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import React from "react";
 import ReactPlayer from "react-player/lazy";
 
@@ -12,27 +12,66 @@ function FindDr() {
       }}
     >
       <div className="container">
-        {/* <div className="row mt-5 mt-sm-0 align-items-center"> */}
-        <div className="row mt-5 mt-sm-0">
-          <div className="col-md-6">
-            <div className="heading-title">
-              <h3> به وبسایت دکتر طبیبی خوش آمدید </h3>
-              <p className="para-desc text-muted mb-0">
-                اگر به عضو خانواده خود برای دریافت کمک فوری ، درمان اضطراری یا
-                یک مشاوره ساده نیاز دارید ، پزشکان ما را ببینید.
-              </p>
+        <Grid container>
+          <Grid item md={6} sm={12} xs={12}>
+            <div className="heading-title" style={{ padding: 5 }}>
+              <h3 className="headerTitle"> دکتر علی طبیبی متخصص ارولوژی</h3>
+              <ul
+                className="ulList"
+                style={{ textAlign: "right", lineHeight: 2.5 }}
+              >
+                <li>جراح و متخصص کلیه مجاری ادراری و تناسلی</li>
+                <li>
+                  لاپاراسکوپی و درمان¬های اندوسکوپیک بیماری¬های کلیه و مجاری
+                  ادراری
+                </li>
+                <li>استاد تمام دانشگاه علوم پزشکی شهید بهشتی</li>
+                <li>عضو مرکز نخبگان ایران (1378 تا کنون)</li>
+                <li>
+                  رئیس دانشکده پزشکی دانشگاه علوم پزشکی شهید بهشتی (1399-1396)
+                </li>
+                <li>
+                  عضو هيئت برد ارولوژی وزارت بهداشت-درمان و آموزش پزشکی (1398 تا
+                  کنون)
+                </li>
+                <li>
+                  دبیر انجمن اندویورولوژی و یورولاپاراسکوپی ایران (1398 تا کنون)
+                </li>
+                <li>
+                  نماینده انجمن اندویورولوژی بین المللی در ایران (1398 تا کنون)
+                </li>
+                <li>
+                  مدیر گروه ارولوژی دانشگاه علوم پزشکی شهید بهشتی (1399 تا کنون)
+                </li>
+                <li>
+                  عضو انجمن¬های بین¬المللی اروپا ، آسیا و انجمن پیوند خاورمیانه
+                </li>
+              </ul>
+              <div className="heading-title" style={{ margin: "10px 0" }}>
+                <Button style={{ font: "inherit" }}>دریافت رزومه</Button>
+              </div>
             </div>
-            <div className="heading-title" style={{ margin: "10px 0" }}>
-              <Button style={{ font: "inherit" }}>دریافت رزومه</Button>
-            </div>
-
-            <div
+          </Grid>
+          <Grid item md={6} sm={12} xs={12}>
+            <img
+              src="../assets/images/dr tabibi.png"
+              className="img-fluid"
+              alt=""
+            />
+          </Grid>
+          <Grid item container justifyContent="center">
+            <Grid
+              item
+              md={6}
+              sm={12}
+              xs={12}
               style={{
                 position: "relative",
                 width: "100%",
                 height: "calc(100% - 210px)",
                 minHeight: 200,
               }}
+              sx={{ m: 10 }}
             >
               <ReactPlayer
                 style={{ position: "absolute", overflow: "hidden" }}
@@ -41,17 +80,10 @@ function FindDr() {
                 height="100%"
                 controls
               />
-            </div>
-          </div>
-
-          <div className="col-md-6 mt-4 pt-2 mt-sm-0 pt-sm-0">
-            <img
-              src="../assets/images/dr tabibi.png"
-              className="img-fluid"
-              alt=""
-            />
-          </div>
-        </div>
+            </Grid>
+          </Grid>
+          <Grid item xs={6} />
+        </Grid>
       </div>
     </section>
   );

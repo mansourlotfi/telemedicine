@@ -44,6 +44,15 @@
   .modal-description {
     width: 350px !important;
   }
+  .headerTitle {
+    font-size: 20px !important;
+  }
+  .ulList {
+    font-size: 12px !important;
+  }
+  .roudMap {
+    background-image: none !important;
+  }
 }
 .MuiPickersDay-dayWithMargin {
   font-family: iransans !important;

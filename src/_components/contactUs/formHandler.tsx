@@ -1,4 +1,4 @@
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, TextField } from "@mui/material";
 import { FormikProps } from "formik";
 import React from "react";
 import { IValues } from "./index";
@@ -32,9 +32,11 @@ const FormHandler: React.FC<IProps> = ({
               name="name"
               id="name"
               type="text"
-              className="form-control border rounded"
+              className="form-control"
               placeholder="نام"
+              value={values.name ?? ""}
               onChange={handleChange}
+              style={touched.name && errors.name ? { borderColor: "red" } : {}}
             />
           </div>
         </div>
@@ -48,22 +50,32 @@ const FormHandler: React.FC<IProps> = ({
               name="email"
               id="email"
               type="email"
-              className="form-control border rounded"
+              className="form-control"
               placeholder="ایمیل شما"
               onChange={handleChange}
+              value={values.email ?? ""}
+              style={
+                touched.email && errors.email ? { borderColor: "red" } : {}
+              }
             />
           </div>
         </div>
 
         <div className="col-md-6">
           <div className="mb-3">
-            <label className="form-label">موبایل</label>
+            <label className="form-label">
+              موبایل <span className="text-danger">*</span>
+            </label>
             <input
               name="mobile"
               id="mobile"
-              className="form-control border rounded"
+              className="form-control"
               placeholder="موبایل"
               onChange={handleChange}
+              value={values.mobile ?? ""}
+              style={
+                touched.mobile && errors.mobile ? { borderColor: "red" } : {}
+              }
             />
           </div>
         </div>
@@ -77,8 +89,12 @@ const FormHandler: React.FC<IProps> = ({
               name="nazar"
               id="nazar"
               rows={4}
-              className="form-control border rounded"
-              placeholder="پیام شما:"
+              className="form-control"
+              placeholder="توضیحات"
+              value={values.nazar ?? ""}
+              style={
+                touched.nazar && errors.nazar ? { borderColor: "red" } : {}
+              }
               onChange={handleChange}
             ></textarea>
           </div>

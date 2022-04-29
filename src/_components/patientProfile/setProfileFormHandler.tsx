@@ -91,9 +91,7 @@ const SetProfileFormHandler: React.FC<IProps> = ({
 
         <div className="col-lg-6">
           <div className="mb-3">
-            <label className="form-label">
-              ایمیل<span className="text-danger">*</span>
-            </label>
+            <label className="form-label">ایمیل</label>
             <input
               name="email"
               id="email"
@@ -121,7 +119,7 @@ const SetProfileFormHandler: React.FC<IProps> = ({
               className="form-control"
               placeholder="سن"
               onChange={handleChange}
-              style={errors.email ? { borderColor: "red" } : {}}
+              style={errors.age ? { borderColor: "red" } : {}}
             />
             {/* <LocalizationProvider dateAdapter={AdapterJalali}>
               <DesktopDatePicker

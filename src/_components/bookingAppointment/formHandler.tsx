@@ -256,9 +256,7 @@ const FormHandler: React.FC<IProps> = ({
 
       <div className="col-lg-12">
         <div className="mb-3">
-          <label className="form-label">
-            توضیحات<span className="text-danger">*</span>
-          </label>
+          <label className="form-label">توضیحات</label>
           <textarea
             name="description"
             id="description"
