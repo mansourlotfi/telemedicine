@@ -7,13 +7,13 @@ import { setProfile } from "_redux/slices/ProfileSlice";
 
 const style = {
   normal: {
-    fontSize: 16,
+    fontSize: 14,
     letterSpacing: 0,
     color: "#00c3ff",
     fontWeight: 400,
     border: "1px solid #00c3ff",
     borderRadius: 30,
-    padding: "10px 25px",
+    padding: "5px 15px",
   },
   hover: {
     backgroundColor: "#00c3ff",
@@ -177,12 +177,15 @@ function Navbar() {
                 ارتباط با ما
               </Link>
             </li>
-            <li onClick={toggleMenuHandler}>
-              <div
-                style={{
-                  marginTop: 25,
-                }}
-              >
+            <li
+              onClick={toggleMenuHandler}
+              style={{
+                display: "flex",
+                justifyContent: "space-around",
+                alignItems: "center",
+              }}
+            >
+              <div>
                 <Link
                   to="/bookingAppointment"
                   onMouseEnter={() => {
@@ -197,6 +200,21 @@ function Navbar() {
                   }}
                 >
                   دریافت نوبت
+                </Link>
+              </div>
+              <div
+                style={{
+                  marginTop: 10,
+                  marginRight: 5,
+                }}
+              >
+                <Link className="logo" to="/international">
+                  <img
+                    src="../../assets/images/logo/download.jpg"
+                    height="40"
+                    className="logo-international"
+                    alt=""
+                  />
                 </Link>
               </div>
             </li>
