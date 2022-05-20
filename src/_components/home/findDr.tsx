@@ -1,6 +1,7 @@
 import { Button, Grid } from "@mui/material";
 import React from "react";
 import ReactPlayer from "react-player/lazy";
+import { Link } from "react-router-dom";
 
 function FindDr() {
   return (
@@ -16,13 +17,14 @@ function FindDr() {
           <Grid item md={6} sm={12} xs={12}>
             <div className="heading-title" style={{ padding: 5 }}>
               <h3 className="headerTitle"> دکتر علی طبیبی متخصص ارولوژی</h3>
+              <h5 style={{ padding: 5 }}>(اندویورولوژیست - پیوند کلیه)</h5>
               <ul
                 className="ulList"
                 style={{ textAlign: "right", lineHeight: 2.5 }}
               >
                 <li>جراح و متخصص کلیه مجاری ادراری و تناسلی</li>
                 <li>
-                  لاپاراسکوپی و درمان¬های اندوسکوپیک بیماری¬های کلیه و مجاری
+                  لاپاراسکوپی و درمان های اندوسکوپیک بیماری های کلیه و مجاری
                   ادراری
                 </li>
                 <li>استاد تمام دانشگاه علوم پزشکی شهید بهشتی</li>
@@ -44,12 +46,16 @@ function FindDr() {
                   مدیر گروه ارولوژی دانشگاه علوم پزشکی شهید بهشتی (1399 تا کنون)
                 </li>
                 <li>
-                  عضو انجمن¬های بین¬المللی اروپا ، آسیا و انجمن پیوند خاورمیانه
+                  عضو انجمن های بین المللی اروپا ، آسیا و انجمن پیوند خاورمیانه
                 </li>
               </ul>
-              <div className="heading-title" style={{ margin: "10px 0" }}>
+              <Link
+                to="/aboutUs"
+                className="heading-title"
+                style={{ margin: "10px 0" }}
+              >
                 <Button style={{ font: "inherit" }}>دریافت رزومه</Button>
-              </div>
+              </Link>
             </div>
           </Grid>
           <Grid item md={6} sm={12} xs={12}>

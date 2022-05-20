@@ -113,11 +113,11 @@ function Footer() {
                       data-feather="phone"
                       className="fea icon-sm text-foot align-middle"
                     ></i>
-                    <a href="tel:02142603000" className="text-foot me-2">
+                    {/* <a href="tel:02142603000" className="text-foot me-2">
                       02142603000
-                    </a>
-                    <a href="tel:02123021763" className="text-foot me-2">
-                      02123021764
+                    </a> */}
+                    <a href="tel:02188195459" className="text-foot me-2">
+                      98-21-8819-5459+
                     </a>
                   </li>
                   {/* <li className="d-flex align-items-center">

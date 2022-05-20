@@ -288,7 +288,9 @@ const SetProfileFormHandler: React.FC<IProps> = ({
 
         <div className="col-md-12">
           <div className="mb-3">
-            <label className="form-label">توضیحات</label>
+            <label className="form-label">
+              مشکل خود را به طور مختصر بنویسید
+            </label>
             <textarea
               name="description"
               id="description"

@@ -4,10 +4,8 @@ function Index() {
       <section
         className="bg-half-150 d-table w-100 bg-light"
         style={{
-          backgroundImage: "url(../assets/images/bg/about.jpg)",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          // backgroundPosition: "center",
+          backgroundImage: "url(../assets/images/bg/ali.jpg)",
+          backgroundPosition: "unset",
         }}
       >
         <div className="bg-overlay bg-overlay-dark"></div>

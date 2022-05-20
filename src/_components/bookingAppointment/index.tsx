@@ -21,8 +21,16 @@ const schema = yup.object({
 const schemaOnline = yup.object({
   phone: yup.number().required(),
   description: yup.string().nullable(),
-  date: yup.string().min(3).required(),
-  time: yup.string().min(3).required(),
+  date: yup.string().when("type", {
+    is: "moshavere",
+    then: yup.string().nullable(),
+    otherwise: yup.string().min(3).required(),
+  }),
+  time: yup.string().when("type", {
+    is: "moshavere",
+    then: yup.string().nullable(),
+    otherwise: yup.string().min(3).required(),
+  }),
   type: yup.string().required(),
 });
 

@@ -121,14 +121,16 @@ const FormHandlerOnline: React.FC<IProps> = ({
         </div>
       </div>
 
-      <div className="col-md-6">
-        <div className="mb-3">
-          <div>
-            <label className="form-label">
-              تاریخ<span className="text-danger">*</span>
-            </label>
-          </div>
-          {/* <select
+      {values.type !== "moshavere" && (
+        <>
+          <div className="col-md-6">
+            <div className="mb-3">
+              <div>
+                <label className="form-label">
+                  تاریخ<span className="text-danger">*</span>
+                </label>
+              </div>
+              {/* <select
             className="form-control doctor-name select2input"
             onChange={handleSelectDate}
             style={errors.date ? { borderColor: "red" } : {}}
@@ -144,126 +146,128 @@ const FormHandlerOnline: React.FC<IProps> = ({
               ))}
           </select> */}
 
-          <div style={{ direction: "rtl" }}>
-            <RTL>
-              <LocalizationProvider dateAdapter={AdapterJalali}>
-                <DesktopDatePicker
-                  label="تاریخ"
-                  value={moment(values.date) || ""}
-                  open={open}
-                  onOpen={() => setOpen(true)}
-                  onClose={() => setOpen(false)}
-                  components={{
-                    LeftArrowIcon: ArrowForwardIcon,
-                    RightArrowIcon: ArrowBackIcon,
-                  }}
-                  shouldDisableDate={shouldDisableDate}
-                  onChange={(newValue) => {
-                    let dateValue;
-                    if (newValue) {
-                      dateValue = drAvailableDates.find(
-                        (item) =>
-                          item.date.split("T")[0] ==
-                          moment(newValue)
-                            .add(1, "days")
-                            .toISOString()
-                            .split("T")[0]
-                      );
-                    } else {
-                      setOpen(false);
-                    }
-                    if (dateValue) {
-                      setSelectedDate(dateValue.id);
-                    }
-                    if (dateValue) {
-                      setFieldValue(
-                        "date",
-                        moment(newValue)
-                          .add(1, "days")
-                          .toISOString()
-                          .split("T")[0]
-                      );
-                    } else {
-                      dateValue = drAvailableDates.find(
-                        (item) =>
-                          item.date.split("T")[0] ==
-                          moment(newValue).toISOString().split("T")[0]
-                      );
-                      setSelectedDate(dateValue?.id ?? 1);
-
-                      setFieldValue(
-                        "date",
-                        moment(newValue).toISOString().split("T")[0]
-                      );
-                    }
-                  }}
-                  renderInput={({ inputRef, inputProps, InputProps }) => (
-                    <Box
-                      sx={{
-                        fontFamily: "iransans",
-                        display: "flex",
-                        alignItems: "center",
-                        minHeight: 40,
+              <div style={{ direction: "rtl" }}>
+                <RTL>
+                  <LocalizationProvider dateAdapter={AdapterJalali}>
+                    <DesktopDatePicker
+                      label="تاریخ"
+                      value={moment(values.date) || ""}
+                      open={open}
+                      onOpen={() => setOpen(true)}
+                      onClose={() => setOpen(false)}
+                      components={{
+                        LeftArrowIcon: ArrowForwardIcon,
+                        RightArrowIcon: ArrowBackIcon,
                       }}
-                    >
-                      <input
-                        ref={inputRef}
-                        {...inputProps}
-                        value={
-                          values.date
-                            ? moment(values.date)
-                                .locale("fa")
-                                .format("jYYYY-jMM-jD")
-                            : ""
+                      shouldDisableDate={shouldDisableDate}
+                      onChange={(newValue) => {
+                        let dateValue;
+                        if (newValue) {
+                          dateValue = drAvailableDates.find(
+                            (item) =>
+                              item.date.split("T")[0] ==
+                              moment(newValue)
+                                .add(1, "days")
+                                .toISOString()
+                                .split("T")[0]
+                          );
+                        } else {
+                          setOpen(false);
                         }
-                        placeholder="انتخاب تاریخ"
-                        onClick={(e) => setOpen(true)}
-                        style={
-                          errors.date
-                            ? {
-                                borderColor: "red",
-                                width: "100%",
-                                minHeight: 40,
-                              }
-                            : { width: "100%", minHeight: 40 }
+                        if (dateValue) {
+                          setSelectedDate(dateValue.id);
                         }
-                      />
-                    </Box>
-                  )}
-                />
-              </LocalizationProvider>
-            </RTL>
-          </div>
-        </div>
-      </div>
+                        if (dateValue) {
+                          setFieldValue(
+                            "date",
+                            moment(newValue)
+                              .add(1, "days")
+                              .toISOString()
+                              .split("T")[0]
+                          );
+                        } else {
+                          dateValue = drAvailableDates.find(
+                            (item) =>
+                              item.date.split("T")[0] ==
+                              moment(newValue).toISOString().split("T")[0]
+                          );
+                          setSelectedDate(dateValue?.id ?? 1);
 
-      <div className="col-md-6">
-        <div className="mb-3">
-          <label className="form-label">
-            ساعت<span className="text-danger">*</span>
-          </label>
-          <select
-            className="form-control doctor-name select2input"
-            onChange={handleSelectTime}
-            value={values.time || ""}
-            disabled={selectedDate === null ? true : false}
-            style={errors.time ? { borderColor: "red" } : {}}
-          >
-            <option key={0} value={0}>
-              لطفا ساعت را انتخاب نمایید
-            </option>
-            {drTimes &&
-              Array.isArray(drTimes) &&
-              drTimes
-                .filter((item) => item.isReserved == false)
-                .map((item) => (
-                  <option key={item.id} value={item.time}>
-                    {item.time}
-                  </option>
-                ))}
-          </select>
-        </div>
-      </div>
+                          setFieldValue(
+                            "date",
+                            moment(newValue).toISOString().split("T")[0]
+                          );
+                        }
+                      }}
+                      renderInput={({ inputRef, inputProps, InputProps }) => (
+                        <Box
+                          sx={{
+                            fontFamily: "iransans",
+                            display: "flex",
+                            alignItems: "center",
+                            minHeight: 40,
+                          }}
+                        >
+                          <input
+                            ref={inputRef}
+                            {...inputProps}
+                            value={
+                              values.date
+                                ? moment(values.date)
+                                    .locale("fa")
+                                    .format("jYYYY-jMM-jD")
+                                : ""
+                            }
+                            placeholder="انتخاب تاریخ"
+                            onClick={(e) => setOpen(true)}
+                            style={
+                              errors.date
+                                ? {
+                                    borderColor: "red",
+                                    width: "100%",
+                                    minHeight: 40,
+                                  }
+                                : { width: "100%", minHeight: 40 }
+                            }
+                          />
+                        </Box>
+                      )}
+                    />
+                  </LocalizationProvider>
+                </RTL>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-md-6">
+            <div className="mb-3">
+              <label className="form-label">
+                ساعت<span className="text-danger">*</span>
+              </label>
+              <select
+                className="form-control doctor-name select2input"
+                onChange={handleSelectTime}
+                value={values.time || ""}
+                disabled={selectedDate === null ? true : false}
+                style={errors.time ? { borderColor: "red" } : {}}
+              >
+                <option key={0} value={0}>
+                  لطفا ساعت را انتخاب نمایید
+                </option>
+                {drTimes &&
+                  Array.isArray(drTimes) &&
+                  drTimes
+                    .filter((item) => item.isReserved == false)
+                    .map((item) => (
+                      <option key={item.id} value={item.time}>
+                        {item.time}
+                      </option>
+                    ))}
+              </select>
+            </div>
+          </div>
+        </>
+      )}
 
       <div className="col-lg-6">
         <div className="mb-3">

@@ -43,7 +43,12 @@ function Index() {
     <>
       <section
         className="bg-half-170 d-table w-100"
-        style={{ backgroundImage: "url(../assets/images/bg/03.jpg)" }}
+        style={{
+          backgroundImage: "url(../assets/images/docsImage.png)",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "top",
+        }}
       >
         <div className="bg-overlay bg-overlay-dark"></div>
         <div className="container">
@@ -86,8 +91,8 @@ function Index() {
                   {/* <p className="text-muted mt-3">
                  
                   </p> */}
-                  <a href="tel:02123021764" className="link">
-                    02123021764
+                  <a href="tel:02188195459" className="link">
+                    98-21-8819-5459+
                   </a>
                 </div>
               </div>
