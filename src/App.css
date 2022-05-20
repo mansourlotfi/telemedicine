@@ -58,6 +58,15 @@
   .roudMap {
     background-image: none !important;
   }
+  .hiddenItem {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .hideInDesktop {
+    display: none !important;
+  }
 }
 .MuiPickersDay-dayWithMargin {
   font-family: iransans !important;

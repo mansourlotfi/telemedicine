@@ -25,6 +25,7 @@ import { setDrAvailableDates } from "_redux/slices/DrbookingDateTimeSlice";
 import moment from "moment-jalaali";
 // import states from "assets/states";
 import UploadFiles from "./uploadFiles";
+import { useNavigate } from "react-router-dom";
 
 export interface IValues {
   name: string | null;
@@ -65,6 +66,7 @@ const schema = yup.object({
 });
 
 function Index() {
+  let navigate = useNavigate();
   let hiddenFileInput = React.useRef<HTMLInputElement>(null);
   const profile = useAppSelector((state) => state.profile);
 
@@ -124,6 +126,7 @@ function Index() {
         dispatch(setProfile(generateProfileValueToState(values, profile)));
         SuccessData("اطلاعات ذخیره شد");
         setformsIsSubmitting(false);
+        navigate("/bookingAppointment");
       })
       .finally(() => setformsIsSubmitting(false));
   };
@@ -352,20 +355,22 @@ function Index() {
                                 پزشک : آقای دکتر علی طبیبی
                               </p>
                             </div>
-                            <div
-                              className="mb-0"
-                              style={{
-                                display: "flex",
-                                flexDirection: "column",
-                              }}
-                            >
-                              <span>
-                                {moment(item.date)
-                                  .locale("fa")
-                                  .format("jYYYY-jMM-jD")}
-                              </span>
-                              <span>{item.time}</span>
-                            </div>
+                            {item?.date && (
+                              <div
+                                className="mb-0"
+                                style={{
+                                  display: "flex",
+                                  flexDirection: "column",
+                                }}
+                              >
+                                <span>
+                                  {moment(item.date)
+                                    .locale("fa")
+                                    .format("jYYYY-jMM-jD")}
+                                </span>
+                                <span>{item.time}</span>
+                              </div>
+                            )}
                           </div>
                         ))
                       ) : (

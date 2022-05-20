@@ -13,11 +13,6 @@ function Index() {
                 <h3 className="sub-title mb-4 text-white title-dark">
                   درباره ما
                 </h3>
-                <p className="para-desc mx-auto text-white-50">
-                  پزشکانی عالی، اگر برای خود یا خانواده تان به دنبال یک کمک موثر
-                  در موارد بیماری و اضطراری یا حتی مشاوره ای ساده نیاز دارید؛
-                  همینجا باشید
-                </p>
 
                 <nav aria-label="breadcrumb" className="d-inline-block mt-3">
                   <ul className="breadcrumb bg-light rounded mb-0 py-1 px-2">
@@ -82,19 +77,7 @@ function Index() {
                     با خدمات خوب و بهتر
                     <br /> سلامتی شما توسط متخصصین ما{" "}
                   </h4>
-                  <p className="para-desc text-muted">
-                    پزشکانی عالی، اگر برای خود یا خانواده تان به دنبال یک کمک
-                    موثر در موارد بیماری و اضطراری یا حتی مشاوره ای ساده نیاز
-                    دارید؛ همینجا باشید
-                  </p>
-                  <p className="para-desc text-muted">
-                    {" "}
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و
-                    با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه
-                    و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
-                    تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای
-                    کاربردی می باشد.{" "}
-                  </p>
+
                   <div className="mt-4">
                     <a
                       href="javascript:void(0)"
@@ -118,11 +101,6 @@ function Index() {
                   دپارتمان ها
                 </span>
                 <h4 className="title mb-4"> خدمات پزشکی ما </h4>
-                <p className="text-muted mx-auto para-desc mb-0">
-                  پزشکانی عالی، اگر برای خود یا خانواده تان به دنبال یک کمک موثر
-                  در موارد بیماری و اضطراری یا حتی مشاوره ای ساده نیاز دارید؛
-                  همینجا باشید
-                </p>
               </div>
             </div>
           </div>
@@ -319,11 +297,6 @@ function Index() {
             <div className="col-12">
               <div className="section-title text-center mb-4 pb-2">
                 <h4 className="title mb-4">پزشکان</h4>
-                <p className="text-muted mx-auto para-desc mb-0">
-                  پزشکانی عالی، اگر برای خود یا خانواده تان به دنبال یک کمک موثر
-                  در موارد بیماری و اضطراری یا حتی مشاوره ای ساده نیاز دارید؛
-                  همینجا باشید
-                </p>
               </div>
             </div>
           </div>

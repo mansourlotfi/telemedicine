@@ -256,13 +256,13 @@ const FormHandler: React.FC<IProps> = ({
 
       <div className="col-lg-12">
         <div className="mb-3">
-          <label className="form-label">توضیحات</label>
+          <label className="form-label">مشکل خود را به طور مختصر بنویسید</label>
           <textarea
             name="description"
             id="description"
             rows={4}
             className="form-control"
-            placeholder="توضیحات"
+            placeholder="مشکل خود را به طور مختصر بنویسید"
             value={values.description ?? ""}
             style={
               touched.description && errors.description

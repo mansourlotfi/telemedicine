@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "_redux/hooks";
 import { signIn, signOut } from "_redux/slices/AuthenticationSlice";
@@ -184,6 +184,7 @@ function Navbar() {
                 justifyContent: "space-around",
                 alignItems: "center",
               }}
+              className="hiddenItem"
             >
               <div>
                 <Link

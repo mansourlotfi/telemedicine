@@ -1,9 +1,28 @@
 import { Button, Grid } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import ReactPlayer from "react-player/lazy";
 import { Link } from "react-router-dom";
+import "../../App.css";
+
+const style = {
+  normal: {
+    fontSize: 14,
+    letterSpacing: 0,
+    color: "#00c3ff",
+    fontWeight: 400,
+    border: "1px solid #00c3ff",
+    borderRadius: 30,
+    padding: "5px 15px",
+  },
+  hover: {
+    backgroundColor: "#00c3ff",
+    color: "#fff",
+  },
+};
 
 function FindDr() {
+  const [hover, setHover] = useState(false);
+
   return (
     <section
       className="bg-half-100 pb-0 d-table w-100"
@@ -14,6 +33,42 @@ function FindDr() {
     >
       <div className="container">
         <Grid container>
+          <Grid
+            item
+            xs={12}
+            display="flex"
+            justifyContent="space-around"
+            sx={{ alignItem: "center", mb: 1 }}
+            className="hideInDesktop"
+          >
+            <div style={{ maxHeight: 40, marginTop: 8 }}>
+              <Link
+                to="/bookingAppointment"
+                onMouseEnter={() => {
+                  setHover(true);
+                }}
+                onMouseLeave={() => {
+                  setHover(false);
+                }}
+                style={{
+                  ...style.normal,
+                  ...(hover ? style.hover : null),
+                }}
+              >
+                دریافت نوبت
+              </Link>
+            </div>
+            <div style={{ maxHeight: 40 }}>
+              <Link to="/international">
+                <img
+                  src="../../assets/images/logo/download.jpg"
+                  height="40"
+                  className="logo-international"
+                  alt=""
+                />
+              </Link>
+            </div>
+          </Grid>
           <Grid item md={6} sm={12} xs={12}>
             <div className="heading-title" style={{ padding: 5 }}>
               <h3 className="headerTitle"> دکتر علی طبیبی متخصص ارولوژی</h3>

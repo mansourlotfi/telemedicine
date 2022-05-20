@@ -102,6 +102,14 @@ const FormHandlerOnline: React.FC<IProps> = ({
 
   return (
     <div className="row">
+      <p style={{ textAlign: "right", lineHeight: 2 }}>
+        {" "}
+        در صورت انتخاب "ویزیت آنلاین" تماس تصویری و به صورت ویزیت کامل برای شما
+        به شکل آنلاین در زمان مشخص شده انجام میشود.
+        <br />
+        در صورت انتخاب "مشاوره" صرفا پاسخ سوال شما در اولین فرصت به شماره
+        موبایلتان پیامک میشود.
+      </p>
       <div className="col-md-6">
         <div className="mb-3">
           <label className="form-label">
@@ -313,13 +321,13 @@ const FormHandlerOnline: React.FC<IProps> = ({
       </div>
       <div className="col-lg-12">
         <div className="mb-3">
-          <label className="form-label">توضیحات</label>
+          <label className="form-label">مشکل خود را به طور مختصر بنویسید</label>
           <textarea
             name="description"
             id="description"
             rows={4}
             className="form-control"
-            placeholder="توضیحات"
+            placeholder="مشکل خود را به طور مختصر بنویسید"
             value={values.description ?? ""}
             style={
               touched.description && errors.description
@@ -332,14 +340,6 @@ const FormHandlerOnline: React.FC<IProps> = ({
       </div>
 
       <div className="col-lg-12">
-        <p style={{ textAlign: "right", lineHeight: 2 }}>
-          {" "}
-          در صورت انتخاب "ویزیت آنلاین" تماس تصویری و به صورت ویزیت کامل برای
-          شما به شکل آنلاین در زمان مشخص شده انجام میشود.
-          <br />
-          در صورت انتخاب "مشاوره" صرفا پاسخ سوال شما در اولین فرصت به شماره
-          موبایلتان پیامک میشود.
-        </p>
         <div className="d-grid">
           <button
             type="submit"
